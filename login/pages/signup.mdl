@@ -1,0 +1,36 @@
+page@id(signupPage):
+  hero:
+    ## Create account
+    Try the signup flow, then return to sign in.
+
+  form@id(signupForm)@submit(handleSignup):
+    field@id(signupNameField):
+      label:
+        Full name
+      .input@type(text)@id(signupNameInput)@required@placeholder(Ada Lovelace)
+
+    field@id(signupEmailField):
+      label:
+        Email address
+      .input@type(email)@id(signupEmailInput)@required@placeholder(ada@example.com)
+
+    field@id(signupPasswordField):
+      label:
+        Password
+      .input@type(password)@id(signupPasswordInput)@required@minlength(6)@placeholder(6 characters minimum)
+
+    error@id(signupMsg)@aria-live(polite):
+      Create a demo account to test popup and redirect behavior.
+
+    actions:
+      .btn-primary@id(signupBtn)(Create account)
+      .btn-ghost@type(button)@click(goToLogin)(Already have an account?)
+
+  popup@id(appPopup)@aria-live(polite):
+    panel:
+      popup-title@id(popupTitle):
+        Message
+      popup-message@id(popupMessage):
+        Waiting.
+      actions:
+        .btn-secondary@type(button)@id(popupCloseBtn)@click(closePopup)(OK)

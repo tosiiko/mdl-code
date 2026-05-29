@@ -1,0 +1,17 @@
+{
+  "entry": "pages/index.mdl",
+  "pages": "pages",
+  "output": "dist",
+  "css": {
+    "runtime": true,
+    "bundle": "dist/app.css"
+  },
+  "styles": [
+    "css/site.css"
+  ],
+  "scripts": [
+    "scripts/site.js"
+  ],
+  "title": "MDL Complete Website",
+  "port": 5050
+}

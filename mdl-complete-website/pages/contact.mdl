@@ -1,0 +1,58 @@
+page@id(contactPage):
+  topbar@class(site-topbar):
+    brand:
+      .href@href(/)@class(site-brand)(MDL)
+    nav@class(site-nav)@aria-label(Primary):
+      .href@href(/docs)(Docs)
+      .href@href(/cli)(CLI)
+      .href@href(/examples)(Examples)
+      .href@href(/pricing)(Pricing)
+      .href@href(/contact)@class(nav-cta is-active)(Contact)
+  hero@class(page-hero contact-hero):
+    .badge(Contact)
+    # Tell us what you want to build
+    This form is authored in MDL and handled by the local JavaScript module. It validates fields and shows a toast without leaving the page.
+  section@class(contact-layout):
+    form@id(contactForm)@submit(handleContact)@novalidate:
+      field@id(nameField):
+        label@for(nameInput):
+          Name
+        .input@id(nameInput)@type(text)@placeholder(Ada Lovelace)@required
+      field@id(emailField):
+        label@for(emailInput):
+          Email
+        .input@id(emailInput)@type(email)@placeholder(ada@example.com)@required
+      field@id(messageField):
+        label@for(messageInput):
+          Project
+        textarea@id(messageInput)@placeholder(A complete website, docs hub, or product page)@required:
+      status@id(contactStatus)@aria-live(polite):
+        Fill out the form and submit it locally.
+      actions:
+        .btn-primary@id(contactButton)(Send message)
+        .href@href(/docs)@class(btn-link ghost)(Read docs first)
+    aside@class(contact-aside):
+      ## What MDL gives you
+      list:
+        item:
+          Semantic HTML from readable source files.
+        item:
+          Predictable classes for design systems.
+        item:
+          Multi-page builds with one project config.
+        item:
+          Explicit JavaScript event bindings.
+      note:
+        This example is a static website. The contact form is local-only and does not send a network request.
+  toast@id(siteToast)@aria-live(polite):
+    Message prepared locally.
+  footer@class(site-footer):
+    brand:
+      .href@href(/)@class(site-brand)(MDL)
+      Contact page authored in MDL.
+    nav@aria-label(Footer):
+      .href@href(/)(Home)
+      .href@href(/docs)(Docs)
+      .href@href(/cli)(CLI)
+      .href@href(/examples)(Examples)
+      .href@href(/pricing)(Pricing)

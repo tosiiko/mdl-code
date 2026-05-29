@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Login</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="mdl-page" id="componentsPage">
+  <header class="mdl-topbar">
+    <h2>MDL Components</h2>
+    <div class="mdl-actions">
+      <button class="mdl-btn-ghost" type="button" data-mdl-on-click="goToLogin">Login</button>
+      <button class="mdl-btn-ghost" type="button" data-mdl-on-click="goToDashboard">Dashboard</button>
+    </div>
+  </header>
+  <div class="mdl-components">
+    <div class="mdl-card">
+      <h2>Toast</h2>
+      <p>Lightweight status messages that do not own the whole page.</p>
+      <button class="mdl-btn-primary" type="button" data-mdl-on-click="showDemoToast">Show toast</button>
+    </div>
+    <div class="mdl-card">
+      <h2>Modal</h2>
+      <p>A focused dialog for confirmations or important choices.</p>
+      <button class="mdl-btn-primary" type="button" data-mdl-on-click="openDemoModal">Open modal</button>
+    </div>
+    <div class="mdl-card">
+      <h2>Drawer</h2>
+      <p>A side panel for extra context or settings.</p>
+      <button class="mdl-btn-primary" type="button" data-mdl-on-click="openDemoDrawer">Open drawer</button>
+    </div>
+    <div class="mdl-card">
+      <h2>Tabs</h2>
+      <p>Related panels that share one visible surface.</p>
+      <div class="mdl-tabs" id="componentTabs">
+        <div class="mdl-tablist" role="tablist">
+          <button class="mdl-btn-secondary" type="button" id="tabOverviewButton" data-mdl-on-click="showOverviewTab">Overview</button>
+          <button class="mdl-btn-ghost" type="button" id="tabDetailsButton" data-mdl-on-click="showDetailsTab">Details</button>
+        </div>
+        <div class="mdl-tab" id="tabOverview" data-state="active">
+          <p>Overview content proves a tab panel can be a normal MDL section.</p>
+        </div>
+        <div class="mdl-tab" id="tabDetails">
+          <p>Details content is hidden until the tab handler activates it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-toast" id="demoToast" aria-live="polite">
+    <p>Saved. The toast component is working.</p>
+  </div>
+  <dialog class="mdl-modal" id="demoModal" aria-labelledby="demoModalTitle">
+    <div class="mdl-panel">
+      <div class="mdl-modal-title" id="demoModalTitle">
+        <p>Confirm action</p>
+      </div>
+      <div class="mdl-modal-body">
+        <p>This modal is rendered from MDL and opened by a JavaScript binding.</p>
+      </div>
+      <div class="mdl-actions">
+        <button class="mdl-btn-secondary" type="button" data-mdl-on-click="closeDemoModal">Close</button>
+      </div>
+    </div>
+  </dialog>
+  <aside class="mdl-drawer" id="demoDrawer" aria-label="Component drawer">
+    <div class="mdl-drawer-header">
+      <h2>Drawer</h2>
+      <button class="mdl-btn-ghost" type="button" data-mdl-on-click="closeDemoDrawer">Close</button>
+    </div>
+    <div class="mdl-drawer-body">
+      <p>Drawers are good for filters, navigation, and helper panels.</p>
+    </div>
+  </aside>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/auth.js";
+const mdlHandlers = Object.assign({}, globalThis, mdlModule0);
+const mdlBind = (eventName) => {
+  document.querySelectorAll(`[data-mdl-on-${eventName}]`).forEach((element) => {
+    const handlerName = element.getAttribute(`data-mdl-on-${eventName}`);
+    const handler = mdlHandlers[handlerName];
+    if (typeof handler === "function") {
+      element.addEventListener(eventName, (event) => handler(event));
+    }
+  });
+};
+["click", "submit", "input", "change"].forEach(mdlBind);
+</script>
+</body>
+</html>

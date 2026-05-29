@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: #17171f;
+  background: #f7f8fb;
+}
+
+.mdl-page {
+  width: min(900px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 56px;
+}
+
+.mdl-nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.mdl-link {
+  color: #2457d6;
+  text-decoration: none;
+  font-weight: 650;
+}
+
+.mdl-hero {
+  padding: 32px;
+  border: 1px solid #dfe3ee;
+  border-radius: 8px;
+  background: white;
+  margin-bottom: 18px;
+}
+
+.mdl-hero h1 {
+  margin: 0 0 8px;
+  font-size: 40px;
+}
+
+.mdl-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.mdl-card,
+.mdl-note,
+.mdl-section,
+.mdl-article {
+  padding: 20px;
+  border: 1px solid #dfe3ee;
+  border-radius: 8px;
+  background: white;
+}
+
+.mdl-card h2,
+.mdl-section h1,
+.mdl-article h1 {
+  margin-top: 0;
+}
+
+.mdl-btn-primary {
+  display: inline-block;
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 14px;
+  background: #2457d6;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+}
+
+.mdl-badge {
+  display: inline-block;
+  width: max-content;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #e8f1ff;
+  color: #1457b8;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mdl-list {
+  padding-left: 22px;
+}

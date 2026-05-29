@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Complete Website</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="mdl-page" id="homePage">
+  <header class="mdl-topbar site-topbar">
+    <div class="mdl-brand">
+      <a class="mdl-href site-brand" href="/">MDL</a>
+    </div>
+    <nav class="mdl-nav site-nav" aria-label="Primary">
+      <a class="mdl-href" href="/docs">Docs</a>
+      <a class="mdl-href" href="/cli">CLI</a>
+      <a class="mdl-href" href="/examples">Examples</a>
+      <a class="mdl-href" href="/pricing">Pricing</a>
+      <a class="mdl-href nav-cta" href="/contact">Contact</a>
+    </nav>
+  </header>
+  <div class="mdl-hero site-hero">
+    <span class="mdl-badge">Complete MDL website</span>
+    <h1>Tiny authoring, real pages</h1>
+    <p>Build a multi-page product site from readable MDL files, normal CSS, and a small JavaScript module.</p>
+    <div class="mdl-actions hero-actions">
+      <a class="mdl-href btn-link primary" href="/docs">Start building</a>
+      <a class="mdl-href btn-link secondary" href="/examples">See examples</a>
+    </div>
+  </div>
+  <div class="mdl-metrics site-metrics">
+    <div class="mdl-stat">
+      <h2>6</h2>
+      <p>MDL pages</p>
+    </div>
+    <div class="mdl-stat">
+      <h2>1</h2>
+      <p>CSS bundle</p>
+    </div>
+    <div class="mdl-stat">
+      <h2>0</h2>
+      <p>Hand-written HTML</p>
+    </div>
+  </div>
+  <section class="mdl-section section-band">
+    <div class="mdl-intro">
+      <span class="mdl-badge">Why MDL</span>
+      <h2>Content stays close to the idea</h2>
+      <p>MDL gives each page a clear outline, then compiles it into semantic HTML with predictable classes. Designers still own the CSS, and developers can add JavaScript only where behavior belongs.</p>
+    </div>
+    <div class="mdl-grid feature-grid">
+      <div class="mdl-card">
+        <span class="mdl-tag">Structure</span>
+        <h3>Pages read like outlines</h3>
+        <p>Use sections such as <code>page</code>, <code>topbar</code>, <code>hero</code>, <code>grid</code>, <code>card</code>, <code>form</code>, and <code>footer</code> to describe the site shape directly.</p>
+      </div>
+      <div class="mdl-card">
+        <span class="mdl-tag">Styling</span>
+        <h3>CSS remains normal</h3>
+        <p>The compiler emits stable <code>mdl-*</code> classes, so the visual system lives in one familiar stylesheet.</p>
+      </div>
+      <div class="mdl-card">
+        <span class="mdl-tag">Behavior</span>
+        <h3>Scripts are explicit</h3>
+        <p>Attach event handlers with attributes like <code>@click(showPlan)</code> and export the matching function from a module.</p>
+      </div>
+    </div>
+  </section>
+  <section class="mdl-section workflow-section">
+    <header class="mdl-header">
+      <span class="mdl-badge">Workflow</span>
+      <h2>From draft to production preview</h2>
+    </header>
+    <ol class="mdl-steps">
+      <li class="mdl-step">
+        <h3>Author</h3>
+        <p>Write content in MDL with Markdown, dot inline elements, attributes, and named sections.</p>
+      </li>
+      <li class="mdl-step">
+        <h3>Style</h3>
+        <p>Use the generated classes as hooks for responsive layout, controls, cards, banners, and forms.</p>
+      </li>
+      <li class="mdl-step">
+        <h3>Ship</h3>
+        <p>Run <code>mdl build</code> to compile every page under the project <code>pages</code> folder into static HTML.</p>
+      </li>
+    </ol>
+  </section>
+  <section class="mdl-section showcase-section">
+    <header class="mdl-header">
+      <span class="mdl-badge">Site kit</span>
+      <h2>What this website includes</h2>
+    </header>
+    <div class="mdl-grid showcase-grid">
+      <div class="mdl-card">
+        <h2>Product landing page</h2>
+        <p>A first-viewport hero with a generated workspace visual, clear navigation, metrics, feature cards, and a call to action.</p>
+      </div>
+      <div class="mdl-card">
+        <h2>Documentation and CLI</h2>
+        <p>A tabbed guide plus a command reference page for checking, formatting, serving, and building MDL projects.</p>
+      </div>
+      <div class="mdl-card">
+        <h2>Examples and pricing</h2>
+        <p>Real website pages with repeated cards, comparison content, and button interactions.</p>
+      </div>
+      <div class="mdl-card">
+        <h2>Contact workflow</h2>
+        <p>A usable contact form with validation, inline state, and a toast message.</p>
+      </div>
+    </div>
+  </section>
+  <div class="mdl-banner site-banner">
+    <h2>Ready to write the next page?</h2>
+    <p>The docs page shows the core syntax, project layout, and build flow used by this site.</p>
+    <div class="mdl-actions">
+      <a class="mdl-href btn-link primary" href="/docs">Open docs</a>
+      <a class="mdl-href btn-link secondary" href="/cli">View CLI</a>
+      <a class="mdl-href btn-link ghost" href="/contact">Talk to us</a>
+    </div>
+  </div>
+  <footer class="mdl-footer site-footer">
+    <div class="mdl-brand">
+      <a class="mdl-href site-brand" href="/">MDL</a>
+      <p>Built with MDL, CSS, and a tiny JavaScript module.</p>
+    </div>
+    <nav class="mdl-nav" aria-label="Footer">
+      <a class="mdl-href" href="/docs">Docs</a>
+      <a class="mdl-href" href="/cli">CLI</a>
+      <a class="mdl-href" href="/examples">Examples</a>
+      <a class="mdl-href" href="/pricing">Pricing</a>
+      <a class="mdl-href" href="/contact">Contact</a>
+    </nav>
+  </footer>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/site.js";
+</script>
+</body>
+</html>

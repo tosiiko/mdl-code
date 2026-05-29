@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Tailwind</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+<main class="mdl-page min-h-screen bg-zinc-950 px-6 py-8 text-zinc-50">
+  <div class="mdl-hero mx-auto max-w-3xl py-14">
+    <h2>MDL + Tailwind</h2>
+    <p>Write MDL structure first, then add utility classes with @class(...).</p>
+    <button class="mdl-btn-primary mt-6 rounded-full bg-cyan-300 px-5 py-3 font-semibold text-zinc-950 shadow-lg shadow-cyan-500/20 hover:bg-cyan-200">Start building</button>
+  </div>
+  <div class="mdl-grid mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
+    <div class="mdl-card border border-white/10 bg-white/10 p-6 backdrop-blur">
+      <h3>Tiny syntax</h3>
+      <p>Sections still produce stable mdl-* classes.</p>
+    </div>
+    <div class="mdl-card border border-white/10 bg-white/10 p-6 backdrop-blur">
+      <h3>Author classes</h3>
+      <p>@class(...) appends Tailwind utilities after MDL classes.</p>
+    </div>
+    <div class="mdl-card border border-white/10 bg-white/10 p-6 backdrop-blur">
+      <h3>CSS later</h3>
+      <p>Swap the browser script for compiled CSS when the project grows.</p>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

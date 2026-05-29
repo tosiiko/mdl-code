@@ -1,0 +1,48 @@
+.mdl-popup {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  padding: 20px;
+  background: rgba(17, 24, 39, 0.46);
+  z-index: 30;
+}
+
+.mdl-popup.visible {
+  display: grid;
+}
+
+.mdl-panel {
+  width: min(100%, 420px);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: 0 24px 70px rgba(17, 24, 39, 0.28);
+}
+
+.mdl-popup-title {
+  margin-bottom: 8px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 750;
+  color: #111827;
+}
+
+.mdl-popup-title p,
+.mdl-popup-message p {
+  margin: 0;
+}
+
+.mdl-popup-message {
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.mdl-popup.success .mdl-panel {
+  border-color: #86efac;
+}
+
+.mdl-popup.error .mdl-panel {
+  border-color: #fca5a5;
+}

@@ -1,0 +1,93 @@
+page@id(homePage):
+  topbar@class(site-topbar):
+    brand:
+      .href@href(/)@class(site-brand)(MDL)
+    nav@class(site-nav)@aria-label(Primary):
+      .href@href(/docs)(Docs)
+      .href@href(/cli)(CLI)
+      .href@href(/examples)(Examples)
+      .href@href(/pricing)(Pricing)
+      .href@href(/contact)@class(nav-cta)(Contact)
+  hero@class(site-hero):
+    .badge(Complete MDL website)
+    # Tiny authoring, real pages
+    Build a multi-page product site from readable MDL files, normal CSS, and a small JavaScript module.
+    actions@class(hero-actions):
+      .href@href(/docs)@class(btn-link primary)(Start building)
+      .href@href(/examples)@class(btn-link secondary)(See examples)
+  metrics@class(site-metrics):
+    stat:
+      ## 6
+      MDL pages
+    stat:
+      ## 1
+      CSS bundle
+    stat:
+      ## 0
+      Hand-written HTML
+  section@class(section-band):
+    intro:
+      .badge(Why MDL)
+      ## Content stays close to the idea
+      MDL gives each page a clear outline, then compiles it into semantic HTML with predictable classes. Designers still own the CSS, and developers can add JavaScript only where behavior belongs.
+    grid@class(feature-grid):
+      card:
+        .tag(Structure)
+        ### Pages read like outlines
+        Use sections such as `page`, `topbar`, `hero`, `grid`, `card`, `form`, and `footer` to describe the site shape directly.
+      card:
+        .tag(Styling)
+        ### CSS remains normal
+        The compiler emits stable `mdl-*` classes, so the visual system lives in one familiar stylesheet.
+      card:
+        .tag(Behavior)
+        ### Scripts are explicit
+        Attach event handlers with attributes like `@click(showPlan)` and export the matching function from a module.
+  section@class(workflow-section):
+    header:
+      .badge(Workflow)
+      ## From draft to production preview
+    steps:
+      step:
+        ### Author
+        Write content in MDL with Markdown, dot inline elements, attributes, and named sections.
+      step:
+        ### Style
+        Use the generated classes as hooks for responsive layout, controls, cards, banners, and forms.
+      step:
+        ### Ship
+        Run `mdl build` to compile every page under the project `pages` folder into static HTML.
+  section@class(showcase-section):
+    header:
+      .badge(Site kit)
+      ## What this website includes
+    grid@class(showcase-grid):
+      card:
+        ## Product landing page
+        A first-viewport hero with a generated workspace visual, clear navigation, metrics, feature cards, and a call to action.
+      card:
+        ## Documentation and CLI
+        A tabbed guide plus a command reference page for checking, formatting, serving, and building MDL projects.
+      card:
+        ## Examples and pricing
+        Real website pages with repeated cards, comparison content, and button interactions.
+      card:
+        ## Contact workflow
+        A usable contact form with validation, inline state, and a toast message.
+  banner@class(site-banner):
+    ## Ready to write the next page?
+    The docs page shows the core syntax, project layout, and build flow used by this site.
+    actions:
+      .href@href(/docs)@class(btn-link primary)(Open docs)
+      .href@href(/cli)@class(btn-link secondary)(View CLI)
+      .href@href(/contact)@class(btn-link ghost)(Talk to us)
+  footer@class(site-footer):
+    brand:
+      .href@href(/)@class(site-brand)(MDL)
+      Built with MDL, CSS, and a tiny JavaScript module.
+    nav@aria-label(Footer):
+      .href@href(/docs)(Docs)
+      .href@href(/cli)(CLI)
+      .href@href(/examples)(Examples)
+      .href@href(/pricing)(Pricing)
+      .href@href(/contact)(Contact)

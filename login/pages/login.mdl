@@ -1,0 +1,32 @@
+page@id(loginPage):
+  hero:
+    ## Sign in
+    Welcome back to the MDL auth demo.
+
+  form@id(loginForm)@submit(handleLogin):
+    field@id(emailField):
+      label:
+        Email address
+      .input@type(email)@id(emailInput)@required@placeholder(demo@mdl.local)
+
+    field@id(passwordField):
+      label:
+        Password
+      .input@type(password)@id(passwordInput)@required@placeholder(password)
+
+    error@id(errorMsg)@aria-live(polite):
+      Use demo@mdl.local with password to try the local demo.
+
+    actions:
+      .btn-primary@id(loginBtn)(Sign in)
+      .btn-ghost@type(button)@click(goToSignup)(Create account)
+      .btn-ghost@type(button)@click(handleForgot)(Forgot password?)
+
+  popup@id(appPopup)@aria-live(polite):
+    panel:
+      popup-title@id(popupTitle):
+        Message
+      popup-message@id(popupMessage):
+        Waiting.
+      actions:
+        .btn-secondary@type(button)@id(popupCloseBtn)@click(closePopup)(OK)

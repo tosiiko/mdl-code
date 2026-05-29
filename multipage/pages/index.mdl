@@ -1,0 +1,22 @@
+page:
+  nav:
+    .link(home) .link(about) .link(docs)
+
+  hero:
+    # MDL
+    A tiny multi-page site built without hand-written HTML.
+    .btn-primary(Get started)
+
+  features:
+    card:
+      ## Structure
+      Sections become predictable `mdl-*` classes.
+
+    card:
+      ## Markdown
+      Content stays readable and familiar.
+
+    card:
+      ## CSS
+      Styling remains normal CSS.
+

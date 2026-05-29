@@ -1,0 +1,22 @@
+{
+  "entry": "pages/login.mdl",
+  "pages": "pages",
+  "output": "dist",
+  "css": {
+    "runtime": true,
+    "bundle": "dist/app.css"
+  },
+  "styles": [
+    "css/base.css",
+    "css/auth.css",
+    "css/popup.css",
+    "css/transition.css",
+    "css/dashboard.css",
+    "css/components.css"
+  ],
+  "scripts": [
+    "scripts/auth.js"
+  ],
+  "title": "MDL Login",
+  "port": 3998
+}

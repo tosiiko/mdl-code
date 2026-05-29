@@ -1,0 +1,16 @@
+page@class(min-h-screen bg-zinc-950 px-6 py-8 text-zinc-50):
+  hero@class(mx-auto max-w-3xl py-14):
+    ## MDL + Tailwind
+    Write MDL structure first, then add utility classes with @class(...).
+    .btn-primary@class(mt-6 rounded-full bg-cyan-300 px-5 py-3 font-semibold text-zinc-950 shadow-lg shadow-cyan-500/20 hover:bg-cyan-200)(Start building)
+
+  grid@class(mx-auto grid max-w-5xl gap-4 md:grid-cols-3):
+    card@class(border border-white/10 bg-white/10 p-6 backdrop-blur):
+      ### Tiny syntax
+      Sections still produce stable mdl-* classes.
+    card@class(border border-white/10 bg-white/10 p-6 backdrop-blur):
+      ### Author classes
+      @class(...) appends Tailwind utilities after MDL classes.
+    card@class(border border-white/10 bg-white/10 p-6 backdrop-blur):
+      ### CSS later
+      Swap the browser script for compiled CSS when the project grows.

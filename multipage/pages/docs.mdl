@@ -1,0 +1,18 @@
+page:
+  nav:
+    .link(home) .link(about)
+
+  section:
+    # Docs
+    Start with sections, inline elements, and attributes.
+
+    .link(docs/intro)
+
+  list:
+    item:
+      Sections use `name:`
+    item:
+      Inline elements use `.name(text)`
+    item:
+      Attributes use `@name(value)`
+

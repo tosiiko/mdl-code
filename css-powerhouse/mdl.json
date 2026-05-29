@@ -1,0 +1,14 @@
+{
+  "entry": "pages/index.mdl",
+  "pages": "pages",
+  "output": "dist",
+  "css": {
+    "runtime": true,
+    "bundle": "dist/app.css"
+  },
+  "styles": [
+    "css/powerhouse.css"
+  ],
+  "title": "MDL CSS Powerhouse",
+  "port": 3994
+}

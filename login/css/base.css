@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2937;
+  background: #f6f7fb;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.mdl-link {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.mdl-link:hover {
+  text-decoration: underline;
+}
+
+.mdl-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.mdl-btn-primary,
+.mdl-btn-secondary,
+.mdl-btn-ghost,
+.mdl-btn-danger {
+  min-height: 42px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, opacity 0.18s;
+}
+
+.mdl-btn-primary {
+  width: 100%;
+  background: #2457d6;
+  color: #fff;
+}
+
+.mdl-btn-primary:hover {
+  background: #1d4ec3;
+}
+
+.mdl-btn-secondary {
+  background: #1f2937;
+  color: #fff;
+}
+
+.mdl-btn-secondary:hover {
+  background: #111827;
+}
+
+.mdl-btn-ghost {
+  background: transparent;
+  color: #2457d6;
+}
+
+.mdl-btn-ghost:hover {
+  background: #eaf0ff;
+}
+
+.mdl-btn-danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+.mdl-btn-danger:hover {
+  background: #b91c1c;
+}
+
+.mdl-badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 10px;
+  background: #e8fff3;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}

@@ -1,0 +1,137 @@
+.mdl-components {
+  width: min(100%, 960px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mdl-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: none;
+  max-width: min(360px, calc(100vw - 40px));
+  padding: 14px 16px;
+  background: #111827;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 20px 55px rgba(17, 24, 39, 0.24);
+  z-index: 35;
+}
+
+.mdl-toast.visible {
+  display: block;
+}
+
+.mdl-toast p {
+  margin: 0;
+}
+
+.mdl-modal {
+  width: min(420px, calc(100vw - 32px));
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  background: transparent;
+}
+
+.mdl-modal::backdrop {
+  background: rgba(17, 24, 39, 0.46);
+}
+
+.mdl-modal .mdl-panel {
+  width: auto;
+}
+
+.mdl-modal-title {
+  margin-bottom: 8px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 750;
+  color: #111827;
+}
+
+.mdl-modal-title p,
+.mdl-modal-body p {
+  margin: 0;
+}
+
+.mdl-modal-body {
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.mdl-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(360px, 86vw);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px;
+  box-sizing: border-box;
+  background: #fff;
+  border-left: 1px solid #e5e7eb;
+  box-shadow: -20px 0 45px rgba(17, 24, 39, 0.18);
+  transform: translateX(105%);
+  transition: transform var(--mdl-motion-medium, 240ms) ease;
+  z-index: 34;
+}
+
+.mdl-drawer.visible {
+  transform: translateX(0);
+}
+
+.mdl-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mdl-drawer-header h2,
+.mdl-drawer-body p {
+  margin: 0;
+}
+
+.mdl-drawer-body {
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.mdl-tabs {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.mdl-tablist {
+  display: flex;
+  gap: 8px;
+}
+
+.mdl-tab {
+  display: none;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.mdl-tab[data-state="active"] {
+  display: block;
+}
+
+.mdl-tab p {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .mdl-components {
+    grid-template-columns: 1fr;
+  }
+}

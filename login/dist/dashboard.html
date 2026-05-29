@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Login</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="mdl-page" id="dashboardPage">
+  <header class="mdl-topbar">
+    <h2>MDL Dashboard</h2>
+    <div class="mdl-actions">
+      <button class="mdl-btn-ghost" type="button" data-mdl-on-click="goToComponents">Components</button>
+      <button class="mdl-btn-ghost" type="button" data-mdl-on-click="goToLogin">Sign in</button>
+      <button class="mdl-btn-danger" type="button" data-mdl-on-click="logout">Log out</button>
+    </div>
+  </header>
+  <div class="mdl-dashboard">
+    <div class="mdl-card">
+      <h2>Redirect worked</h2>
+      <p>You reached this page after the login success popup.</p>
+      <span class="mdl-badge">auth-ready</span>
+    </div>
+    <div class="mdl-card">
+      <h2>Event bindings</h2>
+      <p>Buttons on these pages are connected through <code>@click(handler)</code> and <code>@submit(handler)</code>.</p>
+    </div>
+    <div class="mdl-card">
+      <h2>CSS bundle</h2>
+      <p>Base, auth, popup, transition, and dashboard styles are bundled into <code>dist/app.css</code>.</p>
+    </div>
+    <div class="mdl-card">
+      <h2>Rich components</h2>
+      <p>Toast, modal, drawer, and tabs are available on the components page.</p>
+      <button class="mdl-btn-primary" type="button" data-mdl-on-click="goToComponents">Open components</button>
+    </div>
+  </div>
+  <div class="mdl-popup" id="appPopup" aria-live="polite">
+    <div class="mdl-panel">
+      <div class="mdl-popup-title" id="popupTitle">
+        <p>Message</p>
+      </div>
+      <div class="mdl-popup-message" id="popupMessage">
+        <p>Waiting.</p>
+      </div>
+      <div class="mdl-actions">
+        <button class="mdl-btn-secondary" type="button" id="popupCloseBtn" data-mdl-on-click="closePopup">OK</button>
+      </div>
+    </div>
+  </div>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/auth.js";
+const mdlHandlers = Object.assign({}, globalThis, mdlModule0);
+const mdlBind = (eventName) => {
+  document.querySelectorAll(`[data-mdl-on-${eventName}]`).forEach((element) => {
+    const handlerName = element.getAttribute(`data-mdl-on-${eventName}`);
+    const handler = mdlHandlers[handlerName];
+    if (typeof handler === "function") {
+      element.addEventListener(eventName, (event) => handler(event));
+    }
+  });
+};
+["click", "submit", "input", "change"].forEach(mdlBind);
+</script>
+</body>
+</html>

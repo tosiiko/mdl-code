@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL CSS Powerhouse</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="mdl-page" id="cssPowerhouse">
+  <div class="mdl-shell">
+    <div class="mdl-hero">
+      <span class="mdl-badge">CSS-only lab</span>
+      <h2>CSS as the layout powerhouse</h2>
+      <p>This page uses MDL for structure and CSS for layout, theme, state, responsiveness, motion, and visual logic.</p>
+    </div>
+    <div class="mdl-control-panel">
+      <fieldset class="mdl-fieldset">
+        <legend class="mdl-legend">
+          <p>Theme</p>
+        </legend>
+        <label class="mdl-radio"><input id="theme-day" name="theme" checked="true" type="radio">Daylight</label>
+        <label class="mdl-radio"><input id="theme-night" name="theme" type="radio">Night</label>
+        <label class="mdl-radio"><input id="theme-heat" name="theme" type="radio">Heat</label>
+      </fieldset>
+      <fieldset class="mdl-fieldset">
+        <legend class="mdl-legend">
+          <p>Density</p>
+        </legend>
+        <label class="mdl-radio"><input id="density-roomy" name="density" checked="true" type="radio">Roomy</label>
+        <label class="mdl-radio"><input id="density-compact" name="density" type="radio">Compact</label>
+      </fieldset>
+    </div>
+    <div class="mdl-showcase">
+      <div class="mdl-card" tone="primary">
+        <span class="mdl-badge">:has + custom properties</span>
+        <h3>State flows through CSS</h3>
+        <p>Theme and density are radio inputs. CSS reads them with <code>:has()</code> and updates variables across the whole page.</p>
+        <div class="mdl-meter" style="--value: 86%"></div>
+      </div>
+      <div class="mdl-card">
+        <span class="mdl-badge">@container</span>
+        <h3>Cards answer their container</h3>
+        <p>Resize the page and this grid changes from narrow cards to richer panels using container queries, not JavaScript.</p>
+        <div class="mdl-meter" style="--value: 72%"></div>
+      </div>
+      <div class="mdl-card">
+        <span class="mdl-badge">color-mix + clamp</span>
+        <h3>CSS can calculate design</h3>
+        <p>Type, spacing, surfaces, and glow use <code>clamp()</code>, <code>calc()</code>, and <code>color-mix()</code> from the CSS bundle.</p>
+        <div class="mdl-meter" style="--value: 94%"></div>
+      </div>
+    </div>
+    <div class="mdl-split">
+      <div class="mdl-panel">
+        <h2>Native disclosure</h2>
+        <details class="mdl-details" open>
+          <summary class="mdl-summary">
+            <p>What is CSS doing here?</p>
+          </summary>
+          <div class="mdl-stack" gap="3">
+            <p>It owns layout primitives, state styling, responsive rules, tokens, motion, and the final visual system.
+            No JavaScript is needed for this interaction.</p>
+          </div>
+        </details>
+        <details class="mdl-details">
+          <summary class="mdl-summary">
+            <p>What does MDL do?</p>
+          </summary>
+          <div class="mdl-stack" gap="3">
+            <p>MDL gives predictable HTML hooks: <code>.mdl-card</code>, <code>.mdl-grid</code>, attributes like <code>gap</code>, and clean content.
+            CSS turns those hooks into the experience.</p>
+          </div>
+        </details>
+      </div>
+      <div class="mdl-panel">
+        <h2>Runtime direction</h2>
+        <div class="mdl-grid" cols="2" gap="3">
+          <div class="mdl-stat">
+            <span class="mdl-badge">Layout</span>
+            <h3>Grid</h3>
+            <p>CSS variables and container queries.</p>
+          </div>
+          <div class="mdl-stat">
+            <span class="mdl-badge">State</span>
+            <h3>:has()</h3>
+            <p>Parent-aware styling.</p>
+          </div>
+          <div class="mdl-stat">
+            <span class="mdl-badge">Theme</span>
+            <h3>Tokens</h3>
+            <p>One variable graph.</p>
+          </div>
+          <div class="mdl-stat">
+            <span class="mdl-badge">Motion</span>
+            <h3>@property</h3>
+            <p>Typed animation hooks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

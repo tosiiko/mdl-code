@@ -1,0 +1,14 @@
+page:
+  nav:
+    .link(home) .link(docs)
+
+  section:
+    # About MDL
+    MDL is Markdown with named sections.
+
+    It compiles to boring, useful HTML and lets CSS own the visual design.
+
+  note:
+    Unknown section names still work. They become `div` elements with matching
+    `mdl-*` classes.
+

@@ -1,0 +1,59 @@
+.mdl-topbar {
+  width: min(100%, 960px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mdl-topbar h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.mdl-topbar .mdl-actions {
+  flex-direction: row;
+  margin-top: 0;
+}
+
+.mdl-dashboard {
+  width: min(100%, 960px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mdl-card {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(31, 41, 55, 0.06);
+}
+
+.mdl-card h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.mdl-card p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .mdl-topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mdl-dashboard {
+    grid-template-columns: 1fr;
+  }
+}

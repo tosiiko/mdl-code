@@ -1,0 +1,117 @@
+:root {
+  --mdl-motion-fast: 160ms;
+  --mdl-motion-medium: 240ms;
+}
+
+.mdl-btn-primary,
+.mdl-btn-secondary,
+.mdl-btn-ghost,
+.mdl-btn-danger,
+.mdl-input,
+.mdl-error,
+.mdl-popup,
+.mdl-panel {
+  transition-duration: var(--mdl-motion-fast);
+  transition-timing-function: ease;
+}
+
+.mdl-btn-primary,
+.mdl-btn-secondary,
+.mdl-btn-ghost,
+.mdl-btn-danger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition-property: background, border-color, color, opacity, transform;
+}
+
+.mdl-btn-primary:not(:disabled):active,
+.mdl-btn-secondary:not(:disabled):active,
+.mdl-btn-ghost:not(:disabled):active,
+.mdl-btn-danger:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.mdl-btn-primary--loading {
+  color: transparent;
+  cursor: wait;
+  opacity: 0.86;
+  pointer-events: none;
+}
+
+.mdl-btn-primary--loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.62);
+  border-top-color: #fff;
+  border-radius: 999px;
+  animation: mdl-spin 700ms linear infinite;
+}
+
+.mdl-error.visible,
+.mdl-error.success {
+  animation: mdl-rise-in var(--mdl-motion-medium) ease both;
+}
+
+.mdl-popup.visible {
+  animation: mdl-fade-in var(--mdl-motion-medium) ease both;
+}
+
+.mdl-popup.visible .mdl-panel {
+  animation: mdl-pop-in var(--mdl-motion-medium) ease both;
+}
+
+@keyframes mdl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mdl-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mdl-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mdl-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}

@@ -1,0 +1,54 @@
+page@id(componentsPage):
+  topbar:
+    ## MDL Components
+    actions:
+      .btn-ghost@type(button)@click(goToLogin)(Login)
+      .btn-ghost@type(button)@click(goToDashboard)(Dashboard)
+
+  components:
+    card:
+      ## Toast
+      Lightweight status messages that do not own the whole page.
+      .btn-primary@type(button)@click(showDemoToast)(Show toast)
+
+    card:
+      ## Modal
+      A focused dialog for confirmations or important choices.
+      .btn-primary@type(button)@click(openDemoModal)(Open modal)
+
+    card:
+      ## Drawer
+      A side panel for extra context or settings.
+      .btn-primary@type(button)@click(openDemoDrawer)(Open drawer)
+
+    card:
+      ## Tabs
+      Related panels that share one visible surface.
+
+      tabs@id(componentTabs):
+        tablist@role(tablist):
+          .btn-secondary@type(button)@id(tabOverviewButton)@click(showOverviewTab)(Overview)
+          .btn-ghost@type(button)@id(tabDetailsButton)@click(showDetailsTab)(Details)
+        tab@id(tabOverview)@data-state(active):
+          Overview content proves a tab panel can be a normal MDL section.
+        tab@id(tabDetails):
+          Details content is hidden until the tab handler activates it.
+
+  toast@id(demoToast)@aria-live(polite):
+    Saved. The toast component is working.
+
+  modal@id(demoModal)@aria-labelledby(demoModalTitle):
+    panel:
+      modal-title@id(demoModalTitle):
+        Confirm action
+      modal-body:
+        This modal is rendered from MDL and opened by a JavaScript binding.
+      actions:
+        .btn-secondary@type(button)@click(closeDemoModal)(Close)
+
+  drawer@id(demoDrawer)@aria-label(Component drawer):
+    drawer-header:
+      ## Drawer
+      .btn-ghost@type(button)@click(closeDemoDrawer)(Close)
+    drawer-body:
+      Drawers are good for filters, navigation, and helper panels.

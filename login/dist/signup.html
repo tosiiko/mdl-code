@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Login</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="mdl-page" id="signupPage">
+  <div class="mdl-hero">
+    <h2>Create account</h2>
+    <p>Try the signup flow, then return to sign in.</p>
+  </div>
+  <form class="mdl-form" id="signupForm" data-mdl-on-submit="handleSignup">
+    <div class="mdl-field" id="signupNameField">
+      <label class="mdl-label">
+        <p>Full name</p>
+      </label>
+      <input class="mdl-input" type="text" id="signupNameInput" required placeholder="Ada Lovelace">
+    </div>
+    <div class="mdl-field" id="signupEmailField">
+      <label class="mdl-label">
+        <p>Email address</p>
+      </label>
+      <input class="mdl-input" type="email" id="signupEmailInput" required placeholder="ada@example.com">
+    </div>
+    <div class="mdl-field" id="signupPasswordField">
+      <label class="mdl-label">
+        <p>Password</p>
+      </label>
+      <input class="mdl-input" type="password" id="signupPasswordInput" required minlength="6" placeholder="6 characters minimum">
+    </div>
+    <div class="mdl-error" id="signupMsg" aria-live="polite">
+      <p>Create a demo account to test popup and redirect behavior.</p>
+    </div>
+    <div class="mdl-actions">
+      <button class="mdl-btn-primary" id="signupBtn">Create account</button>
+      <button class="mdl-btn-ghost" type="button" data-mdl-on-click="goToLogin">Already have an account?</button>
+    </div>
+  </form>
+  <div class="mdl-popup" id="appPopup" aria-live="polite">
+    <div class="mdl-panel">
+      <div class="mdl-popup-title" id="popupTitle">
+        <p>Message</p>
+      </div>
+      <div class="mdl-popup-message" id="popupMessage">
+        <p>Waiting.</p>
+      </div>
+      <div class="mdl-actions">
+        <button class="mdl-btn-secondary" type="button" id="popupCloseBtn" data-mdl-on-click="closePopup">OK</button>
+      </div>
+    </div>
+  </div>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/auth.js";
+const mdlHandlers = Object.assign({}, globalThis, mdlModule0);
+const mdlBind = (eventName) => {
+  document.querySelectorAll(`[data-mdl-on-${eventName}]`).forEach((element) => {
+    const handlerName = element.getAttribute(`data-mdl-on-${eventName}`);
+    const handler = mdlHandlers[handlerName];
+    if (typeof handler === "function") {
+      element.addEventListener(eventName, (event) => handler(event));
+    }
+  });
+};
+["click", "submit", "input", "change"].forEach(mdlBind);
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+page@id(cliPage):
+  topbar@class(site-topbar):
+    brand:
+      .href@href(/)@class(site-brand)(MDL)
+    nav@class(site-nav)@aria-label(Primary):
+      .href@href(/docs)(Docs)
+      .href@href(/cli)@class(is-active)(CLI)
+      .href@href(/examples)(Examples)
+      .href@href(/pricing)(Pricing)
+      .href@href(/contact)@class(nav-cta)(Contact)
+  hero@class(page-hero cli-hero):
+    .badge(CLI)
+    # Command the build
+    The MDL command line keeps authoring tight: check source, format files, preview locally, and build static output from one project config.
+  section@class(cli-layout):
+    aside@class(docs-sidebar):
+      ## Commands
+      list:
+        item:
+          .href@href(#quickstart)(Quickstart)
+        item:
+          .href@href(#reference)(Reference)
+        item:
+          .href@href(#recipes)(Recipes)
+    article@class(docs-content cli-content):
+      section@id(quickstart):
+        .badge(Quickstart)
+        ## Start from a project
+        Run these commands from an MDL project folder such as `examples/mdl-complete-website`.
+
+        ```bash
+        ../../bin/mdl check
+        ../../bin/mdl format --check
+        ../../bin/mdl serve
+        ../../bin/mdl build
+        ```
+      section@id(reference):
+        .badge(Reference)
+        ## CLI commands
+        table:
+          thead:
+            tr:
+              th:
+                Command
+              th:
+                Purpose
+              th:
+                When to use it
+          tbody:
+            tr:
+              td:
+                `mdl check`
+              td:
+                Validates MDL syntax without writing files.
+              td:
+                Run before commits, demos, or batch builds.
+            tr:
+              td:
+                `mdl format`
+              td:
+                Rewrites MDL source using the project formatter.
+              td:
+                Use when authoring or cleaning up page files.
+            tr:
+              td:
+                `mdl format --check`
+              td:
+                Reports files that need formatting without changing them.
+              td:
+                Use in CI or review workflows.
+            tr:
+              td:
+                `mdl serve`
+              td:
+                Starts a local live preview for the configured project.
+              td:
+                Use while editing pages, CSS, scripts, and assets.
+            tr:
+              td:
+                `mdl build`
+              td:
+                Compiles every configured page into static HTML output.
+              td:
+                Use before publishing or handing off static files.
+      section@id(recipes):
+        .badge(Recipes)
+        ## Common command recipes
+        grid@class(command-grid):
+          card@class(command-card):
+            ### Preview this website
+            ```bash
+            cd examples/mdl-complete-website
+            ../../bin/mdl serve
+            ```
+          card@class(command-card):
+            ### Build this website
+            ```bash
+            cd examples/mdl-complete-website
+            ../../bin/mdl build
+            ```
+          card@class(command-card):
+            ### Build one explicit page
+            ```bash
+            cargo run -p mdl-cli -- build examples/sample/pricing.mdl --style pricing.css --title "MDL Pricing"
+            ```
+          card@class(command-card):
+            ### Preview one explicit page
+            ```bash
+            cargo run -p mdl-cli -- serve examples/sample/pricing.mdl --style pricing.css --title "MDL Pricing"
+            ```
+  banner@class(site-banner compact):
+    ## Want the syntax next?
+    The docs page explains the MDL sections, attributes, scripts, and project layout behind these commands.
+    actions:
+      .href@href(/docs)@class(btn-link primary)(Read docs)
+      .href@href(/examples)@class(btn-link ghost)(Browse examples)
+  footer@class(site-footer):
+    brand:
+      .href@href(/)@class(site-brand)(MDL)
+      CLI command page authored in MDL.
+    nav@aria-label(Footer):
+      .href@href(/)(Home)
+      .href@href(/docs)(Docs)
+      .href@href(/examples)(Examples)
+      .href@href(/pricing)(Pricing)
+      .href@href(/contact)(Contact)

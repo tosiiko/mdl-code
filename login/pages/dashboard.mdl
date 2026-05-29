@@ -1,0 +1,35 @@
+page@id(dashboardPage):
+  topbar:
+    ## MDL Dashboard
+    actions:
+      .btn-ghost@type(button)@click(goToComponents)(Components)
+      .btn-ghost@type(button)@click(goToLogin)(Sign in)
+      .btn-danger@type(button)@click(logout)(Log out)
+
+  dashboard:
+    card:
+      ## Redirect worked
+      You reached this page after the login success popup.
+      .badge(auth-ready)
+
+    card:
+      ## Event bindings
+      Buttons on these pages are connected through `@click(handler)` and `@submit(handler)`.
+
+    card:
+      ## CSS bundle
+      Base, auth, popup, transition, and dashboard styles are bundled into `dist/app.css`.
+
+    card:
+      ## Rich components
+      Toast, modal, drawer, and tabs are available on the components page.
+      .btn-primary@type(button)@click(goToComponents)(Open components)
+
+  popup@id(appPopup)@aria-live(polite):
+    panel:
+      popup-title@id(popupTitle):
+        Message
+      popup-message@id(popupMessage):
+        Waiting.
+      actions:
+        .btn-secondary@type(button)@id(popupCloseBtn)@click(closePopup)(OK)

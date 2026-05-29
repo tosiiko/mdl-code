@@ -1,0 +1,14 @@
+{
+  "entry": "pages/index.mdl",
+  "pages": "pages",
+  "output": "dist",
+  "css": {
+    "runtime": true,
+    "bundle": "dist/app.css"
+  },
+  "head_scripts": [
+    "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"
+  ],
+  "title": "MDL Tailwind",
+  "port": 3997
+}

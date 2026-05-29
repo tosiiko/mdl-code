@@ -1,0 +1,13 @@
+page:
+  nav:
+    .link(home) .link(docs)
+
+  article:
+    # Introduction
+    A page can live inside a nested folder.
+
+    This file is `pages/docs/intro.mdl`, served at `/docs/intro` and built to
+    `dist/docs/intro.html`.
+
+    .badge(nested route)
+

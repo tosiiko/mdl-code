@@ -1,0 +1,23 @@
+page:
+  header:
+    # MDL Pricing
+    Build pages without writing HTML.
+
+  pricing:
+    card:
+      ## Starter
+      $9/month
+      .badge(best for experiments)
+      .btn-primary(Choose)
+
+    card:
+      ## Pro
+      $29/month
+      .badge(for real projects)
+      .btn-primary(Choose)
+
+  section:
+    ## Why MDL?
+    MDL gives every named block a predictable CSS class.
+    Style `.mdl-pricing`, `.mdl-card`, and `.mdl-btn-primary` with normal CSS.
+

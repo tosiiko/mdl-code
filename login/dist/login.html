@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Login</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="mdl-page" id="loginPage">
+  <div class="mdl-hero">
+    <h2>Sign in</h2>
+    <p>Welcome back to the MDL auth demo.</p>
+  </div>
+  <form class="mdl-form" id="loginForm" data-mdl-on-submit="handleLogin">
+    <div class="mdl-field" id="emailField">
+      <label class="mdl-label">
+        <p>Email address</p>
+      </label>
+      <input class="mdl-input" type="email" id="emailInput" required placeholder="demo@mdl.local">
+    </div>
+    <div class="mdl-field" id="passwordField">
+      <label class="mdl-label">
+        <p>Password</p>
+      </label>
+      <input class="mdl-input" type="password" id="passwordInput" required placeholder="password">
+    </div>
+    <div class="mdl-error" id="errorMsg" aria-live="polite">
+      <p>Use demo@mdl.local with password to try the local demo.</p>
+    </div>
+    <div class="mdl-actions">
+      <button class="mdl-btn-primary" id="loginBtn">Sign in</button>
+      <button class="mdl-btn-ghost" type="button" data-mdl-on-click="goToSignup">Create account</button>
+      <button class="mdl-btn-ghost" type="button" data-mdl-on-click="handleForgot">Forgot password?</button>
+    </div>
+  </form>
+  <div class="mdl-popup" id="appPopup" aria-live="polite">
+    <div class="mdl-panel">
+      <div class="mdl-popup-title" id="popupTitle">
+        <p>Message</p>
+      </div>
+      <div class="mdl-popup-message" id="popupMessage">
+        <p>Waiting.</p>
+      </div>
+      <div class="mdl-actions">
+        <button class="mdl-btn-secondary" type="button" id="popupCloseBtn" data-mdl-on-click="closePopup">OK</button>
+      </div>
+    </div>
+  </div>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/auth.js";
+const mdlHandlers = Object.assign({}, globalThis, mdlModule0);
+const mdlBind = (eventName) => {
+  document.querySelectorAll(`[data-mdl-on-${eventName}]`).forEach((element) => {
+    const handlerName = element.getAttribute(`data-mdl-on-${eventName}`);
+    const handler = mdlHandlers[handlerName];
+    if (typeof handler === "function") {
+      element.addEventListener(eventName, (event) => handler(event));
+    }
+  });
+};
+["click", "submit", "input", "change"].forEach(mdlBind);
+</script>
+</body>
+</html>

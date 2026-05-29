@@ -1,0 +1,76 @@
+page@id(cssPowerhouse):
+  shell:
+    hero:
+      .badge(CSS-only lab)
+      ## CSS as the layout powerhouse
+      This page uses MDL for structure and CSS for layout, theme, state, responsiveness, motion, and visual logic.
+
+    control-panel:
+      fieldset:
+        legend:
+          Theme
+        .radio@id(theme-day)@name(theme)@checked(true)(Daylight)
+        .radio@id(theme-night)@name(theme)(Night)
+        .radio@id(theme-heat)@name(theme)(Heat)
+
+      fieldset:
+        legend:
+          Density
+        .radio@id(density-roomy)@name(density)@checked(true)(Roomy)
+        .radio@id(density-compact)@name(density)(Compact)
+
+    showcase:
+      card@tone(primary):
+        .badge(:has + custom properties)
+        ### State flows through CSS
+        Theme and density are radio inputs. CSS reads them with `:has()` and updates variables across the whole page.
+        meter@style(--value: 86%):
+
+      card:
+        .badge(@container)
+        ### Cards answer their container
+        Resize the page and this grid changes from narrow cards to richer panels using container queries, not JavaScript.
+        meter@style(--value: 72%):
+
+      card:
+        .badge(color-mix + clamp)
+        ### CSS can calculate design
+        Type, spacing, surfaces, and glow use `clamp()`, `calc()`, and `color-mix()` from the CSS bundle.
+        meter@style(--value: 94%):
+
+    split:
+      panel:
+        ## Native disclosure
+        details@open:
+          summary:
+            What is CSS doing here?
+          stack@gap(3):
+            It owns layout primitives, state styling, responsive rules, tokens, motion, and the final visual system.
+            No JavaScript is needed for this interaction.
+
+        details:
+          summary:
+            What does MDL do?
+          stack@gap(3):
+            MDL gives predictable HTML hooks: `.mdl-card`, `.mdl-grid`, attributes like `gap`, and clean content.
+            CSS turns those hooks into the experience.
+
+      panel:
+        ## Runtime direction
+        grid@cols(2)@gap(3):
+          stat:
+            .badge(Layout)
+            ### Grid
+            CSS variables and container queries.
+          stat:
+            .badge(State)
+            ### :has()
+            Parent-aware styling.
+          stat:
+            .badge(Theme)
+            ### Tokens
+            One variable graph.
+          stat:
+            .badge(Motion)
+            ### @property
+            Typed animation hooks.

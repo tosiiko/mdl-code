@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Complete Website</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="mdl-page" id="docsPage">
+  <header class="mdl-topbar site-topbar">
+    <div class="mdl-brand">
+      <a class="mdl-href site-brand" href="/">MDL</a>
+    </div>
+    <nav class="mdl-nav site-nav" aria-label="Primary">
+      <a class="mdl-href is-active" href="/docs">Docs</a>
+      <a class="mdl-href" href="/cli">CLI</a>
+      <a class="mdl-href" href="/examples">Examples</a>
+      <a class="mdl-href" href="/pricing">Pricing</a>
+      <a class="mdl-href nav-cta" href="/contact">Contact</a>
+    </nav>
+  </header>
+  <div class="mdl-hero page-hero docs-hero">
+    <span class="mdl-badge">Docs</span>
+    <h1>Build with MDL</h1>
+    <p>The core language is small: sections create structure, Markdown creates content, dot elements create controls, and attributes add detail.</p>
+  </div>
+  <section class="mdl-section docs-layout">
+    <aside class="mdl-sidebar docs-sidebar">
+      <h2>Contents</h2>
+      <ul class="mdl-list">
+        <li class="mdl-item">
+          <a class="mdl-href" href="#basics">Basics</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#projects">Projects</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#deploy">Build</a>
+        </li>
+      </ul>
+    </aside>
+    <article class="mdl-article docs-content">
+      <div class="mdl-tabs docs-tabs" id="docsTabs">
+        <div class="mdl-tablist" role="tablist" aria-label="Documentation sections">
+          <button class="mdl-btn-secondary" type="button" id="tabBasicsButton" data-mdl-on-click="showDocsBasics">Basics</button>
+          <button class="mdl-btn-ghost" type="button" id="tabProjectsButton" data-mdl-on-click="showDocsProjects">Projects</button>
+          <button class="mdl-btn-ghost" type="button" id="tabDeployButton" data-mdl-on-click="showDocsDeploy">Build</button>
+        </div>
+        <div class="mdl-tab" id="tabBasics" data-state="active" role="tabpanel">
+          <section class="mdl-section" id="basics">
+            <h2>Basics</h2>
+            <p>MDL uses indentation to nest sections. A <code>hero</code> section becomes a <code>.mdl-hero</code> element, and a <code>card</code> section becomes a <code>.mdl-card</code> element.</p>
+            <div class="mdl-grid doc-card-grid">
+              <div class="mdl-card">
+                <h3>Sections</h3>
+                <p>Use names like <code>page</code>, <code>topbar</code>, <code>nav</code>, <code>grid</code>, <code>card</code>, <code>form</code>, <code>details</code>, and <code>footer</code>.</p>
+              </div>
+              <div class="mdl-card">
+                <h3>Inline elements</h3>
+                <p>Use dot elements such as <code>.badge(beta)</code>, <code>.href@href(/docs)(Docs)</code>, and <code>.input@type(email)</code>.</p>
+              </div>
+              <div class="mdl-card">
+                <h3>Attributes</h3>
+                <p>Add explicit attributes with <code>@id(value)</code>, <code>@class(value)</code>, <code>@required</code>, or <code>@submit(handlerName)</code>.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="mdl-tab" id="tabProjects" role="tabpanel">
+          <section class="mdl-section" id="projects">
+            <h2>Project layout</h2>
+            <p>A complete MDL website is just a folder with pages, CSS, optional scripts, and <code>mdl.json</code>.</p>
+            <ol class="mdl-steps">
+              <li class="mdl-step">
+                <h3>Configure</h3>
+                <p>Set <code>pages</code>, <code>output</code>, <code>styles</code>, <code>scripts</code>, title, and local preview port in <code>mdl.json</code>.</p>
+              </li>
+              <li class="mdl-step">
+                <h3>Author pages</h3>
+                <p>Put each <code>.mdl</code> page under the configured <code>pages</code> folder. Nested folders become nested routes.</p>
+              </li>
+              <li class="mdl-step">
+                <h3>Keep assets nearby</h3>
+                <p>Store images under <code>assets</code> and reference them from CSS or page content.</p>
+              </li>
+            </ol>
+          </section>
+        </div>
+        <div class="mdl-tab" id="tabDeploy" role="tabpanel">
+          <section class="mdl-section" id="deploy">
+            <h2>Build and preview</h2>
+            <p>Run <code>../../bin/mdl serve</code> inside this project for live preview, or <code>../../bin/mdl build</code> to compile static output into <code>dist</code>.</p>
+            <details class="mdl-details" open>
+              <summary class="mdl-summary">What gets generated?</summary>
+              <p>The build creates one HTML file for each MDL page and writes a bundled stylesheet at <code>dist/app.css</code>.</p>
+            </details>
+            <details class="mdl-details">
+              <summary class="mdl-summary">How do scripts bind?</summary>
+              <p>Event attributes such as <code>@click(showDocsBasics)</code> are compiled into data attributes. The generated runtime imports <code>scripts/site.js</code> and calls exported functions by name.</p>
+            </details>
+          </section>
+        </div>
+      </div>
+    </article>
+  </section>
+  <div class="mdl-banner site-banner compact">
+    <h2>Want to see the components in context?</h2>
+    <p>Browse the examples page for repeated cards, comparison layouts, and a contact workflow.</p>
+    <div class="mdl-actions">
+      <a class="mdl-href btn-link primary" href="/examples">View examples</a>
+    </div>
+  </div>
+  <footer class="mdl-footer site-footer">
+    <div class="mdl-brand">
+      <a class="mdl-href site-brand" href="/">MDL</a>
+      <p>Documentation page authored in MDL.</p>
+    </div>
+    <nav class="mdl-nav" aria-label="Footer">
+      <a class="mdl-href" href="/">Home</a>
+      <a class="mdl-href" href="/cli">CLI</a>
+      <a class="mdl-href" href="/examples">Examples</a>
+      <a class="mdl-href" href="/pricing">Pricing</a>
+      <a class="mdl-href" href="/contact">Contact</a>
+    </nav>
+  </footer>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/site.js";
+const mdlHandlers = Object.assign({}, globalThis, mdlModule0);
+const mdlBind = (eventName) => {
+  document.querySelectorAll(`[data-mdl-on-${eventName}]`).forEach((element) => {
+    const handlerName = element.getAttribute(`data-mdl-on-${eventName}`);
+    const handler = mdlHandlers[handlerName];
+    if (typeof handler === "function") {
+      element.addEventListener(eventName, (event) => handler(event));
+    }
+  });
+};
+["click", "submit", "input", "change"].forEach(mdlBind);
+</script>
+</body>
+</html>
