@@ -194,11 +194,6 @@ scripts/          local environment helpers
 - [docs/spec/INLINE_ELEMENTS.md](docs/spec/INLINE_ELEMENTS.md)
 - [docs/spec/ATTRIBUTES.md](docs/spec/ATTRIBUTES.md)
 - [docs/spec/COMMENTS.md](docs/spec/COMMENTS.md)
-- [docs/spec/SCRIPTS.md](docs/spec/SCRIPTS.md)
-- [docs/spec/CSS_RUNTIME.md](docs/spec/CSS_RUNTIME.md)
-- [docs/spec/UI_PATTERNS.md](docs/spec/UI_PATTERNS.md)
-- [docs/spec/TAILWIND.md](docs/spec/TAILWIND.md)
-- [docs/spec/RESOLUTION_RULES.md](docs/spec/RESOLUTION_RULES.md)
 - [docs/MULTIPAGE_PROJECTS.md](docs/MULTIPAGE_PROJECTS.md)
 
 ## Example
