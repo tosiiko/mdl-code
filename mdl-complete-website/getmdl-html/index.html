@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Documentation</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="mdl-topbar site-topbar">
+  <div class="mdl-brand site-brand">
+    <img class="mdl-img" src="assets/mdl-logo-tagline-light.png" alt="MDL">
+    <a class="mdl-href" href="index.html">MDL</a>
+  </div>
+  <nav class="mdl-nav site-nav" aria-label="Primary">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+    <a class="mdl-href" href="examples.html">Examples</a>
+    <a class="mdl-href nav-cta" href="deploy.html">Deploy</a>
+  </nav>
+</header>
+<main class="mdl-page site-page home-page">
+  <div class="mdl-hero home-hero">
+    <div class="mdl-copy hero-copy">
+      <img class="mdl-img hero-logo" src="assets/mdl-logo-tagline-light.png" alt="MDL logo">
+      <span class="mdl-badge">Markdown language</span>
+      <h1>MDL builds clean sites from readable outlines</h1>
+      <p>Write <code>.mdl</code> files, keep styling in CSS, add JavaScript only when behavior belongs, and compile everything to static HTML.</p>
+      <div class="mdl-actions hero-actions">
+        <a class="mdl-href action-link primary" href="docs.html">Read the docs</a>
+        <a class="mdl-href action-link secondary" href="install.html">Install MDL</a>
+      </div>
+    </div>
+    <div class="mdl-panel hero-panel">
+      <h2>Start in one minute</h2>
+      <pre><code class="language-bash">mkdir my-mdl-site
+      cd my-mdl-site
+      npm install @tosiiko/mdl
+      npm exec -- mdl init
+      source bin/activate
+      mdl serve
+      </code></pre>
+      <button class="mdl-btn-secondary" type="button" data-mdl-on-click="copyInstallCommand">Copy install</button>
+    </div>
+  </div>
+  <section class="mdl-section trust-strip">
+    <li class="mdl-item">
+      <h2>MDL</h2>
+      <p>Author structure and content.</p>
+    </li>
+    <li class="mdl-item">
+      <h2>CSS</h2>
+      <p>Own layout, color, and typography.</p>
+    </li>
+    <li class="mdl-item">
+      <h2>JS</h2>
+      <p>Add behavior with explicit handlers.</p>
+    </li>
+    <li class="mdl-item">
+      <h2>HTML</h2>
+      <p>Ship static output.</p>
+    </li>
+  </section>
+  <section class="mdl-section content-band">
+    <header class="mdl-header section-header">
+      <span class="mdl-badge">Why MDL</span>
+      <h2>Small language, normal web output</h2>
+      <p>MDL is intentionally narrow: it gives names to structure, maps common sections to semantic HTML, and leaves the browser platform visible.</p>
+    </header>
+    <div class="mdl-grid feature-grid">
+      <div class="mdl-card">
+        <span class="mdl-tag">Readable</span>
+        <h3>Pages stay close to the idea</h3>
+        <p>Indentation describes hierarchy, Markdown handles prose, and sections such as <code>hero:</code>, <code>card:</code>, <code>form:</code>, and <code>footer:</code> describe the page.</p>
+      </div>
+      <div class="mdl-card">
+        <span class="mdl-tag">Predictable</span>
+        <h3>Every section gets a stable class</h3>
+        <p><code>pricing:</code> becomes <code>.mdl-pricing</code>, unknown names still compile, and author classes append after the MDL class.</p>
+      </div>
+      <div class="mdl-card">
+        <span class="mdl-tag">Static</span>
+        <h3>Built output is boring HTML</h3>
+        <p><code>mdl build</code> writes <code>.html</code>, copies assets, bundles CSS when configured, and does not require a framework runtime.</p>
+      </div>
+    </div>
+  </section>
+  <section class="mdl-section content-band alt-band">
+    <header class="mdl-header section-header">
+      <span class="mdl-badge">Docs map</span>
+      <h2>Learn the full flow</h2>
+    </header>
+    <div class="mdl-grid doc-grid">
+      <div class="mdl-card">
+        <h3>Install</h3>
+        <p>Set up the npm package, activate the local <code>bin</code>, and create your first project.</p>
+        <a class="mdl-href" href="install.html">Open install guide</a>
+      </div>
+      <div class="mdl-card">
+        <h3>Language</h3>
+        <p>Sections, inline elements, attributes, Markdown, comments, scripts, and UI patterns.</p>
+        <a class="mdl-href" href="language.html">Read language guide</a>
+      </div>
+      <div class="mdl-card">
+        <h3>Project config</h3>
+        <p>Configure <code>mdl.json</code>, multi-page builds, CSS bundles, scripts, assets, and ports.</p>
+        <a class="mdl-href" href="config.html">View config</a>
+      </div>
+      <div class="mdl-card">
+        <h3>CLI</h3>
+        <p>Use <code>mdl init</code>, <code>mdl new</code>, <code>mdl check</code>, <code>mdl format</code>, <code>mdl build</code>, and <code>mdl serve</code>.</p>
+        <a class="mdl-href" href="cli.html">Open CLI reference</a>
+      </div>
+      <div class="mdl-card">
+        <h3>Examples</h3>
+        <p>Copy practical snippets for cards, forms, pricing, tabs, Tailwind, and JavaScript.</p>
+        <a class="mdl-href" href="examples.html">Browse examples</a>
+      </div>
+      <div class="mdl-card">
+        <h3>Deploy</h3>
+        <p>Build static output and host it on GitHub Pages with <code>getmdl.site</code>.</p>
+        <a class="mdl-href" href="deploy.html">Ship a site</a>
+      </div>
+    </div>
+  </section>
+  <div class="mdl-banner site-banner">
+    <h2>Documentation for the language, CLI, and deployment path is ready.</h2>
+    <p>Build your first page locally, then publish static HTML anywhere.</p>
+    <div class="mdl-actions">
+      <a class="mdl-href action-link primary" href="docs.html">Start with docs</a>
+      <a class="mdl-href action-link secondary" href="extension.html">VS Code extension</a>
+    </div>
+  </div>
+</main>
+<footer class="mdl-footer site-footer">
+  <div class="mdl-brand">
+    <a class="mdl-href site-brand-text" href="index.html">MDL</a>
+    <p>Public documentation for getmdl.site.</p>
+  </div>
+  <nav class="mdl-nav" aria-label="Footer">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="deploy.html">Deploy</a>
+  </nav>
+</footer>
+<script type="module">
+import * as mdlModule0 from "./scripts/site.js";
+const mdlHandlers = Object.assign({}, globalThis, mdlModule0);
+const mdlBind = (eventName) => {
+  document.querySelectorAll(`[data-mdl-on-${eventName}]`).forEach((element) => {
+    const handlerName = element.getAttribute(`data-mdl-on-${eventName}`);
+    const handler = mdlHandlers[handlerName];
+    if (typeof handler === "function") {
+      element.addEventListener(eventName, (event) => handler(event));
+    }
+  });
+};
+["click", "submit", "input", "change"].forEach(mdlBind);
+document.querySelectorAll("[data-mdl-on-mount]").forEach((element) => {
+  const handlerName = element.getAttribute("data-mdl-on-mount");
+  const handler = mdlHandlers[handlerName];
+  if (typeof handler === "function") {
+    handler(element);
+  }
+});
+</script>
+</body>
+</html>

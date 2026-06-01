@@ -1,0 +1,118 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/examples.html)@class(is-active)@aria-current(page)(Examples)
+    .href@href(/deploy.html)@class(nav-cta)(Deploy)
+
+page@class(site-page):
+  hero@class(page-hero):
+    .badge(Examples)
+    # MDL examples
+    Copy small patterns first, then combine them into complete pages and projects.
+  section@class(docs-layout):
+    sidebar@class(docs-sidebar):
+      ## On this page
+      list:
+        item:
+          .href@href(#page)(Page shell)
+        item:
+          .href@href(#content)(Content blocks)
+        item:
+          .href@href(#forms)(Forms)
+        item:
+          .href@href(#interaction)(Interaction)
+        item:
+          .href@href(#tailwind)(Tailwind)
+        item:
+          .href@href(#projects)(Repo examples)
+    article@class(docs-content):
+      section@id(page)@class(doc-section):
+        ## Page shell
+        Start with a page-level shell, topbar, hero, section, and footer. CSS decides the final layout.
+        raw-html:
+          <pre><code class="language-mdl">site-shell:&#10;&nbsp;&nbsp;&nbsp;&nbsp;topbar:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brand:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.href@href(/)(My Site)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nav@aria-label(Primary):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.href@href(/docs.html)(Docs)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.href@href(/examples.html)(Examples)&#10;&nbsp;&nbsp;&nbsp;&nbsp;hero:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.badge(New)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Build faster&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Write structure first, then style with CSS.&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actions:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.href@href(/docs.html)@class(action-link primary)(Docs)&#10;&nbsp;&nbsp;&nbsp;&nbsp;section:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Main content&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is Markdown prose inside a section.&#10;&nbsp;&nbsp;&nbsp;&nbsp;footer:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Built with MDL.</code></pre>
+      section@id(content)@class(doc-section):
+        ## Content blocks
+        Use regular section names for repeated structures.
+        grid@class(example-grid):
+          card:
+            ### Card grid
+            raw-html:
+              <pre><code class="language-mdl">grid:&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Good for simple pages.&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Pro&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;More sections and scripts.</code></pre>
+          card:
+            ### Pricing
+            raw-html:
+              <pre><code class="language-mdl">pricing:&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$9/month&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary(Choose)&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Team&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$29/month&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary(Choose)</code></pre>
+          card:
+            ### Table
+            raw-html:
+              <pre><code class="language-mdl">table:&#10;&nbsp;&nbsp;&nbsp;&nbsp;thead:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tr:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;th@scope(col):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plan&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;th@scope(col):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price&#10;&nbsp;&nbsp;&nbsp;&nbsp;tbody:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tr:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;td:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;td:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$9</code></pre>
+          card:
+            ### Details
+            raw-html:
+              <pre><code class="language-mdl">details:&#10;&nbsp;&nbsp;&nbsp;&nbsp;summary:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;What does MDL output?&#10;&nbsp;&nbsp;&nbsp;&nbsp;MDL outputs static HTML.</code></pre>
+      section@id(forms)@class(doc-section):
+        ## Forms
+        Keep labels, controls, and handlers explicit.
+        raw-html:
+          <pre><code class="language-mdl">form@id(signup)@submit(handleSignup):&#10;&nbsp;&nbsp;&nbsp;&nbsp;field:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label@for(email):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.input@id(email)@type(email)@autocomplete(email)@aria-label(Email)@required&#10;&nbsp;&nbsp;&nbsp;&nbsp;field:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label@for(plan):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plan&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select@id(plan)@name(plan):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option@value(starter):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option@value(team):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Team&#10;&nbsp;&nbsp;&nbsp;&nbsp;actions:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary(Sign up)</code></pre>
+      section@id(interaction)@class(doc-section):
+        ## Interaction
+        Export handlers from a configured module script, then reference them from attributes.
+        raw-html:
+          <pre><code class="language-mdl">tabs@id(docsTabs):&#10;&nbsp;&nbsp;&nbsp;&nbsp;tablist@role(tablist):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-secondary@click(showBasics)(Basics)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-secondary@click(showCli)(CLI)&#10;&nbsp;&nbsp;&nbsp;&nbsp;tab@id(basicsTab)@data-state(active):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basics content.&#10;&nbsp;&nbsp;&nbsp;&nbsp;tab@id(cliTab):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLI content.</code></pre>
+        raw-html:
+          <pre><code class="language-js">export function showBasics(event) {&#10;&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault()&#10;&nbsp;&nbsp;}</code></pre>
+        Mounted elements receive the element:
+        raw-html:
+          <pre><code class="language-mdl">canvas@id(scene)@width(900)@height(500)@mount(drawScene):</code></pre>
+      section@id(tailwind)@class(doc-section):
+        ## Tailwind bridge
+        Use `@class(...)` for utility classes. Configure Tailwind through `head_scripts` or your own CSS build.
+        raw-html:
+          <pre><code class="language-mdl">card@class(max-w-md rounded-lg bg-white p-6 shadow):&#10;&nbsp;&nbsp;&nbsp;&nbsp;## Welcome&#10;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary@class(w-full)(Continue)</code></pre>
+      section@id(projects)@class(doc-section):
+        ## Explore the repo examples
+        grid@class(doc-grid):
+          card:
+            ### Login flow
+            `examples/login` contains login, signup, forgot password, dashboard, CSS, and JavaScript.
+            ```bash
+            mdl serve examples/login
+            ```
+          card:
+            ### Tailwind
+            `examples/tailwind` shows the browser Tailwind bridge through `head_scripts`.
+            ```bash
+            cd examples/tailwind
+            ../../bin/mdl serve
+            ```
+          card:
+            ### CSS powerhouse
+            `examples/css-powerhouse` shows CSS-only layout and component power with MDL hooks.
+            ```bash
+            cd examples/css-powerhouse
+            ../../bin/mdl serve
+            ```
+          card:
+            ### Complete website
+            `examples/mdl-complete-website` is a multi-page product site authored in MDL.
+            ```bash
+            mdl build examples/mdl-complete-website
+            ```
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    Practical examples.
+  nav@aria-label(Footer):
+    .href@href(/docs.html)(Docs)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/deploy.html)(Deploy)

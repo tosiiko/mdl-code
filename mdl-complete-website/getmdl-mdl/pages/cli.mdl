@@ -1,0 +1,275 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)@class(is-active)@aria-current(page)(CLI)
+    .href@href(/examples.html)(Examples)
+    .href@href(/deploy.html)@class(nav-cta)(Deploy)
+
+page@class(site-page):
+  hero@class(page-hero):
+    .badge(CLI)
+    # MDL command reference
+    The CLI creates projects, chooses app configs, checks and formats MDL, builds static output, runs local previews, and tests spec fixtures.
+  section@class(docs-layout):
+    sidebar@class(docs-sidebar):
+      ## On this page
+      list:
+        item:
+          .href@href(#usage)(Usage)
+        item:
+          .href@href(#selecting)(Selecting input)
+        item:
+          .href@href(#create)(Create)
+        item:
+          .href@href(#check-format)(Check and format)
+        item:
+          .href@href(#build)(Build)
+        item:
+          .href@href(#serve)(Serve)
+        item:
+          .href@href(#spec-test)(Spec test)
+        item:
+          .href@href(#options)(Options)
+    article@class(docs-content):
+      section@id(usage)@class(doc-section):
+        ## Usage
+        ```text
+        mdl init [dir] [options]
+        mdl new <dir> [options]
+        mdl check [app-dir|input.mdl]
+        mdl format [app-dir|input.mdl] [options]
+        mdl build [app-dir|input.mdl] [options]
+        mdl serve [app-dir|input.mdl] [options]
+        mdl spec-test [fixtures-dir] [options]
+        ```
+
+        If input is omitted, MDL reads defaults from `mdl.json` or from the single app config under `apps/*/mdl.json`.
+      section@id(selecting)@class(doc-section):
+        ## Selecting input
+        Commands can target a project, an app folder, or a single `.mdl` file.
+
+        ```bash
+        mdl build
+        mdl build apps/my-mdl-site
+        mdl build pages/index.mdl
+        ```
+
+        If multiple apps exist in one workspace, choose one explicitly:
+
+        ```bash
+        mdl check apps/admin
+        mdl serve apps/marketing
+        ```
+      section@id(create)@class(doc-section):
+        ## Create projects
+        grid@class(command-grid):
+          card:
+            ### `mdl init`
+            Initialize the current folder or a target directory.
+            ```bash
+            mdl init
+            mdl init demo-site
+            mdl init --app admin --port 4001
+            ```
+          card:
+            ### `mdl new`
+            Create a new folder and initialize it.
+            ```bash
+            mdl new my-site
+            mdl new my-site --template blank --no-tailwind
+            ```
+          card:
+            ### Package scripts
+            Add missing npm scripts without overwriting custom scripts.
+            ```bash
+            mdl init --package-scripts
+            npm run check
+            ```
+      section@id(check-format)@class(doc-section):
+        ## Check and format
+        `mdl check` validates syntax, config, routes, assets, labels, ARIA references, duplicate ids, and other project details.
+
+        ```bash
+        mdl check
+        mdl check --json
+        mdl check pages/index.mdl
+        ```
+
+        `mdl format` rewrites source files with consistent indentation. Use `--check` in CI.
+
+        ```bash
+        mdl format
+        mdl format --check
+        mdl format --all apps/my-mdl-site
+        ```
+      section@id(build)@class(doc-section):
+        ## Build
+        `mdl build` compiles configured pages to static HTML and copies configured CSS, scripts, assets, output manifests, and source-map sidecars.
+
+        ```bash
+        mdl build
+        mdl build apps/my-mdl-site
+        mdl build pages/index.mdl --style css/main.css --title "My Site"
+        mdl build pages/index.mdl --output preview.html
+        ```
+
+        Use `--fragment` only when building one input file and you want the compiled HTML fragment rather than a full document.
+      section@id(serve)@class(doc-section):
+        ## Serve
+        `mdl serve` starts a local preview server with live reload.
+
+        ```bash
+        mdl serve
+        mdl serve apps/my-mdl-site
+        mdl serve pages/index.mdl --port 5050
+        ```
+
+        The server uses the configured `port` unless `--port` is provided.
+      section@id(spec-test)@class(doc-section):
+        ## Spec test
+        `mdl spec-test` compares `.mdl` fixtures with expected `.html` files. It is mainly for language development and conformance checks.
+
+        ```bash
+        mdl spec-test
+        mdl spec-test fixtures/spec
+        mdl spec-test --update
+        ```
+      section@id(options)@class(doc-section):
+        ## Options
+        table:
+          thead:
+            tr:
+              th@scope(col):
+                Option
+              th@scope(col):
+                Commands
+              th@scope(col):
+                Use
+          tbody:
+            tr:
+              td:
+                `--app <name>`
+              td:
+                `init`, `new`
+              td:
+                Create or update `apps/<name>`.
+            tr:
+              td:
+                `--force`
+              td:
+                `init`, `new`
+              td:
+                Overwrite existing scaffold files.
+            tr:
+              td:
+                `--quiet`
+              td:
+                `init`, `new`
+              td:
+                Create files without the init summary.
+            tr:
+              td:
+                `--template <name>`
+              td:
+                `init`, `new`
+              td:
+                Use a starter template. Currently `blank`.
+            tr:
+              td:
+                `--package-scripts`
+              td:
+                `init`, `new`
+              td:
+                Add missing npm `check`, `build`, and `serve` scripts.
+            tr:
+              td:
+                `--json`
+              td:
+                `check`
+              td:
+                Print diagnostics as JSON.
+            tr:
+              td:
+                `--check`
+              td:
+                `format`
+              td:
+                Report files that need formatting.
+            tr:
+              td:
+                `--all`
+              td:
+                `format`
+              td:
+                Format all configured pages.
+            tr:
+              td:
+                `-o`, `--output <file>`
+              td:
+                `build`
+              td:
+                Write HTML to a specific path.
+            tr:
+              td:
+                `--fragment`
+              td:
+                `build`
+              td:
+                Emit only the compiled HTML fragment.
+            tr:
+              td:
+                `--style <file>`
+              td:
+                `build`, `serve`
+              td:
+                Add a stylesheet to full-document output.
+            tr:
+              td:
+                `--script <file>`
+              td:
+                `build`, `serve`
+              td:
+                Add a JavaScript module.
+            tr:
+              td:
+                `--head-script <file>`
+              td:
+                `build`, `serve`
+              td:
+                Add a classic script tag in the head.
+            tr:
+              td:
+                `--title <title>`
+              td:
+                `build`, `serve`
+              td:
+                Set the HTML document title.
+            tr:
+              td:
+                `--port <port>`
+              td:
+                `init`, `new`, `serve`
+              td:
+                Set or override the dev-server port.
+            tr:
+              td:
+                `--update`
+              td:
+                `spec-test`
+              td:
+                Rewrite expected fixture HTML files.
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    CLI reference.
+  nav@aria-label(Footer):
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/config.html)(Config)
+    .href@href(/examples.html)(Examples)

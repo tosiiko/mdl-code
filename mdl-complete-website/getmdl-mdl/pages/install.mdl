@@ -1,0 +1,196 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)@class(is-active)@aria-current(page)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/examples.html)(Examples)
+    .href@href(/deploy.html)@class(nav-cta)(Deploy)
+
+page@class(site-page):
+  hero@class(page-hero):
+    .badge(Install)
+    # Install MDL
+    Install the npm package, create a local app scaffold, activate the project shell, and verify the CLI before you build.
+  section@class(docs-layout):
+    sidebar@class(docs-sidebar):
+      ## On this page
+      list:
+        item:
+          .href@href(#requirements)(Requirements)
+        item:
+          .href@href(#local)(Local install)
+        item:
+          .href@href(#global)(Global install)
+        item:
+          .href@href(#workspace)(Workspace apps)
+        item:
+          .href@href(#structure)(Folder structure)
+        item:
+          .href@href(#first-edit)(First edit)
+        item:
+          .href@href(#verify)(Verify)
+        item:
+          .href@href(#troubleshooting)(Troubleshooting)
+    article@class(docs-content):
+      section@id(requirements)@class(doc-section):
+        ## Requirements
+        MDL ships as the `@tosiiko/mdl` npm package with prebuilt CLI binaries for common desktop and CI platforms.
+
+        Check that Node and npm are available:
+
+        ```bash
+        node --version
+        npm --version
+        ```
+
+        Use a local install for site projects so each workspace can pin its own MDL version. Use a global install only when you want `mdl` available everywhere.
+      section@id(local)@class(doc-section):
+        ## Local install
+        Local install is the best default for a project:
+
+        ```bash
+        mkdir my-mdl-site
+        cd my-mdl-site
+        npm install @tosiiko/mdl
+        npm exec -- mdl init
+        source bin/activate
+        mdl serve
+        ```
+
+        The package does not run install scripts. `npm exec -- mdl init` creates the starter files explicitly. `source bin/activate` adds `node_modules/.bin` to the current shell so `mdl` works without typing `npm exec`.
+
+        Open `http://127.0.0.1:3999` after the server starts.
+        actions:
+          .btn-secondary@type(button)@click(copyInstallCommand)(Copy install)
+      section@id(global)@class(doc-section):
+        ## Global install
+        A global install is useful for quick experiments and one-off generators:
+
+        ```bash
+        npm install -g @tosiiko/mdl
+        mdl new my-mdl-site
+        cd my-mdl-site
+        mdl serve
+        ```
+
+        If a project also has a local install, prefer the local version inside that project so teammates and CI use the same CLI.
+      section@id(workspace)@class(doc-section):
+        ## Workspace apps
+        `mdl init` initializes the current folder. `mdl new my-mdl-site` creates a new folder and runs the same scaffold logic inside it.
+
+        Add another app to the same workspace with a separate config, source tree, output folder, and port:
+
+        ```bash
+        mdl init --app admin --port 4001
+        mdl serve apps/admin
+        ```
+
+        When a workspace has more than one app, pass the app folder to commands:
+
+        ```bash
+        mdl check apps/admin
+        mdl build apps/admin
+        mdl serve apps/admin
+        ```
+      section@id(structure)@class(doc-section):
+        ## Created folder structure
+        `mdl init` creates a server-ready project:
+
+        ```text
+        my-mdl-site/
+          README.md
+          .gitignore
+          bin/
+            activate
+          apps/
+            my-mdl-site/
+              mdl.json
+              pages/
+                index.mdl
+              css/
+                main.css
+                layout.css
+                components.css
+              scripts/
+                app.js
+              assets/
+                mdl-logo-tagline-light.png
+        ```
+
+        The app config lives inside `apps/my-mdl-site/`, so a single installed workspace can host multiple MDL apps.
+      section@id(first-edit)@class(doc-section):
+        ## First edit
+        Change the starter page:
+
+        ```text
+        apps/my-mdl-site/pages/index.mdl
+        ```
+
+        Then adjust the component styling:
+
+        ```text
+        apps/my-mdl-site/css/components.css
+        ```
+
+        Run checks before building:
+
+        ```bash
+        mdl check
+        mdl format --check
+        mdl build
+        ```
+      section@id(verify)@class(doc-section):
+        ## Verify the install
+        These commands should succeed after activation:
+
+        ```bash
+        mdl --help
+        mdl check
+        mdl build
+        mdl serve
+        ```
+
+        `mdl check` validates source syntax, config paths, routes, assets, form labels, ARIA references, and similar project details. `mdl build` writes static output to the configured `dist` folder.
+      section@id(troubleshooting)@class(doc-section):
+        ## Troubleshooting
+        If `mdl` is not found after local install:
+
+        ```bash
+        source bin/activate
+        ```
+
+        You can also run through npm:
+
+        ```bash
+        npm exec -- mdl check
+        npm exec -- mdl serve
+        ```
+
+        If starter files were skipped or deleted:
+
+        ```bash
+        mdl init --force
+        ```
+
+        If you want package scripts in `package.json`, ask the scaffold to add missing defaults:
+
+        ```bash
+        mdl init --package-scripts
+        npm run check
+        npm run build
+        npm run serve
+        ```
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    Install and create projects.
+  nav@aria-label(Footer):
+    .href@href(/docs.html)(Docs)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/deploy.html)(Deploy)

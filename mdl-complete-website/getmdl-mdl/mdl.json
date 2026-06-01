@@ -1,0 +1,25 @@
+{
+  "name": "getmdl.site",
+  "entry": "pages/index.mdl",
+  "pages": "pages",
+  "output": "dist",
+  "css": {
+    "runtime": true,
+    "bundle": "dist/app.css"
+  },
+  "routing": {
+    "links": "relative"
+  },
+  "styles": [
+    "css/site.css"
+  ],
+  "scripts": [
+    "scripts/site.js"
+  ],
+  "assets": [
+    "assets",
+    "CNAME"
+  ],
+  "title": "MDL Documentation",
+  "port": 3999
+}

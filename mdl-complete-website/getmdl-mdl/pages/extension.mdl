@@ -1,0 +1,44 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/examples.html)(Examples)
+    .href@href(/deploy.html)@class(nav-cta)(Deploy)
+
+page@class(site-page):
+  hero@class(page-hero):
+    .badge(Editor)
+    # VS Code extension
+    MDL Syntax adds highlighting, snippets, and indentation defaults for `.mdl` files.
+  section@class(content-band):
+    grid@class(feature-grid):
+      card:
+        ### Language support
+        Registers `.mdl` files and highlights sections, attributes, dot inline elements, comments, Markdown, and `script js:` blocks.
+      card:
+        ### Snippets
+        Includes snippets for page, card, form, button, input, and script patterns.
+      card:
+        ### CLI stays separate
+        The extension edits files. The `@tosiiko/mdl` package creates, checks, builds, and serves projects.
+  section@class(content-band alt-band):
+    header@class(section-header):
+      .badge(Release)
+      ## Current extension package
+    note@class(doc-note):
+      The next extension artifact is `mdl-language-0.1.6.vsix`, because `0.1.5` already exists and cannot be modified.
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    Editor support.
+  nav@aria-label(Footer):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)

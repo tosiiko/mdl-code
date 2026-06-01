@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Documentation</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="mdl-topbar site-topbar">
+  <div class="mdl-brand site-brand">
+    <img class="mdl-img" src="assets/mdl-logo-tagline-light.png" alt="MDL">
+    <a class="mdl-href" href="index.html">MDL</a>
+  </div>
+  <nav class="mdl-nav site-nav" aria-label="Primary">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href is-active" href="cli.html" aria-current="page">CLI</a>
+    <a class="mdl-href" href="examples.html">Examples</a>
+    <a class="mdl-href nav-cta" href="deploy.html">Deploy</a>
+  </nav>
+</header>
+<main class="mdl-page site-page">
+  <div class="mdl-hero page-hero">
+    <span class="mdl-badge">CLI</span>
+    <h1>MDL command reference</h1>
+    <p>The CLI creates projects, chooses app configs, checks and formats MDL, builds static output, runs local previews, and tests spec fixtures.</p>
+  </div>
+  <section class="mdl-section docs-layout">
+    <aside class="mdl-sidebar docs-sidebar">
+      <h2>On this page</h2>
+      <ul class="mdl-list">
+        <li class="mdl-item">
+          <a class="mdl-href" href="#usage">Usage</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#selecting">Selecting input</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#create">Create</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#check-format">Check and format</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#build">Build</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#serve">Serve</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#spec-test">Spec test</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#options">Options</a>
+        </li>
+      </ul>
+    </aside>
+    <article class="mdl-article docs-content">
+      <section class="mdl-section doc-section" id="usage">
+        <h2>Usage</h2>
+        <pre><code class="language-text">mdl init [dir] [options]
+        mdl new &lt;dir&gt; [options]
+        mdl check [app-dir|input.mdl]
+        mdl format [app-dir|input.mdl] [options]
+        mdl build [app-dir|input.mdl] [options]
+        mdl serve [app-dir|input.mdl] [options]
+        mdl spec-test [fixtures-dir] [options]
+        </code></pre>
+        <p>If input is omitted, MDL reads defaults from <code>mdl.json</code> or from the single app config under <code>apps/*/mdl.json</code>.</p>
+      </section>
+      <section class="mdl-section doc-section" id="selecting">
+        <h2>Selecting input</h2>
+        <p>Commands can target a project, an app folder, or a single <code>.mdl</code> file.</p>
+        <pre><code class="language-bash">mdl build
+        mdl build apps/my-mdl-site
+        mdl build pages/index.mdl
+        </code></pre>
+        <p>If multiple apps exist in one workspace, choose one explicitly:</p>
+        <pre><code class="language-bash">mdl check apps/admin
+        mdl serve apps/marketing
+        </code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="create">
+        <h2>Create projects</h2>
+        <div class="mdl-grid command-grid">
+          <div class="mdl-card">
+            <h3><code>mdl init</code></h3>
+            <p>Initialize the current folder or a target directory.</p>
+            <pre><code class="language-bash">mdl init
+            mdl init demo-site
+            mdl init --app admin --port 4001
+            </code></pre>
+          </div>
+          <div class="mdl-card">
+            <h3><code>mdl new</code></h3>
+            <p>Create a new folder and initialize it.</p>
+            <pre><code class="language-bash">mdl new my-site
+            mdl new my-site --template blank --no-tailwind
+            </code></pre>
+          </div>
+          <div class="mdl-card">
+            <h3>Package scripts</h3>
+            <p>Add missing npm scripts without overwriting custom scripts.</p>
+            <pre><code class="language-bash">mdl init --package-scripts
+            npm run check
+            </code></pre>
+          </div>
+        </div>
+      </section>
+      <section class="mdl-section doc-section" id="check-format">
+        <h2>Check and format</h2>
+        <p><code>mdl check</code> validates syntax, config, routes, assets, labels, ARIA references, duplicate ids, and other project details.</p>
+        <pre><code class="language-bash">mdl check
+        mdl check --json
+        mdl check pages/index.mdl
+        </code></pre>
+        <p><code>mdl format</code> rewrites source files with consistent indentation. Use <code>--check</code> in CI.</p>
+        <pre><code class="language-bash">mdl format
+        mdl format --check
+        mdl format --all apps/my-mdl-site
+        </code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="build">
+        <h2>Build</h2>
+        <p><code>mdl build</code> compiles configured pages to static HTML and copies configured CSS, scripts, assets, output manifests, and source-map sidecars.</p>
+        <pre><code class="language-bash">mdl build
+        mdl build apps/my-mdl-site
+        mdl build pages/index.mdl --style css/main.css --title "My Site"
+        mdl build pages/index.mdl --output preview.html
+        </code></pre>
+        <p>Use <code>--fragment</code> only when building one input file and you want the compiled HTML fragment rather than a full document.</p>
+      </section>
+      <section class="mdl-section doc-section" id="serve">
+        <h2>Serve</h2>
+        <p><code>mdl serve</code> starts a local preview server with live reload.</p>
+        <pre><code class="language-bash">mdl serve
+        mdl serve apps/my-mdl-site
+        mdl serve pages/index.mdl --port 5050
+        </code></pre>
+        <p>The server uses the configured <code>port</code> unless <code>--port</code> is provided.</p>
+      </section>
+      <section class="mdl-section doc-section" id="spec-test">
+        <h2>Spec test</h2>
+        <p><code>mdl spec-test</code> compares <code>.mdl</code> fixtures with expected <code>.html</code> files. It is mainly for language development and conformance checks.</p>
+        <pre><code class="language-bash">mdl spec-test
+        mdl spec-test fixtures/spec
+        mdl spec-test --update
+        </code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="options">
+        <h2>Options</h2>
+        <table class="mdl-table">
+          <thead class="mdl-thead">
+            <tr class="mdl-tr">
+              <th class="mdl-th" scope="col">
+                <p>Option</p>
+              </th>
+              <th class="mdl-th" scope="col">
+                <p>Commands</p>
+              </th>
+              <th class="mdl-th" scope="col">
+                <p>Use</p>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="mdl-tbody">
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--app &lt;name&gt;</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>init</code>, <code>new</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Create or update <code>apps/&lt;name&gt;</code>.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--force</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>init</code>, <code>new</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Overwrite existing scaffold files.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--quiet</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>init</code>, <code>new</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Create files without the init summary.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--template &lt;name&gt;</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>init</code>, <code>new</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Use a starter template. Currently <code>blank</code>.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--package-scripts</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>init</code>, <code>new</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Add missing npm <code>check</code>, <code>build</code>, and <code>serve</code> scripts.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--json</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>check</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Print diagnostics as JSON.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--check</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>format</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Report files that need formatting.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--all</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>format</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Format all configured pages.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>-o</code>, <code>--output &lt;file&gt;</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>build</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Write HTML to a specific path.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--fragment</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>build</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Emit only the compiled HTML fragment.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--style &lt;file&gt;</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>build</code>, <code>serve</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Add a stylesheet to full-document output.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--script &lt;file&gt;</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>build</code>, <code>serve</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Add a JavaScript module.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--head-script &lt;file&gt;</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>build</code>, <code>serve</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Add a classic script tag in the head.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--title &lt;title&gt;</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>build</code>, <code>serve</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Set the HTML document title.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--port &lt;port&gt;</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>init</code>, <code>new</code>, <code>serve</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Set or override the dev-server port.</p>
+              </td>
+            </tr>
+            <tr class="mdl-tr">
+              <td class="mdl-td">
+                <p><code>--update</code></p>
+              </td>
+              <td class="mdl-td">
+                <p><code>spec-test</code></p>
+              </td>
+              <td class="mdl-td">
+                <p>Rewrite expected fixture HTML files.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </article>
+  </section>
+</main>
+<footer class="mdl-footer site-footer">
+  <div class="mdl-brand">
+    <a class="mdl-href site-brand-text" href="index.html">MDL</a>
+    <p>CLI reference.</p>
+  </div>
+  <nav class="mdl-nav" aria-label="Footer">
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="config.html">Config</a>
+    <a class="mdl-href" href="examples.html">Examples</a>
+  </nav>
+</footer>
+<script type="module">
+import * as mdlModule0 from "./scripts/site.js";
+</script>
+</body>
+</html>

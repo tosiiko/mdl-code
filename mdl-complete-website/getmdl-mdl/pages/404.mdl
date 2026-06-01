@@ -1,0 +1,24 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/deploy.html)@class(nav-cta)(Deploy)
+
+page@class(site-page):
+  hero@class(page-hero):
+    .badge(404)
+    # Page not found
+    The page you requested is not available. Start from the docs and keep going.
+    actions:
+      .href@href(/docs.html)@class(action-link primary)(Open docs)
+      .href@href(/)@class(action-link secondary)(Home)
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    getmdl.site

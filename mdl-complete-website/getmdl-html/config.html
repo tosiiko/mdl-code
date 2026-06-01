@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Documentation</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="mdl-topbar site-topbar">
+  <div class="mdl-brand site-brand">
+    <img class="mdl-img" src="assets/mdl-logo-tagline-light.png" alt="MDL">
+    <a class="mdl-href" href="index.html">MDL</a>
+  </div>
+  <nav class="mdl-nav site-nav" aria-label="Primary">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+    <a class="mdl-href" href="examples.html">Examples</a>
+    <a class="mdl-href nav-cta" href="deploy.html">Deploy</a>
+  </nav>
+</header>
+<main class="mdl-page site-page">
+  <div class="mdl-hero page-hero">
+    <span class="mdl-badge">Configuration</span>
+    <h1>Configure <code>mdl.json</code></h1>
+    <p><code>mdl.json</code> is the project manifest: paths, metadata, CSS, scripts, assets, output, and the local dev-server port.</p>
+  </div>
+  <section class="mdl-section docs-layout">
+    <aside class="mdl-sidebar docs-sidebar">
+      <h2>On this page</h2>
+      <ul class="mdl-list">
+        <li class="mdl-item">
+          <a class="mdl-href" href="#sample">Sample</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#fields">Fields</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#paths">Path rules</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#metadata">Metadata</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#css">CSS</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#routing">Routing</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#scripts">Scripts</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#multipage">Multi-page</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#assets">Assets</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#validation">Validation</a>
+        </li>
+      </ul>
+    </aside>
+    <article class="mdl-article docs-content">
+      <section class="mdl-section doc-section" id="sample">
+        <h2>Sample config</h2>
+        <p>The generated config is valid plain JSON, so editors and package scanners can read it without JSONC support.</p>
+        <pre><code class="language-json">{
+          "name": "my-mdl-site",
+          "lang": "en",
+          "title": "my-mdl-site",
+          "description": "Built with MDL.",
+          "favicon": "assets/mdl-logo-tagline-light.png",
+          "viewport": "width=device-width, initial-scale=1",
+          "meta": [],
+          "links": [],
+          "entry": "pages/index.mdl",
+          "pages": "pages",
+          "output": "dist",
+          "css": {
+            "runtime": true,
+            "bundle": "dist/app.css"
+          },
+          "routing": {
+            "links": "root"
+          },
+          "styles": [
+            "css/main.css",
+            "css/layout.css",
+            "css/components.css"
+          ],
+          "head_scripts": [],
+          "scripts": [
+            "scripts/app.js"
+          ],
+          "assets": [
+            "assets"
+          ],
+          "port": 3999
+        }
+        </code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="fields">
+        <h2>Important fields</h2>
+        <div class="mdl-grid reference-grid">
+          <div class="mdl-card">
+            <h3><code>name</code></h3>
+            <p>Project name used by scaffolds and fallbacks.</p>
+          </div>
+          <div class="mdl-card">
+            <h3><code>entry</code></h3>
+            <p>Default page for <code>/</code> and commands without an explicit input file.</p>
+          </div>
+          <div class="mdl-card">
+            <h3><code>pages</code></h3>
+            <p>Folder containing <code>.mdl</code> source pages.</p>
+          </div>
+          <div class="mdl-card">
+            <h3><code>output</code></h3>
+            <p>Static output folder created by <code>mdl build</code>.</p>
+          </div>
+          <div class="mdl-card">
+            <h3><code>styles</code></h3>
+            <p>Local or remote CSS files. Local files are copied or bundled.</p>
+          </div>
+          <div class="mdl-card">
+            <h3><code>scripts</code></h3>
+            <p>JavaScript modules imported for event and mount handlers.</p>
+          </div>
+          <div class="mdl-card">
+            <h3><code>assets</code></h3>
+            <p>Files or folders copied into <code>dist</code>.</p>
+          </div>
+          <div class="mdl-card">
+            <h3><code>port</code></h3>
+            <p>Default port for <code>mdl serve</code>.</p>
+          </div>
+        </div>
+      </section>
+      <section class="mdl-section doc-section" id="paths">
+        <h2>Path rules</h2>
+        <p>Paths are resolved from the directory that contains <code>mdl.json</code>, unless <code>root</code> is set.</p>
+        <pre><code class="language-json">{
+          "root": ".",
+          "pages": "pages",
+          "output": "dist",
+          "styles": ["css/main.css"],
+          "assets": ["assets"]
+        }
+        </code></pre>
+        <p>In the generated workspace, each app owns its config:</p>
+        <pre><code class="language-text">apps/my-mdl-site/mdl.json
+        apps/my-mdl-site/pages/index.mdl
+        apps/my-mdl-site/dist/index.html
+        </code></pre>
+        <p>When a workspace contains multiple apps, pass the app folder to commands such as <code>mdl build apps/admin</code>.</p>
+      </section>
+      <section class="mdl-section doc-section" id="metadata">
+        <h2>Document metadata</h2>
+        <p>Config values populate the document head for every page in the project.</p>
+        <pre><code class="language-json">{
+          "lang": "en",
+          "title": "My MDL Site",
+          "description": "A static site built with MDL.",
+          "canonical": "https://example.com/",
+          "favicon": "assets/icon.png",
+          "viewport": "width=device-width, initial-scale=1",
+          "meta": [
+            { "name": "theme-color", "content": "#172033" }
+          ],
+          "links": [
+            { "rel": "preconnect", "href": "https://fonts.googleapis.com" }
+          ]
+        }
+        </code></pre>
+        <p>Use <code>social</code> when you want Open Graph and Twitter card tags generated from one preset.</p>
+      </section>
+      <section class="mdl-section doc-section" id="css">
+        <h2>CSS runtime and bundles</h2>
+        <p><code>styles</code> lists the stylesheets you author. <code>css.runtime</code> adds the small MDL runtime stylesheet, and <code>css.bundle</code> chooses where the combined CSS file is written.</p>
+        <pre><code class="language-json">{
+          "css": {
+            "runtime": true,
+            "bundle": "dist/app.css"
+          },
+          "styles": [
+            "css/main.css",
+            "css/layout.css",
+            "css/components.css"
+          ]
+        }
+        </code></pre>
+        <p>Set <code>"runtime": false</code> when you want to provide every base style yourself.</p>
+      </section>
+      <section class="mdl-section doc-section" id="routing">
+        <h2>Routing links</h2>
+        <p><code>routing.links</code> controls how <code>mdl build</code> writes local root-relative links in generated HTML.</p>
+        <p>Keep the default when the site is served from a domain root:</p>
+        <pre><code class="language-json">{
+          "routing": {
+            "links": "root"
+          }
+        }
+        </code></pre>
+        <p>Use relative links when the built files may be opened directly, uploaded inside a subfolder, or served from a path such as <code>/getmdl/</code>:</p>
+        <pre><code class="language-json">{
+          "routing": {
+            "links": "relative"
+          }
+        }
+        </code></pre>
+        <p>Relative mode rewrites local URLs such as <code>/</code>, <code>/docs.html</code>, and <code>/assets/logo.png</code> to paths that work from each output page. External URLs, protocol-relative URLs, and <code>#section</code> anchors are left alone.</p>
+      </section>
+      <section class="mdl-section doc-section" id="scripts">
+        <h2>Scripts</h2>
+        <p><code>head_scripts</code> are classic scripts placed in the document head. <code>scripts</code> are JavaScript modules loaded for event handlers and mount handlers.</p>
+        <pre><code class="language-json">{
+          "head_scripts": [
+            "https://cdn.tailwindcss.com"
+          ],
+          "scripts": [
+            "scripts/app.js"
+          ]
+        }
+        </code></pre>
+        <p>Module scripts can export functions referenced from MDL attributes such as <code>@click(handleClick)</code>, <code>@submit(handleSubmit)</code>, and <code>@mount(drawScene)</code>.</p>
+      </section>
+      <section class="mdl-section doc-section" id="multipage">
+        <h2>Multi-page builds</h2>
+        <p><code>mdl build</code> compiles every <code>.mdl</code> file under <code>pages</code> and preserves nested folders.</p>
+        <pre><code class="language-text">pages/index.mdl       -&gt; dist/index.html
+        pages/docs.mdl        -&gt; dist/docs.html
+        pages/guides/intro.mdl -&gt; dist/guides/intro.html
+        </code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="assets">
+        <h2>Asset copying</h2>
+        <p>Add folders or files to <code>assets</code> and MDL copies them into <code>dist</code>.</p>
+        <pre><code class="language-json">{
+          "assets": [
+            "assets",
+            "CNAME"
+          ]
+        }
+        </code></pre>
+        <p>This docs site uses that path to publish the logo and the <code>getmdl.site</code> CNAME file.</p>
+      </section>
+      <section class="mdl-section doc-section" id="validation">
+        <h2>Validation</h2>
+        <p>Run checks after changing config:</p>
+        <pre><code class="language-bash">mdl check
+        mdl check --json
+        </code></pre>
+        <p>MDL reports missing pages, bad paths, route mismatches, missing linked assets, missing form controls, duplicate ids, and invalid references before you build.</p>
+      </section>
+    </article>
+  </section>
+</main>
+<footer class="mdl-footer site-footer">
+  <div class="mdl-brand">
+    <a class="mdl-href site-brand-text" href="index.html">MDL</a>
+    <p>Configuration reference.</p>
+  </div>
+  <nav class="mdl-nav" aria-label="Footer">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+    <a class="mdl-href" href="deploy.html">Deploy</a>
+  </nav>
+</footer>
+<script type="module">
+import * as mdlModule0 from "./scripts/site.js";
+</script>
+</body>
+</html>

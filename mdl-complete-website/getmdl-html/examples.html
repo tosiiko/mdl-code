@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Documentation</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="mdl-topbar site-topbar">
+  <div class="mdl-brand site-brand">
+    <img class="mdl-img" src="assets/mdl-logo-tagline-light.png" alt="MDL">
+    <a class="mdl-href" href="index.html">MDL</a>
+  </div>
+  <nav class="mdl-nav site-nav" aria-label="Primary">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+    <a class="mdl-href is-active" href="examples.html" aria-current="page">Examples</a>
+    <a class="mdl-href nav-cta" href="deploy.html">Deploy</a>
+  </nav>
+</header>
+<main class="mdl-page site-page">
+  <div class="mdl-hero page-hero">
+    <span class="mdl-badge">Examples</span>
+    <h1>MDL examples</h1>
+    <p>Copy small patterns first, then combine them into complete pages and projects.</p>
+  </div>
+  <section class="mdl-section docs-layout">
+    <aside class="mdl-sidebar docs-sidebar">
+      <h2>On this page</h2>
+      <ul class="mdl-list">
+        <li class="mdl-item">
+          <a class="mdl-href" href="#page">Page shell</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#content">Content blocks</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#forms">Forms</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#interaction">Interaction</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#tailwind">Tailwind</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#projects">Repo examples</a>
+        </li>
+      </ul>
+    </aside>
+    <article class="mdl-article docs-content">
+      <section class="mdl-section doc-section" id="page">
+        <h2>Page shell</h2>
+        <p>Start with a page-level shell, topbar, hero, section, and footer. CSS decides the final layout.</p>
+        <pre><code class="language-mdl">site-shell:&#10;&nbsp;&nbsp;&nbsp;&nbsp;topbar:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brand:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.href@href(/)(My Site)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nav@aria-label(Primary):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.href@href(/docs.html)(Docs)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.href@href(/examples.html)(Examples)&#10;&nbsp;&nbsp;&nbsp;&nbsp;hero:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.badge(New)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Build faster&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Write structure first, then style with CSS.&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actions:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.href@href(/docs.html)@class(action-link primary)(Docs)&#10;&nbsp;&nbsp;&nbsp;&nbsp;section:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Main content&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is Markdown prose inside a section.&#10;&nbsp;&nbsp;&nbsp;&nbsp;footer:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Built with MDL.</code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="content">
+        <h2>Content blocks</h2>
+        <p>Use regular section names for repeated structures.</p>
+        <div class="mdl-grid example-grid">
+          <div class="mdl-card">
+            <h3>Card grid</h3>
+            <pre><code class="language-mdl">grid:&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Good for simple pages.&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Pro&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;More sections and scripts.</code></pre>
+          </div>
+          <div class="mdl-card">
+            <h3>Pricing</h3>
+            <pre><code class="language-mdl">pricing:&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$9/month&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary(Choose)&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Team&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$29/month&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary(Choose)</code></pre>
+          </div>
+          <div class="mdl-card">
+            <h3>Table</h3>
+            <pre><code class="language-mdl">table:&#10;&nbsp;&nbsp;&nbsp;&nbsp;thead:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tr:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;th@scope(col):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plan&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;th@scope(col):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price&#10;&nbsp;&nbsp;&nbsp;&nbsp;tbody:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tr:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;td:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;td:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$9</code></pre>
+          </div>
+          <div class="mdl-card">
+            <h3>Details</h3>
+            <pre><code class="language-mdl">details:&#10;&nbsp;&nbsp;&nbsp;&nbsp;summary:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;What does MDL output?&#10;&nbsp;&nbsp;&nbsp;&nbsp;MDL outputs static HTML.</code></pre>
+          </div>
+        </div>
+      </section>
+      <section class="mdl-section doc-section" id="forms">
+        <h2>Forms</h2>
+        <p>Keep labels, controls, and handlers explicit.</p>
+        <pre><code class="language-mdl">form@id(signup)@submit(handleSignup):&#10;&nbsp;&nbsp;&nbsp;&nbsp;field:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label@for(email):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.input@id(email)@type(email)@autocomplete(email)@aria-label(Email)@required&#10;&nbsp;&nbsp;&nbsp;&nbsp;field:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label@for(plan):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plan&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select@id(plan)@name(plan):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option@value(starter):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option@value(team):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Team&#10;&nbsp;&nbsp;&nbsp;&nbsp;actions:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary(Sign up)</code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="interaction">
+        <h2>Interaction</h2>
+        <p>Export handlers from a configured module script, then reference them from attributes.</p>
+        <pre><code class="language-mdl">tabs@id(docsTabs):&#10;&nbsp;&nbsp;&nbsp;&nbsp;tablist@role(tablist):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-secondary@click(showBasics)(Basics)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-secondary@click(showCli)(CLI)&#10;&nbsp;&nbsp;&nbsp;&nbsp;tab@id(basicsTab)@data-state(active):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basics content.&#10;&nbsp;&nbsp;&nbsp;&nbsp;tab@id(cliTab):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLI content.</code></pre>
+        <pre><code class="language-js">export function showBasics(event) {&#10;&nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault()&#10;&nbsp;&nbsp;}</code></pre>
+        <p>Mounted elements receive the element:</p>
+        <pre><code class="language-mdl">canvas@id(scene)@width(900)@height(500)@mount(drawScene):</code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="tailwind">
+        <h2>Tailwind bridge</h2>
+        <p>Use <code>@class(...)</code> for utility classes. Configure Tailwind through <code>head_scripts</code> or your own CSS build.</p>
+        <pre><code class="language-mdl">card@class(max-w-md rounded-lg bg-white p-6 shadow):&#10;&nbsp;&nbsp;&nbsp;&nbsp;## Welcome&#10;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary@class(w-full)(Continue)</code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="projects">
+        <h2>Explore the repo examples</h2>
+        <div class="mdl-grid doc-grid">
+          <div class="mdl-card">
+            <h3>Login flow</h3>
+            <p><code>examples/login</code> contains login, signup, forgot password, dashboard, CSS, and JavaScript.</p>
+            <pre><code class="language-bash">mdl serve examples/login
+            </code></pre>
+          </div>
+          <div class="mdl-card">
+            <h3>Tailwind</h3>
+            <p><code>examples/tailwind</code> shows the browser Tailwind bridge through <code>head_scripts</code>.</p>
+            <pre><code class="language-bash">cd examples/tailwind
+            ../../bin/mdl serve
+            </code></pre>
+          </div>
+          <div class="mdl-card">
+            <h3>CSS powerhouse</h3>
+            <p><code>examples/css-powerhouse</code> shows CSS-only layout and component power with MDL hooks.</p>
+            <pre><code class="language-bash">cd examples/css-powerhouse
+            ../../bin/mdl serve
+            </code></pre>
+          </div>
+          <div class="mdl-card">
+            <h3>Complete website</h3>
+            <p><code>examples/mdl-complete-website</code> is a multi-page product site authored in MDL.</p>
+            <pre><code class="language-bash">mdl build examples/mdl-complete-website
+            </code></pre>
+          </div>
+        </div>
+      </section>
+    </article>
+  </section>
+</main>
+<footer class="mdl-footer site-footer">
+  <div class="mdl-brand">
+    <a class="mdl-href site-brand-text" href="index.html">MDL</a>
+    <p>Practical examples.</p>
+  </div>
+  <nav class="mdl-nav" aria-label="Footer">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+    <a class="mdl-href" href="deploy.html">Deploy</a>
+  </nav>
+</footer>
+<script type="module">
+import * as mdlModule0 from "./scripts/site.js";
+</script>
+</body>
+</html>

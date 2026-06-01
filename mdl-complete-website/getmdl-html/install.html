@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Documentation</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="mdl-topbar site-topbar">
+  <div class="mdl-brand site-brand">
+    <img class="mdl-img" src="assets/mdl-logo-tagline-light.png" alt="MDL">
+    <a class="mdl-href" href="index.html">MDL</a>
+  </div>
+  <nav class="mdl-nav site-nav" aria-label="Primary">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href is-active" href="install.html" aria-current="page">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+    <a class="mdl-href" href="examples.html">Examples</a>
+    <a class="mdl-href nav-cta" href="deploy.html">Deploy</a>
+  </nav>
+</header>
+<main class="mdl-page site-page">
+  <div class="mdl-hero page-hero">
+    <span class="mdl-badge">Install</span>
+    <h1>Install MDL</h1>
+    <p>Install the npm package, create a local app scaffold, activate the project shell, and verify the CLI before you build.</p>
+  </div>
+  <section class="mdl-section docs-layout">
+    <aside class="mdl-sidebar docs-sidebar">
+      <h2>On this page</h2>
+      <ul class="mdl-list">
+        <li class="mdl-item">
+          <a class="mdl-href" href="#requirements">Requirements</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#local">Local install</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#global">Global install</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#workspace">Workspace apps</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#structure">Folder structure</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#first-edit">First edit</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#verify">Verify</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#troubleshooting">Troubleshooting</a>
+        </li>
+      </ul>
+    </aside>
+    <article class="mdl-article docs-content">
+      <section class="mdl-section doc-section" id="requirements">
+        <h2>Requirements</h2>
+        <p>MDL ships as the <code>@tosiiko/mdl</code> npm package with prebuilt CLI binaries for common desktop and CI platforms.</p>
+        <p>Check that Node and npm are available:</p>
+        <pre><code class="language-bash">node --version
+        npm --version
+        </code></pre>
+        <p>Use a local install for site projects so each workspace can pin its own MDL version. Use a global install only when you want <code>mdl</code> available everywhere.</p>
+      </section>
+      <section class="mdl-section doc-section" id="local">
+        <h2>Local install</h2>
+        <p>Local install is the best default for a project:</p>
+        <pre><code class="language-bash">mkdir my-mdl-site
+        cd my-mdl-site
+        npm install @tosiiko/mdl
+        npm exec -- mdl init
+        source bin/activate
+        mdl serve
+        </code></pre>
+        <p>The package does not run install scripts. <code>npm exec -- mdl init</code> creates the starter files explicitly. <code>source bin/activate</code> adds <code>node_modules/.bin</code> to the current shell so <code>mdl</code> works without typing <code>npm exec</code>.</p>
+        <p>Open <code>http://127.0.0.1:3999</code> after the server starts.</p>
+        <div class="mdl-actions">
+          <button class="mdl-btn-secondary" type="button" data-mdl-on-click="copyInstallCommand">Copy install</button>
+        </div>
+      </section>
+      <section class="mdl-section doc-section" id="global">
+        <h2>Global install</h2>
+        <p>A global install is useful for quick experiments and one-off generators:</p>
+        <pre><code class="language-bash">npm install -g @tosiiko/mdl
+        mdl new my-mdl-site
+        cd my-mdl-site
+        mdl serve
+        </code></pre>
+        <p>If a project also has a local install, prefer the local version inside that project so teammates and CI use the same CLI.</p>
+      </section>
+      <section class="mdl-section doc-section" id="workspace">
+        <h2>Workspace apps</h2>
+        <p><code>mdl init</code> initializes the current folder. <code>mdl new my-mdl-site</code> creates a new folder and runs the same scaffold logic inside it.</p>
+        <p>Add another app to the same workspace with a separate config, source tree, output folder, and port:</p>
+        <pre><code class="language-bash">mdl init --app admin --port 4001
+        mdl serve apps/admin
+        </code></pre>
+        <p>When a workspace has more than one app, pass the app folder to commands:</p>
+        <pre><code class="language-bash">mdl check apps/admin
+        mdl build apps/admin
+        mdl serve apps/admin
+        </code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="structure">
+        <h2>Created folder structure</h2>
+        <p><code>mdl init</code> creates a server-ready project:</p>
+        <pre><code class="language-text">my-mdl-site/
+          README.md
+        
+        <span class="mdl-gitignore"></span>
+        
+          bin/
+            activate
+          apps/
+            my-mdl-site/
+              mdl.json
+              pages/
+                index.mdl
+              css/
+                main.css
+                layout.css
+                components.css
+              scripts/
+                app.js
+              assets/
+                mdl-logo-tagline-light.png
+        </code></pre>
+        <p>The app config lives inside <code>apps/my-mdl-site/</code>, so a single installed workspace can host multiple MDL apps.</p>
+      </section>
+      <section class="mdl-section doc-section" id="first-edit">
+        <h2>First edit</h2>
+        <p>Change the starter page:</p>
+        <pre><code class="language-text">apps/my-mdl-site/pages/index.mdl
+        </code></pre>
+        <p>Then adjust the component styling:</p>
+        <pre><code class="language-text">apps/my-mdl-site/css/components.css
+        </code></pre>
+        <p>Run checks before building:</p>
+        <pre><code class="language-bash">mdl check
+        mdl format --check
+        mdl build
+        </code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="verify">
+        <h2>Verify the install</h2>
+        <p>These commands should succeed after activation:</p>
+        <pre><code class="language-bash">mdl --help
+        mdl check
+        mdl build
+        mdl serve
+        </code></pre>
+        <p><code>mdl check</code> validates source syntax, config paths, routes, assets, form labels, ARIA references, and similar project details. <code>mdl build</code> writes static output to the configured <code>dist</code> folder.</p>
+      </section>
+      <section class="mdl-section doc-section" id="troubleshooting">
+        <h2>Troubleshooting</h2>
+        <p>If <code>mdl</code> is not found after local install:</p>
+        <pre><code class="language-bash">source bin/activate
+        </code></pre>
+        <p>You can also run through npm:</p>
+        <pre><code class="language-bash">npm exec -- mdl check
+        npm exec -- mdl serve
+        </code></pre>
+        <p>If starter files were skipped or deleted:</p>
+        <pre><code class="language-bash">mdl init --force
+        </code></pre>
+        <p>If you want package scripts in <code>package.json</code>, ask the scaffold to add missing defaults:</p>
+        <pre><code class="language-bash">mdl init --package-scripts
+        npm run check
+        npm run build
+        npm run serve
+        </code></pre>
+      </section>
+    </article>
+  </section>
+</main>
+<footer class="mdl-footer site-footer">
+  <div class="mdl-brand">
+    <a class="mdl-href site-brand-text" href="index.html">MDL</a>
+    <p>Install and create projects.</p>
+  </div>
+  <nav class="mdl-nav" aria-label="Footer">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+    <a class="mdl-href" href="deploy.html">Deploy</a>
+  </nav>
+</footer>
+<script type="module">
+import * as mdlModule0 from "./scripts/site.js";
+const mdlHandlers = Object.assign({}, globalThis, mdlModule0);
+const mdlBind = (eventName) => {
+  document.querySelectorAll(`[data-mdl-on-${eventName}]`).forEach((element) => {
+    const handlerName = element.getAttribute(`data-mdl-on-${eventName}`);
+    const handler = mdlHandlers[handlerName];
+    if (typeof handler === "function") {
+      element.addEventListener(eventName, (event) => handler(event));
+    }
+  });
+};
+["click", "submit", "input", "change"].forEach(mdlBind);
+document.querySelectorAll("[data-mdl-on-mount]").forEach((element) => {
+  const handlerName = element.getAttribute("data-mdl-on-mount");
+  const handler = mdlHandlers[handlerName];
+  if (typeof handler === "function") {
+    handler(element);
+  }
+});
+</script>
+</body>
+</html>

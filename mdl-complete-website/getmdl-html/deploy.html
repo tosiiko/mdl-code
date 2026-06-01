@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Documentation</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="mdl-topbar site-topbar">
+  <div class="mdl-brand site-brand">
+    <img class="mdl-img" src="assets/mdl-logo-tagline-light.png" alt="MDL">
+    <a class="mdl-href" href="index.html">MDL</a>
+  </div>
+  <nav class="mdl-nav site-nav" aria-label="Primary">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+    <a class="mdl-href" href="examples.html">Examples</a>
+    <a class="mdl-href nav-cta is-active" href="deploy.html" aria-current="page">Deploy</a>
+  </nav>
+</header>
+<main class="mdl-page site-page">
+  <div class="mdl-hero page-hero">
+    <span class="mdl-badge">Deploy</span>
+    <h1>Deploy MDL sites</h1>
+    <p>MDL builds static files, so any site can ship through GitHub Pages, Netlify, Vercel, Cloudflare Pages, object storage, or a plain web server.</p>
+  </div>
+  <section class="mdl-section docs-layout">
+    <aside class="mdl-sidebar docs-sidebar">
+      <h2>On this page</h2>
+      <ul class="mdl-list">
+        <li class="mdl-item">
+          <a class="mdl-href" href="#preflight">Preflight</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#build">Build</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#generic">Any static host</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#github">GitHub Pages</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#dns">DNS</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#site">This docs site</a>
+        </li>
+      </ul>
+    </aside>
+    <article class="mdl-article docs-content">
+      <section class="mdl-section doc-section" id="preflight">
+        <h2>Preflight</h2>
+        <p>Run the same checks locally that you expect CI to run:</p>
+        <pre><code class="language-bash">mdl check
+        mdl format --check
+        mdl build
+        </code></pre>
+        <p>Confirm that the generated <code>dist/</code> folder contains the pages, CSS, scripts, assets, manifest, and source-map sidecars you expect.</p>
+      </section>
+      <section class="mdl-section doc-section" id="build">
+        <h2>Build output</h2>
+        <p>In a generated app, <code>mdl build</code> writes to the configured output folder:</p>
+        <pre><code class="language-bash">mdl build
+        </code></pre>
+        <p>Common output looks like:</p>
+        <pre><code class="language-text">dist/index.html
+        dist/app.css
+        dist/scripts/app.js
+        dist/assets/
+        dist/mdl-output-manifest.json
+        dist/index.html.mdlmap.json
+        </code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="generic">
+        <h2>Any static host</h2>
+        <p>Use these settings when the host can run Node and your project uses the npm package:</p>
+        <pre><code class="language-text">Install command: npm ci
+        Build command: npm exec -- mdl build
+        Publish directory: apps/my-mdl-site/dist
+        </code></pre>
+        <p>If the host cannot run MDL, build locally or in CI and upload the generated <code>dist/</code> folder.</p>
+        <p>If you publish that folder below another path, such as <code>https://example.com/getmdl/</code>, switch local root links to relative output links:</p>
+        <pre><code class="language-json">{
+          "routing": {
+            "links": "relative"
+          }
+        }
+        </code></pre>
+      </section>
+      <section class="mdl-section doc-section" id="github">
+        <h2>GitHub Pages</h2>
+        <p>GitHub Pages can deploy from Actions. A minimal workflow checks out the repo, installs dependencies, builds the MDL site, uploads <code>dist</code>, and deploys it.</p>
+        <pre><code class="language-text">checkout repository
+        setup Node LTS with npm cache
+        run npm ci
+        run npm exec -- mdl build apps/my-mdl-site
+        upload apps/my-mdl-site/dist as the Pages artifact
+        deploy the uploaded Pages artifact
+        </code></pre>
+        <p>In GitHub repository settings, set Pages source to GitHub Actions.</p>
+      </section>
+      <section class="mdl-section doc-section" id="dns">
+        <h2>Custom domains</h2>
+        <p>For GitHub Pages, add a <code>CNAME</code> file to the published output or list it in <code>assets</code> so MDL copies it:</p>
+        <pre><code class="language-text">CNAME
+        </code></pre>
+        <pre><code class="language-json">{
+          "assets": [
+            "assets",
+            "CNAME"
+          ]
+        }
+        </code></pre>
+        <p>Point the apex domain to your host using its documented records. For <code>www</code>, add a CNAME record to the host-provided domain, then choose whether <code>www</code> redirects to the apex or the apex redirects to <code>www</code>.</p>
+      </section>
+      <section class="mdl-section doc-section" id="site">
+        <h2>This docs site</h2>
+        <p>The public docs site for <code>getmdl.site</code> lives in <code>site/</code>. From this repository:</p>
+        <pre><code class="language-bash">cargo build -p mdl-cli --release
+        cd site
+        ../target/release/mdl build
+        </code></pre>
+        <p>This repo includes <code>.github/workflows/deploy-site.yml</code>. On pushes to <code>main</code>, it builds the MDL CLI, runs <code>mdl build</code> inside <code>site/</code>, uploads <code>site/dist</code>, and deploys with GitHub Pages.</p>
+        <p>The <code>site/CNAME</code> file contains:</p>
+        <pre><code class="language-text">getmdl.site
+        </code></pre>
+      </section>
+    </article>
+  </section>
+</main>
+<footer class="mdl-footer site-footer">
+  <div class="mdl-brand">
+    <a class="mdl-href site-brand-text" href="index.html">MDL</a>
+    <p>Deployment guide.</p>
+  </div>
+  <nav class="mdl-nav" aria-label="Footer">
+    <a class="mdl-href" href="docs.html">Docs</a>
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="config.html">Config</a>
+    <a class="mdl-href" href="extension.html">Extension</a>
+  </nav>
+</footer>
+<script type="module">
+import * as mdlModule0 from "./scripts/site.js";
+</script>
+</body>
+</html>

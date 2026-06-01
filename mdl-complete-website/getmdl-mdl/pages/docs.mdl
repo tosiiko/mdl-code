@@ -1,0 +1,143 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)@class(is-active)@aria-current(page)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/examples.html)(Examples)
+    .href@href(/deploy.html)@class(nav-cta)(Deploy)
+
+page@class(site-page docs-page):
+  hero@class(page-hero):
+    .badge(Documentation)
+    # MDL docs
+    Start with the workflow, then use the reference pages when you need exact syntax, config fields, commands, or deployment steps.
+  section@class(docs-layout):
+    sidebar@class(docs-sidebar):
+      ## Contents
+      list:
+        item:
+          .href@href(#start)(Start here)
+        item:
+          .href@href(#model)(Mental model)
+        item:
+          .href@href(#workflow)(Daily workflow)
+        item:
+          .href@href(#generated)(Generated output)
+        item:
+          .href@href(/install.html)(Install)
+        item:
+          .href@href(/language.html)(Language)
+        item:
+          .href@href(/config.html)(Configuration)
+        item:
+          .href@href(/cli.html)(CLI)
+        item:
+          .href@href(/examples.html)(Examples)
+        item:
+          .href@href(/deploy.html)(Deploy)
+    article@class(docs-content):
+      section@id(start)@class(doc-section):
+        ## Start here
+        MDL is a tiny authoring language for people who want static web pages that stay readable at the source level. You write `.mdl` files for structure and content, keep layout in CSS, add JavaScript only for behavior, and compile everything to normal HTML.
+        raw-html:
+          <pre><code class="language-text">.mdl  -&gt; structure and content
+          .json -&gt; project manifest
+          .css  -&gt; layout and design
+          .js   -&gt; behavior when needed
+          HTML  -&gt; compiler output
+          </code></pre>
+        The fastest path is:
+
+        ```bash
+        mkdir my-mdl-site
+        cd my-mdl-site
+        npm install @tosiiko/mdl
+        npm exec -- mdl init
+        source bin/activate
+        mdl serve
+        ```
+
+        Open `http://127.0.0.1:3999`, edit `apps/my-mdl-site/pages/index.mdl`, then run `mdl check`, `mdl format --check`, and `mdl build` before publishing.
+      section@class(doc-section):
+        ## Choose your next page
+        grid@class(reference-grid):
+          card:
+            ### New project
+            Use the install guide for npm setup, local activation, the created folder structure, and first edits.
+            .href@href(/install.html)(Install MDL)
+          card:
+            ### Writing pages
+            Use the language guide for sections, Markdown, dot elements, attributes, scripts, and UI patterns.
+            .href@href(/language.html)(Read language)
+          card:
+            ### Project settings
+            Use the config guide for `mdl.json`, CSS bundles, metadata, scripts, assets, and multi-page builds.
+            .href@href(/config.html)(Configure projects)
+          card:
+            ### Commands
+            Use the CLI reference for init, new, check, format, build, serve, and spec-test.
+            .href@href(/cli.html)(Use the CLI)
+          card:
+            ### Examples
+            Copy small snippets for heroes, grids, forms, tabs, Tailwind classes, and mounted elements.
+            .href@href(/examples.html)(Browse examples)
+          card:
+            ### Shipping
+            Build static output and deploy the `dist/` folder to GitHub Pages or another static host.
+            .href@href(/deploy.html)(Deploy a site)
+      section@id(model)@class(doc-section):
+        ## Mental model
+        MDL keeps the web platform visible. It gives common page structures short names, adds predictable `mdl-*` classes, and then gets out of the way.
+        raw-html:
+          <pre><code class="language-mdl">pricing:&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$9/month&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary(Choose)</code></pre>
+        That compiles to plain HTML:
+        raw-html:
+          <pre><code class="language-html">&lt;div class="mdl-pricing"&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="mdl-card"&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Starter&lt;/h2&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;$9/month&lt;/p&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="mdl-btn-primary"&gt;Choose&lt;/button&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;&#10;&nbsp;&nbsp;&lt;/div&gt;</code></pre>
+        You still write normal CSS against `.mdl-pricing`, `.mdl-card`, and any author classes you add with `@class(...)`.
+      section@id(workflow)@class(doc-section):
+        ## Daily workflow
+        steps:
+          step:
+            ### Create or choose an app
+            Run `mdl init` in the current folder, `mdl new my-site` for a fresh folder, or `mdl init --app admin --port 4001` to add another app to a workspace.
+          step:
+            ### Edit source files
+            Put pages in `pages/`, styles in `css/`, scripts in `scripts/`, and images or static files in `assets/`.
+          step:
+            ### Check early
+            Run `mdl check` for parse, config, route, asset, and accessibility-oriented diagnostics.
+          step:
+            ### Format consistently
+            Run `mdl format` to rewrite sources, or `mdl format --check` in CI.
+          step:
+            ### Preview and build
+            Use `mdl serve` while editing, then `mdl build` to write static HTML, copied assets, CSS bundles, manifests, and source-map sidecars.
+      section@id(generated)@class(doc-section):
+        ## What gets generated
+        A standard scaffold creates one app under `apps/<name>/`. Building that app writes static files to the configured `output` folder.
+
+        ```text
+        apps/my-mdl-site/pages/index.mdl  -> apps/my-mdl-site/dist/index.html
+        apps/my-mdl-site/css/*.css        -> apps/my-mdl-site/dist/app.css
+        apps/my-mdl-site/scripts/app.js   -> apps/my-mdl-site/dist/scripts/app.js
+        apps/my-mdl-site/assets/*         -> apps/my-mdl-site/dist/assets/*
+        ```
+
+        The output is static. You can upload it to any host that serves HTML, CSS, JavaScript, and assets.
+      note@class(doc-note):
+        ### Package behavior
+        The public npm package is `@tosiiko/mdl`. It does not use npm install scripts, so project files are created only when you run `npm exec -- mdl init`, `mdl init`, or `mdl new`.
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    Documentation overview.
+  nav@aria-label(Footer):
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/config.html)(Config)
+    .href@href(/cli.html)(CLI)

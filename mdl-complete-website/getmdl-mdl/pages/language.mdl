@@ -1,0 +1,125 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)@class(is-active)@aria-current(page)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/examples.html)(Examples)
+    .href@href(/deploy.html)@class(nav-cta)(Deploy)
+
+page@class(site-page):
+  hero@class(page-hero):
+    .badge(Language)
+    # MDL language reference
+    MDL is made of a few readable moves: section blocks, Markdown prose, dot elements, attributes, comments, and explicit JavaScript hooks.
+  section@class(docs-layout):
+    sidebar@class(docs-sidebar):
+      ## On this page
+      list:
+        item:
+          .href@href(#anatomy)(File anatomy)
+        item:
+          .href@href(#sections)(Sections)
+        item:
+          .href@href(#classes)(Classes)
+        item:
+          .href@href(#inline)(Inline elements)
+        item:
+          .href@href(#attributes)(Attributes)
+        item:
+          .href@href(#markdown)(Markdown)
+        item:
+          .href@href(#comments)(Comments)
+        item:
+          .href@href(#scripts)(Scripts)
+        item:
+          .href@href(#patterns)(UI patterns)
+        item:
+          .href@href(#escape)(Escape hatches)
+    article@class(docs-content):
+      section@id(anatomy)@class(doc-section):
+        ## File anatomy
+        A `.mdl` file is indentation-based. Lines ending in `:` open sections, Markdown fills the body, and dot syntax creates compact inline or control elements.
+        raw-html:
+          <pre><code class="language-mdl">document:&#10;&nbsp;&nbsp;&nbsp;&nbsp;topbar:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.href@href(/)(Home)&#10;&nbsp;&nbsp;&nbsp;&nbsp;hero:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.badge(New)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Welcome&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Write the page in a readable outline.&#10;&nbsp;&nbsp;&nbsp;&nbsp;section:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Next section&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Markdown content lives here.</code></pre>
+        Keep related content indented under its parent. Blank lines are fine and help prose breathe.
+      section@id(sections)@class(doc-section):
+        ## Sections
+        A section name followed by `:` becomes an HTML element with a matching `mdl-*` class. Unknown names are valid and fall back to a `div`.
+        raw-html:
+          <pre><code class="language-mdl">hero:&#10;&nbsp;&nbsp;&nbsp;&nbsp;# Welcome</code></pre>
+        raw-html:
+          <pre><code class="language-html">&lt;div class="mdl-hero"&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Welcome&lt;/h1&gt;&#10;&nbsp;&nbsp;&lt;/div&gt;</code></pre>
+        Common structural sections include `page`, `topbar`, `nav`, `section`, `hero`, `grid`, `card`, `form`, `field`, `actions`, and `footer`.
+
+        Common browser and UI sections include `table`, `thead`, `tbody`, `tr`, `th`, `td`, `tabs`, `modal`, `drawer`, `toast`, `canvas`, `picture`, `source`, `template`, `component`, and `island`.
+      section@id(classes)@class(doc-section):
+        ## Classes
+        Every section receives a stable generated class:
+        raw-html:
+          <pre><code class="language-mdl">feature-grid:&#10;&nbsp;&nbsp;&nbsp;&nbsp;card@class(feature-card highlighted):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Fast</code></pre>
+        raw-html:
+          <pre><code class="language-html">&lt;div class="mdl-feature-grid"&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="mdl-card feature-card highlighted"&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Fast&lt;/h2&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;&#10;&nbsp;&nbsp;&lt;/div&gt;</code></pre>
+        Use generated classes for broad styling and `@class(...)` for page-specific or utility classes.
+      section@id(inline)@class(doc-section):
+        ## Inline elements
+        Dot syntax creates named inline elements:
+        raw-html:
+          <pre><code class="language-mdl">.badge(beta)&#10;&nbsp;&nbsp;.btn-primary(Choose)&#10;&nbsp;&nbsp;.href@href(/docs.html)(Docs)&#10;&nbsp;&nbsp;.input@type(email)@autocomplete(email)@aria-label(Email)@required</code></pre>
+        Known names map to useful HTML. For example, buttons become `button` elements and `.href` becomes an anchor when you provide `@href(...)`. Unknown names become spans with matching classes.
+      section@id(attributes)@class(doc-section):
+        ## Attributes
+        Attributes attach directly to sections or inline elements:
+        raw-html:
+          <pre><code class="language-mdl">form@id(login)@method(post):&#10;&nbsp;&nbsp;&nbsp;&nbsp;field:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label@for(email):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.input@id(email)@type(email)@autocomplete(email)@aria-label(Email)@placeholder(you@example.com)@required</code></pre>
+        Boolean attributes use no value. Author classes use `@class(...)` and are appended after the generated MDL class.
+      section@id(markdown)@class(doc-section):
+        ## Markdown
+        Markdown owns prose inside sections. MDL renders headings, paragraphs, lists, blockquotes, code fences, tables, strikethrough, and task lists through CommonMark.
+        raw-html:
+          <pre><code class="language-mdl">section:&#10;&nbsp;&nbsp;&nbsp;&nbsp;## Markdown works here&#10;&nbsp;&nbsp;&#10;&nbsp;&nbsp;&nbsp;&nbsp;- Write lists&#10;&nbsp;&nbsp;&nbsp;&nbsp;- Add `inline code`&#10;&nbsp;&nbsp;&nbsp;&nbsp;- Keep content readable</code></pre>
+        When a line is not an MDL section, dot element, attribute continuation, or comment, treat it as Markdown prose.
+      section@id(comments)@class(doc-section):
+        ## Comments
+        Use `//` for source comments that compile to HTML comments:
+        raw-html:
+          <pre><code class="language-mdl">// This note is visible in the generated HTML source.&#10;&nbsp;&nbsp;section:&#10;&nbsp;&nbsp;&nbsp;&nbsp;## Content</code></pre>
+        JavaScript owns comments inside `script js:` blocks, so `//` there remains JavaScript.
+      section@id(scripts)@class(doc-section):
+        ## JavaScript
+        Inline JavaScript uses `script js:`:
+        raw-html:
+          <pre><code class="language-mdl">script js:&#10;&nbsp;&nbsp;&nbsp;&nbsp;console.log("ready")</code></pre>
+        Configured module scripts can export handlers for event attributes:
+        raw-html:
+          <pre><code class="language-mdl">form@submit(handleSignup):&#10;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary@click(handleSignup)(Join)</code></pre>
+        Event handlers receive the browser event. `@mount(handler)` initializes mounted elements and receives the mounted element.
+      section@id(patterns)@class(doc-section):
+        ## UI patterns
+        MDL includes named sections for common patterns while CSS and JavaScript own presentation and state:
+        raw-html:
+          <pre><code class="language-mdl">tabs@id(settingsTabs):&#10;&nbsp;&nbsp;&nbsp;&nbsp;tablist@role(tablist):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-secondary@click(showProfile)(Profile)&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-ghost@click(showBilling)(Billing)&#10;&nbsp;&nbsp;&nbsp;&nbsp;tab@id(profileTab)@data-state(active):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profile content.&#10;&nbsp;&nbsp;&nbsp;&nbsp;tab@id(billingTab):&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Billing content.</code></pre>
+      section@id(escape)@class(doc-section):
+        ## Escape hatches
+        MDL is intentionally small, but it still has explicit exits for platform features.
+
+        Use `element@tag(...)` when you need a custom tag:
+        raw-html:
+          <pre><code class="language-mdl">element@tag(my-widget)@data-mode(compact):&#10;&nbsp;&nbsp;&nbsp;&nbsp;Widget content.</code></pre>
+        Use `raw-html:` only for trusted markup that should pass through unchanged:
+        raw-html:
+          <pre><code class="language-mdl">raw-html:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&lt;custom-element data-ready="true"&gt;&lt;/custom-element&gt;</code></pre>
+        Prefer normal MDL sections first; escape hatches are best for interoperability.
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    Language reference.
+  nav@aria-label(Footer):
+    .href@href(/config.html)(Config)
+    .href@href(/cli.html)(CLI)
+    .href@href(/examples.html)(Examples)
+    .href@href(/deploy.html)(Deploy)

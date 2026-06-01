@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL Documentation</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="mdl-topbar site-topbar">
+  <div class="mdl-brand site-brand">
+    <img class="mdl-img" src="assets/mdl-logo-tagline-light.png" alt="MDL">
+    <a class="mdl-href" href="index.html">MDL</a>
+  </div>
+  <nav class="mdl-nav site-nav" aria-label="Primary">
+    <a class="mdl-href is-active" href="docs.html" aria-current="page">Docs</a>
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+    <a class="mdl-href" href="examples.html">Examples</a>
+    <a class="mdl-href nav-cta" href="deploy.html">Deploy</a>
+  </nav>
+</header>
+<main class="mdl-page site-page docs-page">
+  <div class="mdl-hero page-hero">
+    <span class="mdl-badge">Documentation</span>
+    <h1>MDL docs</h1>
+    <p>Start with the workflow, then use the reference pages when you need exact syntax, config fields, commands, or deployment steps.</p>
+  </div>
+  <section class="mdl-section docs-layout">
+    <aside class="mdl-sidebar docs-sidebar">
+      <h2>Contents</h2>
+      <ul class="mdl-list">
+        <li class="mdl-item">
+          <a class="mdl-href" href="#start">Start here</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#model">Mental model</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#workflow">Daily workflow</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="#generated">Generated output</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="install.html">Install</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="language.html">Language</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="config.html">Configuration</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="cli.html">CLI</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="examples.html">Examples</a>
+        </li>
+        <li class="mdl-item">
+          <a class="mdl-href" href="deploy.html">Deploy</a>
+        </li>
+      </ul>
+    </aside>
+    <article class="mdl-article docs-content">
+      <section class="mdl-section doc-section" id="start">
+        <h2>Start here</h2>
+        <p>MDL is a tiny authoring language for people who want static web pages that stay readable at the source level. You write <code>.mdl</code> files for structure and content, keep layout in CSS, add JavaScript only for behavior, and compile everything to normal HTML.</p>
+        <pre><code class="language-text">.mdl  -&gt; structure and content
+        .json -&gt; project manifest
+        .css  -&gt; layout and design
+        .js   -&gt; behavior when needed
+        HTML  -&gt; compiler output
+        </code></pre>
+        <p>The fastest path is:</p>
+        <pre><code class="language-bash">mkdir my-mdl-site
+        cd my-mdl-site
+        npm install @tosiiko/mdl
+        npm exec -- mdl init
+        source bin/activate
+        mdl serve
+        </code></pre>
+        <p>Open <code>http://127.0.0.1:3999</code>, edit <code>apps/my-mdl-site/pages/index.mdl</code>, then run <code>mdl check</code>, <code>mdl format --check</code>, and <code>mdl build</code> before publishing.</p>
+      </section>
+      <section class="mdl-section doc-section">
+        <h2>Choose your next page</h2>
+        <div class="mdl-grid reference-grid">
+          <div class="mdl-card">
+            <h3>New project</h3>
+            <p>Use the install guide for npm setup, local activation, the created folder structure, and first edits.</p>
+            <a class="mdl-href" href="install.html">Install MDL</a>
+          </div>
+          <div class="mdl-card">
+            <h3>Writing pages</h3>
+            <p>Use the language guide for sections, Markdown, dot elements, attributes, scripts, and UI patterns.</p>
+            <a class="mdl-href" href="language.html">Read language</a>
+          </div>
+          <div class="mdl-card">
+            <h3>Project settings</h3>
+            <p>Use the config guide for <code>mdl.json</code>, CSS bundles, metadata, scripts, assets, and multi-page builds.</p>
+            <a class="mdl-href" href="config.html">Configure projects</a>
+          </div>
+          <div class="mdl-card">
+            <h3>Commands</h3>
+            <p>Use the CLI reference for init, new, check, format, build, serve, and spec-test.</p>
+            <a class="mdl-href" href="cli.html">Use the CLI</a>
+          </div>
+          <div class="mdl-card">
+            <h3>Examples</h3>
+            <p>Copy small snippets for heroes, grids, forms, tabs, Tailwind classes, and mounted elements.</p>
+            <a class="mdl-href" href="examples.html">Browse examples</a>
+          </div>
+          <div class="mdl-card">
+            <h3>Shipping</h3>
+            <p>Build static output and deploy the <code>dist/</code> folder to GitHub Pages or another static host.</p>
+            <a class="mdl-href" href="deploy.html">Deploy a site</a>
+          </div>
+        </div>
+      </section>
+      <section class="mdl-section doc-section" id="model">
+        <h2>Mental model</h2>
+        <p>MDL keeps the web platform visible. It gives common page structures short names, adds predictable <code>mdl-*</code> classes, and then gets out of the way.</p>
+        <pre><code class="language-mdl">pricing:&#10;&nbsp;&nbsp;&nbsp;&nbsp;card:&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;## Starter&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$9/month&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.btn-primary(Choose)</code></pre>
+        <p>That compiles to plain HTML:</p>
+        <pre><code class="language-html">&lt;div class="mdl-pricing"&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="mdl-card"&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Starter&lt;/h2&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;$9/month&lt;/p&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="mdl-btn-primary"&gt;Choose&lt;/button&gt;&#10;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;&#10;&nbsp;&nbsp;&lt;/div&gt;</code></pre>
+        <p>You still write normal CSS against <code>.mdl-pricing</code>, <code>.mdl-card</code>, and any author classes you add with <code>@class(...)</code>.</p>
+      </section>
+      <section class="mdl-section doc-section" id="workflow">
+        <h2>Daily workflow</h2>
+        <ol class="mdl-steps">
+          <li class="mdl-step">
+            <h3>Create or choose an app</h3>
+            <p>Run <code>mdl init</code> in the current folder, <code>mdl new my-site</code> for a fresh folder, or <code>mdl init --app admin --port 4001</code> to add another app to a workspace.</p>
+          </li>
+          <li class="mdl-step">
+            <h3>Edit source files</h3>
+            <p>Put pages in <code>pages/</code>, styles in <code>css/</code>, scripts in <code>scripts/</code>, and images or static files in <code>assets/</code>.</p>
+          </li>
+          <li class="mdl-step">
+            <h3>Check early</h3>
+            <p>Run <code>mdl check</code> for parse, config, route, asset, and accessibility-oriented diagnostics.</p>
+          </li>
+          <li class="mdl-step">
+            <h3>Format consistently</h3>
+            <p>Run <code>mdl format</code> to rewrite sources, or <code>mdl format --check</code> in CI.</p>
+          </li>
+          <li class="mdl-step">
+            <h3>Preview and build</h3>
+            <p>Use <code>mdl serve</code> while editing, then <code>mdl build</code> to write static HTML, copied assets, CSS bundles, manifests, and source-map sidecars.</p>
+          </li>
+        </ol>
+      </section>
+      <section class="mdl-section doc-section" id="generated">
+        <h2>What gets generated</h2>
+        <p>A standard scaffold creates one app under <code>apps/&lt;name&gt;/</code>. Building that app writes static files to the configured <code>output</code> folder.</p>
+        <pre><code class="language-text">apps/my-mdl-site/pages/index.mdl  -&gt; apps/my-mdl-site/dist/index.html
+        apps/my-mdl-site/css/*.css        -&gt; apps/my-mdl-site/dist/app.css
+        apps/my-mdl-site/scripts/app.js   -&gt; apps/my-mdl-site/dist/scripts/app.js
+        apps/my-mdl-site/assets/*         -&gt; apps/my-mdl-site/dist/assets/*
+        </code></pre>
+        <p>The output is static. You can upload it to any host that serves HTML, CSS, JavaScript, and assets.</p>
+      </section>
+      <div class="mdl-note doc-note">
+        <h3>Package behavior</h3>
+        <p>The public npm package is <code>@tosiiko/mdl</code>. It does not use npm install scripts, so project files are created only when you run <code>npm exec -- mdl init</code>, <code>mdl init</code>, or <code>mdl new</code>.</p>
+      </div>
+    </article>
+  </section>
+</main>
+<footer class="mdl-footer site-footer">
+  <div class="mdl-brand">
+    <a class="mdl-href site-brand-text" href="index.html">MDL</a>
+    <p>Documentation overview.</p>
+  </div>
+  <nav class="mdl-nav" aria-label="Footer">
+    <a class="mdl-href" href="install.html">Install</a>
+    <a class="mdl-href" href="language.html">Language</a>
+    <a class="mdl-href" href="config.html">Config</a>
+    <a class="mdl-href" href="cli.html">CLI</a>
+  </nav>
+</footer>
+<script type="module">
+import * as mdlModule0 from "./scripts/site.js";
+</script>
+</body>
+</html>

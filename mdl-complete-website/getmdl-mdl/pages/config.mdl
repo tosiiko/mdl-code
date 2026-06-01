@@ -1,0 +1,256 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/examples.html)(Examples)
+    .href@href(/deploy.html)@class(nav-cta)(Deploy)
+
+page@class(site-page):
+  hero@class(page-hero):
+    .badge(Configuration)
+    # Configure `mdl.json`
+    `mdl.json` is the project manifest: paths, metadata, CSS, scripts, assets, output, and the local dev-server port.
+  section@class(docs-layout):
+    sidebar@class(docs-sidebar):
+      ## On this page
+      list:
+        item:
+          .href@href(#sample)(Sample)
+        item:
+          .href@href(#fields)(Fields)
+        item:
+          .href@href(#paths)(Path rules)
+        item:
+          .href@href(#metadata)(Metadata)
+        item:
+          .href@href(#css)(CSS)
+        item:
+          .href@href(#routing)(Routing)
+        item:
+          .href@href(#scripts)(Scripts)
+        item:
+          .href@href(#multipage)(Multi-page)
+        item:
+          .href@href(#assets)(Assets)
+        item:
+          .href@href(#validation)(Validation)
+    article@class(docs-content):
+      section@id(sample)@class(doc-section):
+        ## Sample config
+        The generated config is valid plain JSON, so editors and package scanners can read it without JSONC support.
+
+        ```json
+        {
+          "name": "my-mdl-site",
+          "lang": "en",
+          "title": "my-mdl-site",
+          "description": "Built with MDL.",
+          "favicon": "assets/mdl-logo-tagline-light.png",
+          "viewport": "width=device-width, initial-scale=1",
+          "meta": [],
+          "links": [],
+          "entry": "pages/index.mdl",
+          "pages": "pages",
+          "output": "dist",
+          "css": {
+            "runtime": true,
+            "bundle": "dist/app.css"
+          },
+          "routing": {
+            "links": "root"
+          },
+          "styles": [
+            "css/main.css",
+            "css/layout.css",
+            "css/components.css"
+          ],
+          "head_scripts": [],
+          "scripts": [
+            "scripts/app.js"
+          ],
+          "assets": [
+            "assets"
+          ],
+          "port": 3999
+        }
+        ```
+      section@id(fields)@class(doc-section):
+        ## Important fields
+        grid@class(reference-grid):
+          card:
+            ### `name`
+            Project name used by scaffolds and fallbacks.
+          card:
+            ### `entry`
+            Default page for `/` and commands without an explicit input file.
+          card:
+            ### `pages`
+            Folder containing `.mdl` source pages.
+          card:
+            ### `output`
+            Static output folder created by `mdl build`.
+          card:
+            ### `styles`
+            Local or remote CSS files. Local files are copied or bundled.
+          card:
+            ### `scripts`
+            JavaScript modules imported for event and mount handlers.
+          card:
+            ### `assets`
+            Files or folders copied into `dist`.
+          card:
+            ### `port`
+            Default port for `mdl serve`.
+      section@id(paths)@class(doc-section):
+        ## Path rules
+        Paths are resolved from the directory that contains `mdl.json`, unless `root` is set.
+
+        ```json
+        {
+          "root": ".",
+          "pages": "pages",
+          "output": "dist",
+          "styles": ["css/main.css"],
+          "assets": ["assets"]
+        }
+        ```
+
+        In the generated workspace, each app owns its config:
+
+        ```text
+        apps/my-mdl-site/mdl.json
+        apps/my-mdl-site/pages/index.mdl
+        apps/my-mdl-site/dist/index.html
+        ```
+
+        When a workspace contains multiple apps, pass the app folder to commands such as `mdl build apps/admin`.
+      section@id(metadata)@class(doc-section):
+        ## Document metadata
+        Config values populate the document head for every page in the project.
+
+        ```json
+        {
+          "lang": "en",
+          "title": "My MDL Site",
+          "description": "A static site built with MDL.",
+          "canonical": "https://example.com/",
+          "favicon": "assets/icon.png",
+          "viewport": "width=device-width, initial-scale=1",
+          "meta": [
+            { "name": "theme-color", "content": "#172033" }
+          ],
+          "links": [
+            { "rel": "preconnect", "href": "https://fonts.googleapis.com" }
+          ]
+        }
+        ```
+
+        Use `social` when you want Open Graph and Twitter card tags generated from one preset.
+      section@id(css)@class(doc-section):
+        ## CSS runtime and bundles
+        `styles` lists the stylesheets you author. `css.runtime` adds the small MDL runtime stylesheet, and `css.bundle` chooses where the combined CSS file is written.
+
+        ```json
+        {
+          "css": {
+            "runtime": true,
+            "bundle": "dist/app.css"
+          },
+          "styles": [
+            "css/main.css",
+            "css/layout.css",
+            "css/components.css"
+          ]
+        }
+        ```
+
+        Set `"runtime": false` when you want to provide every base style yourself.
+      section@id(routing)@class(doc-section):
+        ## Routing links
+        `routing.links` controls how `mdl build` writes local root-relative links in generated HTML.
+
+        Keep the default when the site is served from a domain root:
+
+        ```json
+        {
+          "routing": {
+            "links": "root"
+          }
+        }
+        ```
+
+        Use relative links when the built files may be opened directly, uploaded inside a subfolder, or served from a path such as `/getmdl/`:
+
+        ```json
+        {
+          "routing": {
+            "links": "relative"
+          }
+        }
+        ```
+
+        Relative mode rewrites local URLs such as `/`, `/docs.html`, and `/assets/logo.png` to paths that work from each output page. External URLs, protocol-relative URLs, and `#section` anchors are left alone.
+      section@id(scripts)@class(doc-section):
+        ## Scripts
+        `head_scripts` are classic scripts placed in the document head. `scripts` are JavaScript modules loaded for event handlers and mount handlers.
+
+        ```json
+        {
+          "head_scripts": [
+            "https://cdn.tailwindcss.com"
+          ],
+          "scripts": [
+            "scripts/app.js"
+          ]
+        }
+        ```
+
+        Module scripts can export functions referenced from MDL attributes such as `@click(handleClick)`, `@submit(handleSubmit)`, and `@mount(drawScene)`.
+      section@id(multipage)@class(doc-section):
+        ## Multi-page builds
+        `mdl build` compiles every `.mdl` file under `pages` and preserves nested folders.
+
+        ```text
+        pages/index.mdl       -> dist/index.html
+        pages/docs.mdl        -> dist/docs.html
+        pages/guides/intro.mdl -> dist/guides/intro.html
+        ```
+      section@id(assets)@class(doc-section):
+        ## Asset copying
+        Add folders or files to `assets` and MDL copies them into `dist`.
+
+        ```json
+        {
+          "assets": [
+            "assets",
+            "CNAME"
+          ]
+        }
+        ```
+
+        This docs site uses that path to publish the logo and the `getmdl.site` CNAME file.
+      section@id(validation)@class(doc-section):
+        ## Validation
+        Run checks after changing config:
+
+        ```bash
+        mdl check
+        mdl check --json
+        ```
+
+        MDL reports missing pages, bad paths, route mismatches, missing linked assets, missing form controls, duplicate ids, and invalid references before you build.
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    Configuration reference.
+  nav@aria-label(Footer):
+    .href@href(/docs.html)(Docs)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/deploy.html)(Deploy)

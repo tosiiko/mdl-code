@@ -1,0 +1,143 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/examples.html)(Examples)
+    .href@href(/deploy.html)@class(nav-cta is-active)@aria-current(page)(Deploy)
+
+page@class(site-page):
+  hero@class(page-hero):
+    .badge(Deploy)
+    # Deploy MDL sites
+    MDL builds static files, so any site can ship through GitHub Pages, Netlify, Vercel, Cloudflare Pages, object storage, or a plain web server.
+  section@class(docs-layout):
+    sidebar@class(docs-sidebar):
+      ## On this page
+      list:
+        item:
+          .href@href(#preflight)(Preflight)
+        item:
+          .href@href(#build)(Build)
+        item:
+          .href@href(#generic)(Any static host)
+        item:
+          .href@href(#github)(GitHub Pages)
+        item:
+          .href@href(#dns)(DNS)
+        item:
+          .href@href(#site)(This docs site)
+    article@class(docs-content):
+      section@id(preflight)@class(doc-section):
+        ## Preflight
+        Run the same checks locally that you expect CI to run:
+
+        ```bash
+        mdl check
+        mdl format --check
+        mdl build
+        ```
+
+        Confirm that the generated `dist/` folder contains the pages, CSS, scripts, assets, manifest, and source-map sidecars you expect.
+      section@id(build)@class(doc-section):
+        ## Build output
+        In a generated app, `mdl build` writes to the configured output folder:
+
+        ```bash
+        mdl build
+        ```
+
+        Common output looks like:
+
+        ```text
+        dist/index.html
+        dist/app.css
+        dist/scripts/app.js
+        dist/assets/
+        dist/mdl-output-manifest.json
+        dist/index.html.mdlmap.json
+        ```
+      section@id(generic)@class(doc-section):
+        ## Any static host
+        Use these settings when the host can run Node and your project uses the npm package:
+
+        ```text
+        Install command: npm ci
+        Build command: npm exec -- mdl build
+        Publish directory: apps/my-mdl-site/dist
+        ```
+
+        If the host cannot run MDL, build locally or in CI and upload the generated `dist/` folder.
+
+        If you publish that folder below another path, such as `https://example.com/getmdl/`, switch local root links to relative output links:
+
+        ```json
+        {
+          "routing": {
+            "links": "relative"
+          }
+        }
+        ```
+      section@id(github)@class(doc-section):
+        ## GitHub Pages
+        GitHub Pages can deploy from Actions. A minimal workflow checks out the repo, installs dependencies, builds the MDL site, uploads `dist`, and deploys it.
+
+        ```text
+        checkout repository
+        setup Node LTS with npm cache
+        run npm ci
+        run npm exec -- mdl build apps/my-mdl-site
+        upload apps/my-mdl-site/dist as the Pages artifact
+        deploy the uploaded Pages artifact
+        ```
+
+        In GitHub repository settings, set Pages source to GitHub Actions.
+      section@id(dns)@class(doc-section):
+        ## Custom domains
+        For GitHub Pages, add a `CNAME` file to the published output or list it in `assets` so MDL copies it:
+
+        ```text
+        CNAME
+        ```
+
+        ```json
+        {
+          "assets": [
+            "assets",
+            "CNAME"
+          ]
+        }
+        ```
+
+        Point the apex domain to your host using its documented records. For `www`, add a CNAME record to the host-provided domain, then choose whether `www` redirects to the apex or the apex redirects to `www`.
+      section@id(site)@class(doc-section):
+        ## This docs site
+        The public docs site for `getmdl.site` lives in `site/`. From this repository:
+
+        ```bash
+        cargo build -p mdl-cli --release
+        cd site
+        ../target/release/mdl build
+        ```
+
+        This repo includes `.github/workflows/deploy-site.yml`. On pushes to `main`, it builds the MDL CLI, runs `mdl build` inside `site/`, uploads `site/dist`, and deploys with GitHub Pages.
+
+        The `site/CNAME` file contains:
+
+        ```text
+        getmdl.site
+        ```
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    Deployment guide.
+  nav@aria-label(Footer):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/config.html)(Config)
+    .href@href(/extension.html)(Extension)

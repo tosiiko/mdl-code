@@ -1,0 +1,80 @@
+{
+  "assets": [
+    "assets",
+    "CNAME"
+  ],
+  "css_bundle": {
+    "path": "app.css",
+    "runtime": true
+  },
+  "head_scripts": [],
+  "name": "getmdl.site",
+  "pages": [
+    {
+      "output": "404.html",
+      "route": "/404",
+      "source": "404.mdl",
+      "source_map": "404.html.mdlmap.json"
+    },
+    {
+      "output": "cli.html",
+      "route": "/cli",
+      "source": "cli.mdl",
+      "source_map": "cli.html.mdlmap.json"
+    },
+    {
+      "output": "config.html",
+      "route": "/config",
+      "source": "config.mdl",
+      "source_map": "config.html.mdlmap.json"
+    },
+    {
+      "output": "deploy.html",
+      "route": "/deploy",
+      "source": "deploy.mdl",
+      "source_map": "deploy.html.mdlmap.json"
+    },
+    {
+      "output": "docs.html",
+      "route": "/docs",
+      "source": "docs.mdl",
+      "source_map": "docs.html.mdlmap.json"
+    },
+    {
+      "output": "examples.html",
+      "route": "/examples",
+      "source": "examples.mdl",
+      "source_map": "examples.html.mdlmap.json"
+    },
+    {
+      "output": "extension.html",
+      "route": "/extension",
+      "source": "extension.mdl",
+      "source_map": "extension.html.mdlmap.json"
+    },
+    {
+      "output": "index.html",
+      "route": "/",
+      "source": "index.mdl",
+      "source_map": "index.html.mdlmap.json"
+    },
+    {
+      "output": "install.html",
+      "route": "/install",
+      "source": "install.mdl",
+      "source_map": "install.html.mdlmap.json"
+    },
+    {
+      "output": "language.html",
+      "route": "/language",
+      "source": "language.mdl",
+      "source_map": "language.html.mdlmap.json"
+    }
+  ],
+  "scripts": [
+    "scripts/site.js"
+  ],
+  "stylesheets": [
+    "css/site.css"
+  ]
+}

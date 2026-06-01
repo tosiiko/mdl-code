@@ -1,0 +1,109 @@
+topbar@class(site-topbar):
+  brand@class(site-brand):
+    .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL)
+    .href@href(/)(MDL)
+  nav@class(site-nav)@aria-label(Primary):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/cli.html)(CLI)
+    .href@href(/examples.html)(Examples)
+    .href@href(/deploy.html)@class(nav-cta)(Deploy)
+
+page@class(site-page home-page):
+  hero@class(home-hero):
+    copy@class(hero-copy):
+      .img@src(/assets/mdl-logo-tagline-light.png)@alt(MDL logo)@class(hero-logo)
+      .badge(Markdown language)
+      # MDL builds clean sites from readable outlines
+      Write `.mdl` files, keep styling in CSS, add JavaScript only when behavior belongs, and compile everything to static HTML.
+      actions@class(hero-actions):
+        .href@href(/docs.html)@class(action-link primary)(Read the docs)
+        .href@href(/install.html)@class(action-link secondary)(Install MDL)
+    panel@class(hero-panel):
+      ## Start in one minute
+      ```bash
+      mkdir my-mdl-site
+      cd my-mdl-site
+      npm install @tosiiko/mdl
+      npm exec -- mdl init
+      source bin/activate
+      mdl serve
+      ```
+      .btn-secondary@type(button)@click(copyInstallCommand)(Copy install)
+  section@class(trust-strip):
+    item:
+      ## MDL
+      Author structure and content.
+    item:
+      ## CSS
+      Own layout, color, and typography.
+    item:
+      ## JS
+      Add behavior with explicit handlers.
+    item:
+      ## HTML
+      Ship static output.
+  section@class(content-band):
+    header@class(section-header):
+      .badge(Why MDL)
+      ## Small language, normal web output
+      MDL is intentionally narrow: it gives names to structure, maps common sections to semantic HTML, and leaves the browser platform visible.
+    grid@class(feature-grid):
+      card:
+        .tag(Readable)
+        ### Pages stay close to the idea
+        Indentation describes hierarchy, Markdown handles prose, and sections such as `hero:`, `card:`, `form:`, and `footer:` describe the page.
+      card:
+        .tag(Predictable)
+        ### Every section gets a stable class
+        `pricing:` becomes `.mdl-pricing`, unknown names still compile, and author classes append after the MDL class.
+      card:
+        .tag(Static)
+        ### Built output is boring HTML
+        `mdl build` writes `.html`, copies assets, bundles CSS when configured, and does not require a framework runtime.
+  section@class(content-band alt-band):
+    header@class(section-header):
+      .badge(Docs map)
+      ## Learn the full flow
+    grid@class(doc-grid):
+      card:
+        ### Install
+        Set up the npm package, activate the local `bin`, and create your first project.
+        .href@href(/install.html)(Open install guide)
+      card:
+        ### Language
+        Sections, inline elements, attributes, Markdown, comments, scripts, and UI patterns.
+        .href@href(/language.html)(Read language guide)
+      card:
+        ### Project config
+        Configure `mdl.json`, multi-page builds, CSS bundles, scripts, assets, and ports.
+        .href@href(/config.html)(View config)
+      card:
+        ### CLI
+        Use `mdl init`, `mdl new`, `mdl check`, `mdl format`, `mdl build`, and `mdl serve`.
+        .href@href(/cli.html)(Open CLI reference)
+      card:
+        ### Examples
+        Copy practical snippets for cards, forms, pricing, tabs, Tailwind, and JavaScript.
+        .href@href(/examples.html)(Browse examples)
+      card:
+        ### Deploy
+        Build static output and host it on GitHub Pages with `getmdl.site`.
+        .href@href(/deploy.html)(Ship a site)
+  banner@class(site-banner):
+    ## Documentation for the language, CLI, and deployment path is ready.
+    Build your first page locally, then publish static HTML anywhere.
+    actions:
+      .href@href(/docs.html)@class(action-link primary)(Start with docs)
+      .href@href(/extension.html)@class(action-link secondary)(VS Code extension)
+
+footer@class(site-footer):
+  brand:
+    .href@href(/)@class(site-brand-text)(MDL)
+    Public documentation for getmdl.site.
+  nav@aria-label(Footer):
+    .href@href(/docs.html)(Docs)
+    .href@href(/install.html)(Install)
+    .href@href(/language.html)(Language)
+    .href@href(/deploy.html)(Deploy)
