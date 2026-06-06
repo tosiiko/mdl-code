@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A complete MDL app demonstrating htmx behavior adapter output.">
+  <title>MDL htmx examples</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"></script>
+</head>
+<body>
+<main class="mdl-page htmx-demo">
+  <header class="mdl-topbar demo-topbar">
+    <div class="mdl-brand">
+      <a class="mdl-href demo-brand" href="/">MDL htmx</a>
+    </div>
+    <nav class="mdl-nav demo-nav" aria-label="Examples">
+      <a class="mdl-href" href="/">Home</a>
+      <a class="mdl-href" href="/search.html">Search</a>
+      <a class="mdl-href" href="/todos.html">Todos</a>
+      <a class="mdl-href" href="/cart.html">Cart</a>
+      <a class="mdl-href" href="/advanced.html">Advanced</a>
+    </nav>
+  </header>
+  <div class="mdl-hero demo-hero">
+    <span class="mdl-badge">Profile form</span>
+    <h1>Validation and request controls</h1>
+    <p>This form demonstrates confirmation, client validation, disabled elements, parameter filtering, request timeout, and request sync.</p>
+  </div>
+  <section class="mdl-section demo-section two-column">
+    <form class="mdl-form example-panel" id="profileForm" hx-post="/api/profile" hx-target="#profileResult" hx-swap="outerHTML" hx-trigger="submit" hx-indicator="#profileBusy" hx-disabled-elt="#saveProfileBtn" hx-confirm="Save this profile?" hx-select="#profileResult" hx-select-oob="#toast" hx-params="name,email,role,csrfToken" hx-request="{&quot;timeout&quot;:5000}" hx-sync="#profileForm:queue last" hx-validate="true" hx-history="false">
+      <input class="mdl-input" id="csrfToken" type="hidden" name="csrfToken" value="demo-token">
+      <div class="mdl-field">
+        <label class="mdl-label" for="profileName">Name</label>
+        <input class="mdl-input" id="profileName" name="name" required placeholder="Ada Lovelace">
+      </div>
+      <div class="mdl-field">
+        <label class="mdl-label" for="profileEmail">Email</label>
+        <input class="mdl-input" id="profileEmail" name="email" type="email" required autocomplete="email" placeholder="ada@example.test">
+      </div>
+      <div class="mdl-field">
+        <label class="mdl-label" for="profileRole">Role</label>
+        <select class="mdl-select" id="profileRole" name="role">
+          <option class="mdl-option" value="builder">
+            <p>Builder</p>
+          </option>
+          <option class="mdl-option" value="designer">
+            <p>Designer</p>
+          </option>
+          <option class="mdl-option" value="operator">
+            <p>Operator</p>
+          </option>
+        </select>
+      </div>
+      <div class="mdl-actions">
+        <button class="mdl-button action-button primary" type="submit" id="saveProfileBtn">Save profile</button>
+        <div class="mdl-status indicator" id="profileBusy">
+          <p>Saving.</p>
+        </div>
+      </div>
+    </form>
+    <div class="mdl-panel result-panel" id="profileResult">
+      <h2>Profile result</h2>
+      <p>Submit the form to replace this panel with a server-rendered fragment.</p>
+    </div>
+    <div class="mdl-toast toast" id="toast" aria-live="polite">
+      <p>Waiting for profile activity.</p>
+    </div>
+  </section>
+  <footer class="mdl-footer demo-footer">
+    <a class="mdl-href demo-link" href="/">Back to overview</a>
+  </footer>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/htmx-demo.js";
+</script>
+</body>
+</html>

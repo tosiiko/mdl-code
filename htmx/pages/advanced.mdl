@@ -1,0 +1,47 @@
+page@class(htmx-demo):
+  topbar@class(demo-topbar):
+    brand:
+      .href@href(/)@class(demo-brand)(MDL htmx)
+    nav@class(demo-nav)@aria-label(Examples):
+      .href@href(/)(Home)
+      .href@href(/search.html)(Search)
+      .href@href(/todos.html)(Todos)
+      .href@href(/cart.html)(Cart)
+      .href@href(/profile.html)(Profile)
+  hero@class(demo-hero):
+    .badge(Advanced)
+    # Prompts, preserve, boost, and history
+    A grab bag of htmx adapter attributes that are useful once the basic request and swap loop is comfortable.
+  section@class(demo-section two-column):
+    panel@class(example-panel):
+      status@id(clockPanel)@class(result-panel)@api(get /api/advanced/clock)@result(clockPanel)@swap(replace)@trigger(load)@select(clockPanel)@history(false):
+        Loading server time.
+      button@type(button)@class(action-button secondary)@api(post /api/advanced/toast)@result(eventLog)@swap(prepend)@trigger(click)@select(eventLogItem)@select-oob(toast)@prompt(Message for the toast?)@request(timeout=3000):
+        Prompt for toast
+      form@class(form-stack)@api(get /api/advanced/filter)@result(filterResult)@swap(replace)@trigger(submit)@boost(true)@select(filterResult)@history(false):
+        field:
+          label@for(filterKind):
+            Boosted safe GET form
+          select@id(filterKind)@name(kind):
+            option@value(fragments):
+              Fragments
+            option@value(history):
+              History
+            option@value(preserve):
+              Preserve
+        button@type(submit)@class(action-button primary):
+          Load note
+    aside:
+      panel@id(filterResult)@class(result-panel):
+        ## Filter result
+        Submit the boosted form to replace this panel without a full page reload.
+      panel@id(preservedPanel)@class(preserved-panel)@preserve(true):
+        ### Preserved island
+        htmx will preserve this element across compatible swaps because MDL emits `hx-preserve="true"`.
+      section@id(eventLog)@class(event-log):
+        ## Event log
+        New prompted events are prepended here.
+      toast@id(toast)@class(toast)@aria-live(polite):
+        Waiting for advanced activity.
+  footer@class(demo-footer):
+    .href@href(/)@class(demo-link)(Back to overview)

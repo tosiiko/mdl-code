@@ -1,0 +1,43 @@
+page@class(htmx-demo):
+  topbar@class(demo-topbar):
+    brand:
+      .href@href(/)@class(demo-brand)(MDL htmx)
+    nav@class(demo-nav)@aria-label(Examples):
+      .href@href(/)(Home)
+      .href@href(/search.html)(Search)
+      .href@href(/cart.html)(Cart)
+      .href@href(/profile.html)(Profile)
+      .href@href(/advanced.html)(Advanced)
+  hero@class(demo-hero):
+    .badge(Todo fragments)
+    # Swap lists and toast messages
+    This page posts a form, selects the list fragment from the response, and swaps a toast out of band.
+  section@class(demo-section two-column):
+    form@id(todoForm)@class(example-panel)@api(post /api/todos)@result(todoList)@swap(replace)@trigger(submit)@loading(todoBusy)@disabled(addTodoBtn)@select(todoList)@select-oob(toast)@params(todo priority)@request(timeout=5000):
+      field:
+        label@for(todoInput):
+          New todo
+        .input@id(todoInput)@name(todo)@required@placeholder(Review htmx adapter output)
+      field:
+        label@for(priorityInput):
+          Priority
+        select@id(priorityInput)@name(priority):
+          option@value(normal):
+            Normal
+          option@value(high):
+            High
+      actions:
+        button@type(submit)@id(addTodoBtn)@class(action-button primary):
+          Add todo
+        status@id(todoBusy)@class(indicator):
+          Saving.
+      note@class(demo-note):
+        `@select-oob(toast)` tells htmx to process the toast fragment even though the list is the primary target.
+    aside@class(cart-panel):
+      list@id(todoList)@class(todo-list):
+        item@class(todo-item):
+          Start the API server, add a todo, and the server will replace this list.
+      toast@id(toast)@class(toast)@aria-live(polite):
+        Waiting for todo activity.
+  footer@class(demo-footer):
+    .href@href(/)@class(demo-link)(Back to overview)

@@ -1,0 +1,47 @@
+page@class(htmx-demo):
+  topbar@class(demo-topbar):
+    brand:
+      .href@href(/)@class(demo-brand)(MDL htmx)
+    nav@class(demo-nav)@aria-label(Examples):
+      .href@href(/)(Home)
+      .href@href(/search.html)(Search)
+      .href@href(/todos.html)(Todos)
+      .href@href(/cart.html)(Cart)
+      .href@href(/advanced.html)(Advanced)
+  hero@class(demo-hero):
+    .badge(Profile form)
+    # Validation and request controls
+    This form demonstrates confirmation, client validation, disabled elements, parameter filtering, request timeout, and request sync.
+  section@class(demo-section two-column):
+    form@id(profileForm)@class(example-panel)@api(post /api/profile)@result(profileResult)@swap(replace)@trigger(submit)@loading(profileBusy)@disabled(saveProfileBtn)@confirm(Save this profile?)@select(profileResult)@select-oob(toast)@params(name email role csrfToken)@request(timeout=5000)@sync(profileForm:queue-last)@validate(true)@history(false):
+      .input@id(csrfToken)@type(hidden)@name(csrfToken)@value(demo-token)
+      field:
+        label@for(profileName):
+          Name
+        .input@id(profileName)@name(name)@required@placeholder(Ada Lovelace)
+      field:
+        label@for(profileEmail):
+          Email
+        .input@id(profileEmail)@name(email)@type(email)@required@autocomplete(email)@placeholder(ada@example.test)
+      field:
+        label@for(profileRole):
+          Role
+        select@id(profileRole)@name(role):
+          option@value(builder):
+            Builder
+          option@value(designer):
+            Designer
+          option@value(operator):
+            Operator
+      actions:
+        button@type(submit)@id(saveProfileBtn)@class(action-button primary):
+          Save profile
+        status@id(profileBusy)@class(indicator):
+          Saving.
+    panel@id(profileResult)@class(result-panel):
+      ## Profile result
+      Submit the form to replace this panel with a server-rendered fragment.
+    toast@id(toast)@class(toast)@aria-live(polite):
+      Waiting for profile activity.
+  footer@class(demo-footer):
+    .href@href(/)@class(demo-link)(Back to overview)

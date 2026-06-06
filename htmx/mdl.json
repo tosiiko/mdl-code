@@ -1,0 +1,36 @@
+{
+  "entry": "pages/index.mdl",
+  "pages": "pages",
+  "output": "dist",
+  "css": {
+    "runtime": true,
+    "bundle": "dist/app.css"
+  },
+  "styles": [
+    "css/htmx.css"
+  ],
+  "head_scripts": [
+    "https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"
+  ],
+  "scripts": [
+    "scripts/htmx-demo.js"
+  ],
+  "proxy": [
+    {
+      "route": "/api",
+      "target": "http://127.0.0.1:4011",
+      "timeout_ms": 5000,
+      "max_body_bytes": 8192
+    }
+  ],
+  "behavior": {
+    "adapter": "htmx",
+    "version": "2"
+  },
+  "routing": {
+    "links": "root"
+  },
+  "title": "MDL htmx examples",
+  "description": "A complete MDL app demonstrating htmx behavior adapter output.",
+  "port": 4010
+}

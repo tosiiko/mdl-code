@@ -1,0 +1,55 @@
+{
+  "assets": [],
+  "css_bundle": {
+    "path": "app.css",
+    "runtime": true
+  },
+  "head_scripts": [
+    "https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"
+  ],
+  "name": null,
+  "pages": [
+    {
+      "output": "advanced.html",
+      "route": "/advanced",
+      "source": "advanced.mdl",
+      "source_map": "advanced.html.mdlmap.json"
+    },
+    {
+      "output": "cart.html",
+      "route": "/cart",
+      "source": "cart.mdl",
+      "source_map": "cart.html.mdlmap.json"
+    },
+    {
+      "output": "index.html",
+      "route": "/",
+      "source": "index.mdl",
+      "source_map": "index.html.mdlmap.json"
+    },
+    {
+      "output": "profile.html",
+      "route": "/profile",
+      "source": "profile.mdl",
+      "source_map": "profile.html.mdlmap.json"
+    },
+    {
+      "output": "search.html",
+      "route": "/search",
+      "source": "search.mdl",
+      "source_map": "search.html.mdlmap.json"
+    },
+    {
+      "output": "todos.html",
+      "route": "/todos",
+      "source": "todos.mdl",
+      "source_map": "todos.html.mdlmap.json"
+    }
+  ],
+  "scripts": [
+    "scripts/htmx-demo.js"
+  ],
+  "stylesheets": [
+    "css/htmx.css"
+  ]
+}

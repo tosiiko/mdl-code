@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A complete MDL app demonstrating htmx behavior adapter output.">
+  <title>MDL htmx examples</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"></script>
+</head>
+<body>
+<main class="mdl-page htmx-demo">
+  <header class="mdl-topbar demo-topbar">
+    <div class="mdl-brand">
+      <a class="mdl-href demo-brand" href="/">MDL htmx</a>
+    </div>
+    <nav class="mdl-nav demo-nav" aria-label="Examples">
+      <a class="mdl-href" href="/">Home</a>
+      <a class="mdl-href" href="/search.html">Search</a>
+      <a class="mdl-href" href="/todos.html">Todos</a>
+      <a class="mdl-href" href="/cart.html">Cart</a>
+      <a class="mdl-href" href="/profile.html">Profile</a>
+    </nav>
+  </header>
+  <div class="mdl-hero demo-hero">
+    <span class="mdl-badge">Advanced</span>
+    <h1>Prompts, preserve, boost, and history</h1>
+    <p>A grab bag of htmx adapter attributes that are useful once the basic request and swap loop is comfortable.</p>
+  </div>
+  <section class="mdl-section demo-section two-column">
+    <div class="mdl-panel example-panel">
+      <div class="mdl-status result-panel" id="clockPanel" hx-get="/api/advanced/clock" hx-target="#clockPanel" hx-swap="outerHTML" hx-trigger="load" hx-select="#clockPanel" hx-history="false">
+        <p>Loading server time.</p>
+      </div>
+      <button class="mdl-button action-button secondary" type="button" hx-post="/api/advanced/toast" hx-target="#eventLog" hx-swap="afterbegin" hx-trigger="click" hx-select="#eventLogItem" hx-select-oob="#toast" hx-prompt="Message for the toast?" hx-request="{&quot;timeout&quot;:3000}">Prompt for toast</button>
+      <form class="mdl-form form-stack" hx-get="/api/advanced/filter" hx-target="#filterResult" hx-swap="outerHTML" hx-trigger="submit" hx-boost="true" hx-select="#filterResult" hx-history="false">
+        <div class="mdl-field">
+          <label class="mdl-label" for="filterKind">Boosted safe GET form</label>
+          <select class="mdl-select" id="filterKind" name="kind">
+            <option class="mdl-option" value="fragments">
+              <p>Fragments</p>
+            </option>
+            <option class="mdl-option" value="history">
+              <p>History</p>
+            </option>
+            <option class="mdl-option" value="preserve">
+              <p>Preserve</p>
+            </option>
+          </select>
+        </div>
+        <button class="mdl-button action-button primary" type="submit">Load note</button>
+      </form>
+    </div>
+    <aside class="mdl-aside">
+      <div class="mdl-panel result-panel" id="filterResult">
+        <h2>Filter result</h2>
+        <p>Submit the boosted form to replace this panel without a full page reload.</p>
+      </div>
+      <div class="mdl-panel preserved-panel" id="preservedPanel" hx-preserve="true">
+        <h3>Preserved island</h3>
+        <p>htmx will preserve this element across compatible swaps because MDL emits <code>hx-preserve="true"</code>.</p>
+      </div>
+      <section class="mdl-section event-log" id="eventLog">
+        <h2>Event log</h2>
+        <p>New prompted events are prepended here.</p>
+      </section>
+      <div class="mdl-toast toast" id="toast" aria-live="polite">
+        <p>Waiting for advanced activity.</p>
+      </div>
+    </aside>
+  </section>
+  <footer class="mdl-footer demo-footer">
+    <a class="mdl-href demo-link" href="/">Back to overview</a>
+  </footer>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/htmx-demo.js";
+</script>
+</body>
+</html>

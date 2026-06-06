@@ -1,0 +1,47 @@
+page@class(htmx-demo):
+  topbar@class(demo-topbar):
+    brand:
+      .href@href(/)@class(demo-brand)(MDL htmx)
+    nav@class(demo-nav)@aria-label(Examples):
+      .href@href(/search.html)(Search)
+      .href@href(/todos.html)(Todos)
+      .href@href(/cart.html)(Cart)
+      .href@href(/profile.html)(Profile)
+      .href@href(/advanced.html)(Advanced)
+  hero@class(demo-hero):
+    .badge(Adapter demo)
+    # htmx patterns in MDL
+    A complete set of examples showing how MDL behavior attributes compile to safe `hx-*` output through the htmx v2 adapter.
+    actions:
+      .href@href(/search.html)@class(demo-link)(Try live search)
+      .href@href(/advanced.html)@class(demo-link)(See advanced attributes)
+  section@class(demo-section):
+    status@id(summaryPanel)@class(result-panel)@api(get /api/summary)@result(summaryPanel)@swap(replace)@trigger(load)@select(summaryPanel)@history(false):
+      Loading the API-backed summary.
+  section@class(demo-section):
+    header:
+      .badge(Examples)
+      ## What this app covers
+    grid@class(feature-grid):
+      card:
+        ### Live search
+        Uses `@api(get ...)`, `@trigger(input)`, `@result(...)`, and `@loading(...)` to update results while typing.
+        .href@href(/search.html)@class(demo-link)(Open search)
+      card:
+        ### Todo fragments
+        Posts form data, swaps a list, and updates a toast with out-of-band content.
+        .href@href(/todos.html)@class(demo-link)(Open todos)
+      card:
+        ### Cart updates
+        Shows repeated product forms that target a shared cart panel.
+        .href@href(/cart.html)@class(demo-link)(Open cart)
+      card:
+        ### Profile form
+        Demonstrates validation, disabled elements, confirmation, request timeout, and sync behavior.
+        .href@href(/profile.html)@class(demo-link)(Open profile)
+      card:
+        ### Advanced requests
+        Demonstrates prompt, preserve, boost, and explicit history behavior.
+        .href@href(/advanced.html)@class(demo-link)(Open advanced)
+  footer@class(demo-footer):
+    Built with MDL, the `htmx` behavior adapter, and a small local fragment server.

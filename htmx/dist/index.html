@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A complete MDL app demonstrating htmx behavior adapter output.">
+  <title>MDL htmx examples</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"></script>
+</head>
+<body>
+<main class="mdl-page htmx-demo">
+  <header class="mdl-topbar demo-topbar">
+    <div class="mdl-brand">
+      <a class="mdl-href demo-brand" href="/">MDL htmx</a>
+    </div>
+    <nav class="mdl-nav demo-nav" aria-label="Examples">
+      <a class="mdl-href" href="/search.html">Search</a>
+      <a class="mdl-href" href="/todos.html">Todos</a>
+      <a class="mdl-href" href="/cart.html">Cart</a>
+      <a class="mdl-href" href="/profile.html">Profile</a>
+      <a class="mdl-href" href="/advanced.html">Advanced</a>
+    </nav>
+  </header>
+  <div class="mdl-hero demo-hero">
+    <span class="mdl-badge">Adapter demo</span>
+    <h1>htmx patterns in MDL</h1>
+    <p>A complete set of examples showing how MDL behavior attributes compile to safe <code>hx-*</code> output through the htmx v2 adapter.</p>
+    <div class="mdl-actions">
+      <a class="mdl-href demo-link" href="/search.html">Try live search</a>
+      <a class="mdl-href demo-link" href="/advanced.html">See advanced attributes</a>
+    </div>
+  </div>
+  <section class="mdl-section demo-section">
+    <div class="mdl-status result-panel" id="summaryPanel" hx-get="/api/summary" hx-target="#summaryPanel" hx-swap="outerHTML" hx-trigger="load" hx-select="#summaryPanel" hx-history="false">
+      <p>Loading the API-backed summary.</p>
+    </div>
+  </section>
+  <section class="mdl-section demo-section">
+    <header class="mdl-header">
+      <span class="mdl-badge">Examples</span>
+      <h2>What this app covers</h2>
+    </header>
+    <div class="mdl-grid feature-grid">
+      <div class="mdl-card">
+        <h3>Live search</h3>
+        <p>Uses <code>@api(get ...)</code>, <code>@trigger(input)</code>, <code>@result(...)</code>, and <code>@loading(...)</code> to update results while typing.</p>
+        <a class="mdl-href demo-link" href="/search.html">Open search</a>
+      </div>
+      <div class="mdl-card">
+        <h3>Todo fragments</h3>
+        <p>Posts form data, swaps a list, and updates a toast with out-of-band content.</p>
+        <a class="mdl-href demo-link" href="/todos.html">Open todos</a>
+      </div>
+      <div class="mdl-card">
+        <h3>Cart updates</h3>
+        <p>Shows repeated product forms that target a shared cart panel.</p>
+        <a class="mdl-href demo-link" href="/cart.html">Open cart</a>
+      </div>
+      <div class="mdl-card">
+        <h3>Profile form</h3>
+        <p>Demonstrates validation, disabled elements, confirmation, request timeout, and sync behavior.</p>
+        <a class="mdl-href demo-link" href="/profile.html">Open profile</a>
+      </div>
+      <div class="mdl-card">
+        <h3>Advanced requests</h3>
+        <p>Demonstrates prompt, preserve, boost, and explicit history behavior.</p>
+        <a class="mdl-href demo-link" href="/advanced.html">Open advanced</a>
+      </div>
+    </div>
+  </section>
+  <footer class="mdl-footer demo-footer">
+    <p>Built with MDL, the <code>htmx</code> behavior adapter, and a small local fragment server.</p>
+  </footer>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/htmx-demo.js";
+</script>
+</body>
+</html>

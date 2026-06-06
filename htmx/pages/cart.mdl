@@ -1,0 +1,47 @@
+page@class(htmx-demo):
+  topbar@class(demo-topbar):
+    brand:
+      .href@href(/)@class(demo-brand)(MDL htmx)
+    nav@class(demo-nav)@aria-label(Examples):
+      .href@href(/)(Home)
+      .href@href(/search.html)(Search)
+      .href@href(/todos.html)(Todos)
+      .href@href(/profile.html)(Profile)
+      .href@href(/advanced.html)(Advanced)
+  hero@class(demo-hero):
+    .badge(Cart updates)
+    # Product forms, one cart target
+    Each product is a normal form. The htmx adapter sends the selected SKU and swaps the shared cart panel.
+  section@class(demo-section two-column):
+    grid@class(product-grid):
+      form@class(mdl-card)@api(post /api/cart)@result(cartPanel)@swap(replace)@trigger(submit)@loading(cartBusy)@select(cartPanel)@select-oob(toast)@disabled(addAtlas):
+        .input@type(hidden)@name(sku)@value(atlas)
+        .badge(Starter)
+        ### Atlas kit
+        Page layout snippets and route helpers.
+        button@type(submit)@id(addAtlas)@class(action-button primary):
+          Add Atlas
+      form@class(mdl-card)@api(post /api/cart)@result(cartPanel)@swap(replace)@trigger(submit)@loading(cartBusy)@select(cartPanel)@select-oob(toast)@disabled(addSignal):
+        .input@type(hidden)@name(sku)@value(signal)
+        .badge(Workflow)
+        ### Signal pack
+        Forms, status panels, and request states.
+        button@type(submit)@id(addSignal)@class(action-button primary):
+          Add Signal
+      form@class(mdl-card)@api(post /api/cart)@result(cartPanel)@swap(replace)@trigger(submit)@loading(cartBusy)@select(cartPanel)@select-oob(toast)@disabled(addHarbor):
+        .input@type(hidden)@name(sku)@value(harbor)
+        .badge(Team)
+        ### Harbor pack
+        Shared navigation and deployment notes.
+        button@type(submit)@id(addHarbor)@class(action-button primary):
+          Add Harbor
+    aside:
+      status@id(cartBusy)@class(indicator):
+        Updating cart.
+      panel@id(cartPanel)@class(cart-panel):
+        ## Cart
+        Add a product to fetch the cart fragment.
+      toast@id(toast)@class(toast)@aria-live(polite):
+        Waiting for cart activity.
+  footer@class(demo-footer):
+    .href@href(/)@class(demo-link)(Back to overview)

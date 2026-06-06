@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A complete MDL app demonstrating htmx behavior adapter output.">
+  <title>MDL htmx examples</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"></script>
+</head>
+<body>
+<main class="mdl-page htmx-demo">
+  <header class="mdl-topbar demo-topbar">
+    <div class="mdl-brand">
+      <a class="mdl-href demo-brand" href="/">MDL htmx</a>
+    </div>
+    <nav class="mdl-nav demo-nav" aria-label="Examples">
+      <a class="mdl-href" href="/">Home</a>
+      <a class="mdl-href" href="/todos.html">Todos</a>
+      <a class="mdl-href" href="/cart.html">Cart</a>
+      <a class="mdl-href" href="/profile.html">Profile</a>
+      <a class="mdl-href" href="/advanced.html">Advanced</a>
+    </nav>
+  </header>
+  <div class="mdl-hero demo-hero">
+    <span class="mdl-badge">Live search</span>
+    <h1>Search as you type</h1>
+    <p>The form owns the htmx request, so MDL source can keep using <code>@api</code>, <code>@trigger</code>, <code>@result</code>, <code>@swap</code>, and <code>@select</code>.</p>
+  </div>
+  <section class="mdl-section demo-section two-column">
+    <form class="mdl-form example-panel" hx-get="/api/search" hx-target="#searchResults" hx-swap="innerHTML" hx-trigger="input" hx-indicator="#searchBusy" hx-include="#searchToken" hx-select="#searchResults" hx-history="false" hx-request="{&quot;timeout&quot;:3000}">
+      <div class="mdl-field">
+        <label class="mdl-label" for="searchQuery">Search cookbook entries</label>
+        <input class="mdl-input" id="searchQuery" name="q" type="search" placeholder="Type card, form, swap, or history" autocomplete="off">
+      </div>
+      <input class="mdl-input" id="searchToken" type="hidden" name="source" value="search-page">
+      <div class="mdl-status indicator" id="searchBusy">
+        <p>Searching.</p>
+      </div>
+      <div class="mdl-note demo-note">
+        <p>The generated HTML uses <code>hx-get</code>, <code>hx-trigger="input"</code>, <code>hx-target</code>, <code>hx-select</code>, and <code>hx-indicator</code>.</p>
+      </div>
+    </form>
+    <div class="mdl-results result-panel" id="searchResults">
+      <h2>Results</h2>
+      <p>Start typing to fetch filtered fragments from <code>/api/search</code>.</p>
+    </div>
+  </section>
+  <footer class="mdl-footer demo-footer">
+    <a class="mdl-href demo-link" href="/">Back to overview</a>
+  </footer>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/htmx-demo.js";
+</script>
+</body>
+</html>

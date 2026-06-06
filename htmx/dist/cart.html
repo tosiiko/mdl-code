@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A complete MDL app demonstrating htmx behavior adapter output.">
+  <title>MDL htmx examples</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"></script>
+</head>
+<body>
+<main class="mdl-page htmx-demo">
+  <header class="mdl-topbar demo-topbar">
+    <div class="mdl-brand">
+      <a class="mdl-href demo-brand" href="/">MDL htmx</a>
+    </div>
+    <nav class="mdl-nav demo-nav" aria-label="Examples">
+      <a class="mdl-href" href="/">Home</a>
+      <a class="mdl-href" href="/search.html">Search</a>
+      <a class="mdl-href" href="/todos.html">Todos</a>
+      <a class="mdl-href" href="/profile.html">Profile</a>
+      <a class="mdl-href" href="/advanced.html">Advanced</a>
+    </nav>
+  </header>
+  <div class="mdl-hero demo-hero">
+    <span class="mdl-badge">Cart updates</span>
+    <h1>Product forms, one cart target</h1>
+    <p>Each product is a normal form. The htmx adapter sends the selected SKU and swaps the shared cart panel.</p>
+  </div>
+  <section class="mdl-section demo-section two-column">
+    <div class="mdl-grid product-grid">
+      <form class="mdl-form mdl-card" hx-post="/api/cart" hx-target="#cartPanel" hx-swap="outerHTML" hx-trigger="submit" hx-indicator="#cartBusy" hx-select="#cartPanel" hx-select-oob="#toast" hx-disabled-elt="#addAtlas">
+        <input class="mdl-input" type="hidden" name="sku" value="atlas">
+        <span class="mdl-badge">Starter</span>
+        <h3>Atlas kit</h3>
+        <p>Page layout snippets and route helpers.</p>
+        <button class="mdl-button action-button primary" type="submit" id="addAtlas">Add Atlas</button>
+      </form>
+      <form class="mdl-form mdl-card" hx-post="/api/cart" hx-target="#cartPanel" hx-swap="outerHTML" hx-trigger="submit" hx-indicator="#cartBusy" hx-select="#cartPanel" hx-select-oob="#toast" hx-disabled-elt="#addSignal">
+        <input class="mdl-input" type="hidden" name="sku" value="signal">
+        <span class="mdl-badge">Workflow</span>
+        <h3>Signal pack</h3>
+        <p>Forms, status panels, and request states.</p>
+        <button class="mdl-button action-button primary" type="submit" id="addSignal">Add Signal</button>
+      </form>
+      <form class="mdl-form mdl-card" hx-post="/api/cart" hx-target="#cartPanel" hx-swap="outerHTML" hx-trigger="submit" hx-indicator="#cartBusy" hx-select="#cartPanel" hx-select-oob="#toast" hx-disabled-elt="#addHarbor">
+        <input class="mdl-input" type="hidden" name="sku" value="harbor">
+        <span class="mdl-badge">Team</span>
+        <h3>Harbor pack</h3>
+        <p>Shared navigation and deployment notes.</p>
+        <button class="mdl-button action-button primary" type="submit" id="addHarbor">Add Harbor</button>
+      </form>
+    </div>
+    <aside class="mdl-aside">
+      <div class="mdl-status indicator" id="cartBusy">
+        <p>Updating cart.</p>
+      </div>
+      <div class="mdl-panel cart-panel" id="cartPanel">
+        <h2>Cart</h2>
+        <p>Add a product to fetch the cart fragment.</p>
+      </div>
+      <div class="mdl-toast toast" id="toast" aria-live="polite">
+        <p>Waiting for cart activity.</p>
+      </div>
+    </aside>
+  </section>
+  <footer class="mdl-footer demo-footer">
+    <a class="mdl-href demo-link" href="/">Back to overview</a>
+  </footer>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/htmx-demo.js";
+</script>
+</body>
+</html>

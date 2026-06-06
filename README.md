@@ -186,6 +186,19 @@ cd examples/css-powerhouse
 ../../bin/mdl serve
 ```
 
+Try the htmx adapter examples:
+
+```bash
+node examples/htmx/server.mjs
+target/debug/mdl serve examples/htmx
+```
+
+Open `http://127.0.0.1:4010` to see live search, todo swaps, cart updates,
+profile validation, out-of-band toasts, preserved islands, and boosted safe
+forms. The example config uses `behavior.adapter: "htmx"` with htmx v2 and keeps
+MDL source adapter-neutral through attributes such as `@api(...)`,
+`@result(...)`, `@swap(...)`, and `@trigger(...)`.
+
 ## Workspace
 
 ```text
@@ -218,6 +231,9 @@ scripts/          local environment helpers
 - CommonMark rendering through `pulldown-cmark`: headings, paragraphs, lists, blockquotes, code fences, tables, strikethrough, and task lists
 - Dot inline elements: `.badge(text)`, `.btn-primary(text)`, `.link(path)`, `.input@type(email)`
 - Attributes: `@id(value)`, `@type(value)`, `@required`, and similar explicit attributes
+- Behavior adapters: `static`, `mdl`, and `htmx` v2 output for validated
+  request attributes such as `@api(...)`, `@result(...)`, `@swap(...)`, and
+  `@trigger(...)`
 - Comments: `// text` emits `<!-- text -->`
 - Tailwind-friendly author classes through `@class(...)` plus optional `head_scripts`
 - CSS runtime bundles through `"css": { "runtime": true, "bundle": "dist/app.css" }`

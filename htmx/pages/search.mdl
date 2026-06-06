@@ -1,0 +1,30 @@
+page@class(htmx-demo):
+  topbar@class(demo-topbar):
+    brand:
+      .href@href(/)@class(demo-brand)(MDL htmx)
+    nav@class(demo-nav)@aria-label(Examples):
+      .href@href(/)(Home)
+      .href@href(/todos.html)(Todos)
+      .href@href(/cart.html)(Cart)
+      .href@href(/profile.html)(Profile)
+      .href@href(/advanced.html)(Advanced)
+  hero@class(demo-hero):
+    .badge(Live search)
+    # Search as you type
+    The form owns the htmx request, so MDL source can keep using `@api`, `@trigger`, `@result`, `@swap`, and `@select`.
+  section@class(demo-section two-column):
+    form@class(example-panel)@api(get /api/search)@result(searchResults)@swap(inner)@trigger(input)@loading(searchBusy)@include(searchToken)@select(searchResults)@history(false)@request(timeout=3000):
+      field:
+        label@for(searchQuery):
+          Search cookbook entries
+        .input@id(searchQuery)@name(q)@type(search)@placeholder(Type card, form, swap, or history)@autocomplete(off)
+      .input@id(searchToken)@type(hidden)@name(source)@value(search-page)
+      status@id(searchBusy)@class(indicator):
+        Searching.
+      note@class(demo-note):
+        The generated HTML uses `hx-get`, `hx-trigger="input"`, `hx-target`, `hx-select`, and `hx-indicator`.
+    results@id(searchResults)@class(result-panel):
+      ## Results
+      Start typing to fetch filtered fragments from `/api/search`.
+  footer@class(demo-footer):
+    .href@href(/)@class(demo-link)(Back to overview)
