@@ -55,9 +55,10 @@ my-mdl-site/
 
 The generated `mdl.json` is valid plain JSON with active defaults for document
 metadata, stylesheets, JavaScript modules, copied assets, and the dev-server
-port. The config lives inside each app, so one workspace can share the same
-install and environment while multiple apps keep separate source folders,
-ports, and output directories.
+port. Configured module scripts can also be optional local TypeScript entries
+that MDL compiles to browser-ready JavaScript. The config lives inside each app,
+so one workspace can share the same install and environment while multiple apps
+keep separate source folders, ports, and output directories.
 
 You can also initialize explicitly:
 
@@ -199,6 +200,56 @@ forms. The example config uses `behavior.adapter: "htmx"` with htmx v2 and keeps
 MDL source adapter-neutral through attributes such as `@api(...)`,
 `@result(...)`, `@swap(...)`, and `@trigger(...)`.
 
+Try the optional TypeScript module example:
+
+```bash
+cd examples/typescript
+../../bin/mdl serve
+```
+
+Open `http://127.0.0.1:3996` to see a local `scripts/app.ts` entry import a
+deeper TypeScript module tree. `mdl build` emits matching `.js` files under
+`dist/scripts/`, rewrites local TypeScript imports to browser `.js` URLs, and
+keeps the project free of `package.json`, `node_modules`, and `tsconfig.json`.
+
+## Optional TypeScript Scripts
+
+MDL supports TypeScript as optional external behavior modules in `mdl.json`.
+JavaScript remains the default path, and inline `script js:` blocks keep working
+unchanged.
+
+```json
+{
+  "scripts": [
+    "scripts/app.ts"
+  ]
+}
+```
+
+During `mdl build`, local `.ts` entries are transpiled by MDL tooling into
+browser-ready `.js` module files in the output directory:
+
+```text
+scripts/app.ts           -> dist/scripts/app.js
+scripts/state/store.ts   -> dist/scripts/state/store.js
+scripts/dom/render.ts    -> dist/scripts/dom/render.js
+```
+
+Generated documents import the JavaScript URL, for example
+`./scripts/app.js`. `mdl serve` uses the same browser-facing URL and serves the
+compiled JavaScript for configured TypeScript sources.
+
+TypeScript files can import other local TypeScript files as a tree. Local
+imports may use `.ts`, omit the extension, or use the browser-facing `.js`
+extension; MDL rewrites local TypeScript module specifiers to emitted `.js`
+URLs. Bare package imports are left alone and are not bundled.
+
+This support does not make TypeScript a project requirement. MDL does not
+scaffold `package.json`, `node_modules`, `tsconfig.json`, or an npm install just
+because a site uses `.ts` behavior modules, and deployed MDL output does not
+need TypeScript. Inline `script ts:` blocks are still unsupported for now; use
+inline `script js:` or an external configured `.ts` module.
+
 ## Workspace
 
 ```text
@@ -237,7 +288,10 @@ scripts/          local environment helpers
 - Comments: `// text` emits `<!-- text -->`
 - Tailwind-friendly author classes through `@class(...)` plus optional `head_scripts`
 - CSS runtime bundles through `"css": { "runtime": true, "bundle": "dist/app.css" }`
-- JavaScript: `script js:`, configured head/module scripts, and event bindings such as `@click(handleLogin)`
+- JavaScript and TypeScript behavior: `script js:`, configured head/module
+  scripts, optional external `.ts` module entries compiled to browser `.js`,
+  and event bindings such as `@click(handleLogin)`, `@keydown(handleKey)`, and
+  `@pointerdown(startDrag)`
 - Document metadata through `lang`, `description`, `canonical`, `favicon`, `viewport`, `meta`, `links`, and `social` presets in `mdl.json`
 - Explicit escape hatches through `element@tag(my-widget):` and trusted `raw-html:` blocks
 - Mount bindings: `@mount(drawScene)` initializes `canvas:`, `island:`, `component:`, and other advanced hosts from configured modules
