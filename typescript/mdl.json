@@ -1,0 +1,17 @@
+{
+  "entry": "pages/index.mdl",
+  "pages": "pages",
+  "output": "dist",
+  "css": {
+    "runtime": true,
+    "bundle": "dist/app.css"
+  },
+  "styles": [
+    "css/site.css"
+  ],
+  "scripts": [
+    "scripts/app.ts"
+  ],
+  "title": "MDL TypeScript Example",
+  "port": 3996
+}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MDL TypeScript Example</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="mdl-page" id="typescriptExample">
+  <div class="mdl-hero ts-hero">
+    <span class="mdl-eyebrow">Optional external TypeScript tree</span>
+    <h1>Advanced behavior from <code>scripts/app.ts</code></h1>
+    <p>This page runs a typed task planner from a local TypeScript module tree. MDL compiles every runtime <code>.ts</code> module to browser-ready <code>.js</code> while keeping the site free of npm, <code>node_modules</code>, and <code>tsconfig.json</code>.</p>
+    <div class="mdl-metrics hero-metrics">
+      <div class="mdl-stat">
+        <span class="mdl-metric-value" id="totalCount">0</span>
+        <span class="mdl-metric-label">Total tasks</span>
+      </div>
+      <div class="mdl-stat">
+        <span class="mdl-metric-value" id="openCount">0</span>
+        <span class="mdl-metric-label">Open</span>
+      </div>
+      <div class="mdl-stat">
+        <span class="mdl-metric-value" id="donePercent">0%</span>
+        <span class="mdl-metric-label">Done</span>
+      </div>
+    </div>
+  </div>
+  <section class="mdl-section planner-section">
+    <div class="mdl-grid" cols="2" gap="4">
+      <div class="mdl-card" id="plannerPanel" data-mdl-on-mount="mountPlanner">
+        <span class="mdl-eyebrow">@mount + dynamic render</span>
+        <h2>Sprint board</h2>
+        <div class="mdl-status" id="boardStatus" aria-live="polite">
+          <p>Waiting for the TypeScript module tree.</p>
+        </div>
+        <div class="mdl-actions filter-actions">
+          <button class="mdl-btn-secondary" type="button" id="filterAllButton" aria-pressed="false" data-mdl-on-click="showAllTasks">All</button>
+          <button class="mdl-btn-secondary" type="button" id="filterOpenButton" aria-pressed="true" data-mdl-on-click="showOpenTasks">Open</button>
+          <button class="mdl-btn-secondary" type="button" id="filterDoneButton" aria-pressed="false" data-mdl-on-click="showDoneTasks">Done</button>
+        </div>
+        <div class="mdl-tasks" id="taskList" aria-live="polite">
+          <p>Loading tasks...</p>
+        </div>
+        <div class="mdl-actions">
+          <button class="mdl-btn-secondary" type="button" data-mdl-on-click="loadPresetTasks">Load scenario</button>
+          <button class="mdl-btn-secondary" type="button" data-mdl-on-click="clearCompleted">Clear done</button>
+        </div>
+      </div>
+      <div class="mdl-card">
+        <span class="mdl-eyebrow">@submit + @input + @change</span>
+        <h2>Typed task form</h2>
+        <form class="mdl-form" id="taskForm" data-mdl-on-submit="createTaskFromForm">
+          <label class="mdl-label" for="taskTitle">Task</label>
+          <input class="mdl-input" id="taskTitle" name="title" type="text" required placeholder="Write docs for TS tree" data-mdl-on-input="updateDraftPreview">
+          <label class="mdl-label" for="taskNotes">Notes</label>
+          <textarea class="mdl-textarea" id="taskNotes" name="notes" rows="4" placeholder="What should happen next?" data-mdl-on-input="updateDraftPreview"></textarea>
+          <label class="mdl-label" for="taskPriority">Priority</label>
+          <input class="mdl-input" id="taskPriority" name="priority" type="text" list="priorityOptions" value="normal" data-mdl-on-change="updateDraftPreview">
+          <datalist class="mdl-datalist" id="priorityOptions">
+            <option class="mdl-option" value="low"></option>
+            <option class="mdl-option" value="normal"></option>
+            <option class="mdl-option" value="high"></option>
+          </datalist>
+          <div class="mdl-actions">
+            <button class="mdl-btn-primary" type="submit">Add task</button>
+            <button class="mdl-btn-secondary" type="button" id="priorityButton" data-mdl-on-click="cycleTaskPriority">Priority: Normal</button>
+          </div>
+        </form>
+        <output class="mdl-output" id="draftPreview" for="taskTitle taskNotes taskPriority" aria-live="polite">Start typing to preview the typed draft.</output>
+      </div>
+    </div>
+  </section>
+  <section class="mdl-section">
+    <div class="mdl-grid" cols="3" gap="4">
+      <div class="mdl-card">
+        <span class="mdl-eyebrow">Import graph</span>
+        <h2>Runtime modules</h2>
+        <p><code>scripts/app.ts</code> imports state, DOM, and utility modules. Some imports use <code>.ts</code>, some use <code>.js</code>, and some omit the extension.</p>
+      </div>
+      <div class="mdl-card">
+        <span class="mdl-eyebrow">Build output</span>
+        <h2>Preserved tree</h2>
+        <p>MDL emits matching JavaScript files under <code>dist/scripts/</code>, such as <code>state/store.js</code>, <code>dom/render.js</code>, and <code>utils/format.js</code>.</p>
+      </div>
+      <div class="mdl-card">
+        <span class="mdl-eyebrow">Deployment</span>
+        <h2>No npm requirement</h2>
+        <p>The browser receives JavaScript modules only. The project intentionally has no package manager files or TypeScript config.</p>
+      </div>
+    </div>
+  </section>
+  <div class="mdl-toast" id="plannerToast" aria-live="polite">
+    <p>Planner ready.</p>
+  </div>
+</main>
+<script type="module">
+import * as mdlModule0 from "./scripts/app.js";
+const mdlHandlers = Object.assign({}, mdlModule0);
+const mdlBind = (eventName) => {
+  document.querySelectorAll(`[data-mdl-on-${eventName}]`).forEach((element) => {
+    const handlerName = element.getAttribute(`data-mdl-on-${eventName}`);
+    const handler = mdlHandlers[handlerName];
+    if (typeof handler === "function") {
+      element.addEventListener(eventName, (event) => handler(event));
+    }
+  });
+};
+["click", "submit", "input", "change"].forEach(mdlBind);
+document.querySelectorAll("[data-mdl-on-mount]").forEach((element) => {
+  const handlerName = element.getAttribute("data-mdl-on-mount");
+  const handler = mdlHandlers[handlerName];
+  if (typeof handler === "function") {
+    handler(element);
+  }
+});
+</script>
+</body>
+</html>

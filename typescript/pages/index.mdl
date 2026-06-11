@@ -1,0 +1,73 @@
+page@id(typescriptExample):
+  hero@class(ts-hero):
+    .eyebrow(Optional external TypeScript tree)
+    # Advanced behavior from `scripts/app.ts`
+    This page runs a typed task planner from a local TypeScript module tree. MDL compiles every runtime `.ts` module to browser-ready `.js` while keeping the site free of npm, `node_modules`, and `tsconfig.json`.
+    metrics@class(hero-metrics):
+      stat:
+        .metric-value@id(totalCount)(0)
+        .metric-label(Total tasks)
+      stat:
+        .metric-value@id(openCount)(0)
+        .metric-label(Open)
+      stat:
+        .metric-value@id(donePercent)(0%)
+        .metric-label(Done)
+
+  section@class(planner-section):
+    grid@cols(2)@gap(4):
+      card@id(plannerPanel)@mount(mountPlanner):
+        .eyebrow(@mount + dynamic render)
+        ## Sprint board
+        status@id(boardStatus)@aria-live(polite):
+          Waiting for the TypeScript module tree.
+        actions@class(filter-actions):
+          .btn-secondary@type(button)@id(filterAllButton)@aria-pressed(false)@click(showAllTasks)(All)
+          .btn-secondary@type(button)@id(filterOpenButton)@aria-pressed(true)@click(showOpenTasks)(Open)
+          .btn-secondary@type(button)@id(filterDoneButton)@aria-pressed(false)@click(showDoneTasks)(Done)
+        tasks@id(taskList)@aria-live(polite):
+          Loading tasks...
+        actions:
+          .btn-secondary@type(button)@click(loadPresetTasks)(Load scenario)
+          .btn-secondary@type(button)@click(clearCompleted)(Clear done)
+
+      card:
+        .eyebrow(@submit + @input + @change)
+        ## Typed task form
+        form@id(taskForm)@submit(createTaskFromForm):
+          label@for(taskTitle):
+            Task
+          .input@id(taskTitle)@name(title)@type(text)@required@placeholder(Write docs for TS tree)@input(updateDraftPreview)
+          label@for(taskNotes):
+            Notes
+          textarea@id(taskNotes)@name(notes)@rows(4)@placeholder(What should happen next?)@input(updateDraftPreview):
+          label@for(taskPriority):
+            Priority
+          .input@id(taskPriority)@name(priority)@type(text)@list(priorityOptions)@value(normal)@change(updateDraftPreview)
+          datalist@id(priorityOptions):
+            option@value(low):
+            option@value(normal):
+            option@value(high):
+          actions:
+            .btn-primary@type(submit)(Add task)
+            .btn-secondary@type(button)@id(priorityButton)@click(cycleTaskPriority)(Priority: Normal)
+        output@id(draftPreview)@for(taskTitle taskNotes taskPriority)@aria-live(polite):
+          Start typing to preview the typed draft.
+
+  section:
+    grid@cols(3)@gap(4):
+      card:
+        .eyebrow(Import graph)
+        ## Runtime modules
+        `scripts/app.ts` imports state, DOM, and utility modules. Some imports use `.ts`, some use `.js`, and some omit the extension.
+      card:
+        .eyebrow(Build output)
+        ## Preserved tree
+        MDL emits matching JavaScript files under `dist/scripts/`, such as `state/store.js`, `dom/render.js`, and `utils/format.js`.
+      card:
+        .eyebrow(Deployment)
+        ## No npm requirement
+        The browser receives JavaScript modules only. The project intentionally has no package manager files or TypeScript config.
+
+  toast@id(plannerToast)@aria-live(polite):
+    Planner ready.

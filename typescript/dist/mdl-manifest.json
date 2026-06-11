@@ -1,0 +1,23 @@
+{
+  "assets": [],
+  "css_bundle": {
+    "path": "app.css",
+    "runtime": true
+  },
+  "head_scripts": [],
+  "name": null,
+  "pages": [
+    {
+      "output": "index.html",
+      "route": "/",
+      "source": "index.mdl",
+      "source_map": "index.html.mdlmap.json"
+    }
+  ],
+  "scripts": [
+    "scripts/app.js"
+  ],
+  "stylesheets": [
+    "css/site.css"
+  ]
+}
